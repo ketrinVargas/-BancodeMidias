@@ -4,11 +4,11 @@
  * and open the template in the editor.
  */
 package bancodemidias;
-
-/**
- *
- * @author marin
- */
 public class Midia {
+    private String titulo;
+    private String descricao;
+    private Integer data;
+    
+    
     
 }
