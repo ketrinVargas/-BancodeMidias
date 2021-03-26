@@ -9,12 +9,12 @@ package frames;
  *
  * @author marin
  */
-public class ListagemMusicas extends javax.swing.JInternalFrame {
+public class ListagemFilmesFrame extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form EstoqueFrame
      */
-    public ListagemMusicas() {
+    public ListagemFilmesFrame() {
         initComponents();
     }
 
@@ -39,7 +39,7 @@ public class ListagemMusicas extends javax.swing.JInternalFrame {
         setClosable(true);
 
         jLabel1.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        jLabel1.setText("Musicas");
+        jLabel1.setText("Filmes");
 
         jComboBox1.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "< Selecione a opção desejada > ", "Acessórios", "Calçados", "Roupas" }));
@@ -50,17 +50,17 @@ public class ListagemMusicas extends javax.swing.JInternalFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Nome", "Artista", "Duração"
+                "Nome", "Gênero", "Descrição", "Idioma", "Duração"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
