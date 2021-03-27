@@ -29,7 +29,7 @@ public class ListagemMusicas extends javax.swing.JInternalFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBox1 = new javax.swing.JComboBox<String>();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -42,7 +42,7 @@ public class ListagemMusicas extends javax.swing.JInternalFrame {
         jLabel1.setText("Musicas");
 
         jComboBox1.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "< Selecione a opção desejada > ", "Acessórios", "Calçados", "Roupas" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "< Selecione a opção desejada > ", "Acessórios", "Calçados", "Roupas" }));
         jComboBox1.setToolTipText("");
 
         jLabel2.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
@@ -107,7 +107,7 @@ public class ListagemMusicas extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addContainerGap(54, Short.MAX_VALUE))
+                .addContainerGap(58, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
