@@ -9,12 +9,12 @@ package frames;
  *
  * @author marin
  */
-public class ListagemMusicas extends javax.swing.JInternalFrame {
+public class ListagemMusicasFrame extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form EstoqueFrame
      */
-    public ListagemMusicas() {
+    public ListagemMusicasFrame() {
         initComponents();
     }
 

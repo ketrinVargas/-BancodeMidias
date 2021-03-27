@@ -4,7 +4,8 @@
  * and open the template in the editor.
  */
 package bancodemidias;
-public class Midia {
+
+public abstract class Midia {
     private String caminhoDoArquivo;
     private String titulo;
     private String descricao;
