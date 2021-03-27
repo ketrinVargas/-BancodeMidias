@@ -5,10 +5,38 @@
  */
 package bancodemidias;
 public class Midia {
+    private String caminhoDoArquivo;
     private String titulo;
     private String descricao;
-    private Integer data;
-    
-    
-    
+
+    public Midia(String caminhoDoArquivo, String titulo, String descricao) {
+        this.caminhoDoArquivo = caminhoDoArquivo;
+        this.titulo = titulo;
+        this.descricao = descricao;
+    }
+
+    public String getCaminhoDoArquivo() {
+        return this.caminhoDoArquivo;
+    }
+
+    public void setCaminhoDoArquivo(String caminhoDoArquivo) {
+        this.caminhoDoArquivo = caminhoDoArquivo;
+    }
+
+    public String getTitulo() {
+        return this.titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+    public String getDescricao() {
+        return this.descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+      
 }
