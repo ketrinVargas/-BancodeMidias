@@ -200,7 +200,7 @@ public class TelaPrincipalFrame extends javax.swing.JFrame {
     private void sobreOSistemaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sobreOSistemaActionPerformed
         JOptionPane.showMessageDialog(jMenu1, "Bem-Vindo ao  Sistema Banco de Mídias"
                 + "\nO presente sistema tem como propósito cadastrar, alterar, excluir e visualizar mídias."
-                + "\n Você pode consultar suas mídias por: Título ou Data."
+                + "\nVocê pode consultar suas mídias por: Título ou Data."
                 + "\nEm casos de filmes e músicas a busca também pode ser feita por Gênero."
                 + "\nQuaisquer dúvidas entre em contato com a equipe de desenvolvimento :D");
     }//GEN-LAST:event_sobreOSistemaActionPerformed
