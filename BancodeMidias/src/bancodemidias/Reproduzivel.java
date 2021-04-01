@@ -6,13 +6,14 @@
 
 package bancodemidias;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  *
  * @author rafae
  */
-public class Reproduzivel extends Midia {
+public class Reproduzivel extends Midia implements Serializable{
     private String genero;
     private String idioma;
     private int duracao;

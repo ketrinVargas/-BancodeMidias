@@ -5,7 +5,9 @@
  */
 package bancodemidias;
 
-public abstract class Midia {
+import java.io.Serializable;
+
+public abstract class Midia implements Serializable{
     private String caminhoDoArquivo;
     private String titulo;
     private String descricao;
@@ -39,5 +41,6 @@ public abstract class Midia {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
+
       
 }

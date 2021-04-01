@@ -5,13 +5,14 @@
  */
 package bancodemidias;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  *
  * @author marin
  */
-public class Imagem extends Midia {
+public class Imagem extends Midia implements Serializable {
     private String fotografo;
     private String[] pessoas;
     private String local;
@@ -57,5 +58,15 @@ public class Imagem extends Midia {
         this.data = data;
     }
     
+    @Override
+    public String toString() {
+        return "{" +
+            super.toString() +
+            " fotografo='" + getFotografo() + "'" +
+            ", pessoas='" + getPessoas() + "'" +
+            ", local='" + getLocal() + "'" +
+            ", data='" + getData() + "'" +
+            "}";
+    }
    
 }
