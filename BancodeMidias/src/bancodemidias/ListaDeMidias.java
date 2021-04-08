@@ -84,12 +84,15 @@ public class ListaDeMidias {
        }
    }
     
-   public void remove(int id){
+   public boolean remove(int id){
        for (Midia m : listaMidias){
           if (id == m.getId()){
               listaMidias.remove(m);
+              return true;
           }
        }
+       return false;
+       
    }
    
    public void ordenaAlfabeticamente(){

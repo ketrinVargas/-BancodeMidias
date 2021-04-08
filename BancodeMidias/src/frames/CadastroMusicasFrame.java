@@ -20,6 +20,7 @@ import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
+
 /**
  *
  * @author marin
@@ -32,10 +33,7 @@ public class CadastroMusicasFrame extends javax.swing.JInternalFrame {
      */
     
     private ListaDeMidias listMusica;
-    private String[] interpretes;
-
-
-
+    DateFormat df = new SimpleDateFormat("dd/MM/yy");
 
     public CadastroMusicasFrame() {
         initComponents();
@@ -239,7 +237,7 @@ public class CadastroMusicasFrame extends javax.swing.JInternalFrame {
 
     private void botaoConfirmaMusicasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoConfirmaMusicasActionPerformed
 
-        if (jTextFieldTitulo.getText().equals("")
+      /* if (jTextFieldTitulo.getText().equals("")
                 || jTextFieldDescricao.getText().equals("")
                 || jTextFieldGenero.getText().equals("")
                 || jTextFieldIdioma.getText().equals("")
@@ -254,8 +252,8 @@ public class CadastroMusicasFrame extends javax.swing.JInternalFrame {
                     jTextFieldGenero.getText().trim(),
                     jTextFieldIdioma.getText().trim(),
                     Integer.parseInt(jTextFieldDuracao.getText().trim()),
-                    jTextFieldAutores.getText().trim(),
-                    jTextFieldInterpretes.getText().trim(),
+                    jTextFieldAutores.getText()..toString(),
+                    jTextFieldInterpretes.getText().toString(),
                     getDate());
            
   
@@ -267,11 +265,18 @@ public class CadastroMusicasFrame extends javax.swing.JInternalFrame {
                     listMusica.salvar();
                 } catch (IOException ex) {
                     Logger.getLogger(CadastroMusicasFrame.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-                 
-        }
+                }*/
+      
+      
+       JOptionPane.showMessageDialog(null, "Título: " +jTextFieldTitulo.getText()+ "Descrição: " + jTextFieldDescricao.getText()
+        + "Gênero: " + jTextFieldGenero.getText()+ "Idioma: "+jTextFieldIdioma.getText()
+                + "Autores: " + jTextFieldAutores.getText().toString()+ "Interpretes: "+
+                jTextFieldInterpretes.getText().toString()+ "Duração: "+
+                Integer.parseInt(jTextFieldDuracao.getText())+ " Ano "+ jTextFieldAno.getText());   
+       
+       
    
+               
     }//GEN-LAST:event_botaoConfirmaMusicasActionPerformed
 
     private void ArquivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ArquivoActionPerformed
@@ -330,10 +335,10 @@ public class CadastroMusicasFrame extends javax.swing.JInternalFrame {
   * @return O conteúdo da JDateTextField em formato java.util.Date
   */
 public Date getDate() {
-
+  
          String dataStr = jTextFieldAno.getText().substring(0, 8);
          if (jTextFieldAno.equals("  /  /  ")) return null;
-         DateFormat df = new SimpleDateFormat("dd/MM/yy");
+       
          df.setLenient(false);
          try {
                  return df.parse(dataStr);
