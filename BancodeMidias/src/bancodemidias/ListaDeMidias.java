@@ -99,7 +99,5 @@ public class ListaDeMidias {
    public void ordenaData(){
        Collections.sort(listaMidias, Comparator.comparing(Midia::getData));
    }
-   
-   
 
 }

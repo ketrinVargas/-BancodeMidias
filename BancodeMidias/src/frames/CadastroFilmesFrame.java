@@ -238,8 +238,8 @@ public class CadastroFilmesFrame extends javax.swing.JInternalFrame {
         } else {
             Filme film = new Filme(jTextFieldTitulo.getText().trim(),
                     jTextFieldDescricao.getText().trim(),
-                    jComboBoxGenero.getSelectedItem(),
-                    jComboBoxIdioma.getSelectedItem(),
+                    jComboBoxGenero.getSelectedItem().toString(),
+                    jComboBoxIdioma.getSelectedItem().toString(),
                     jTextFieldAutores.getText().trim(),
                     jTextFieldInterpretes.getText().trim(),
                     Integer.parseInt(jTextFieldDuracao.getText().trim()),
