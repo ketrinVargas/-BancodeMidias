@@ -1,13 +1,14 @@
 
 package bancodemidias;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  *
  * @author marin
  */
-public class Filme extends Reproduzivel{
+public class Filme extends Reproduzivel implements Serializable{
     private String[] diretor;
     private String[] atores;
     private String[] principais;  

@@ -18,7 +18,7 @@ public class BancodeMidias {
      */
     public static void main(String[] args) throws IOException {
         // TODO code application logic here
-        new Arquivos();
+        
     }
     
 }

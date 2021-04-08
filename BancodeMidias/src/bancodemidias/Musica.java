@@ -1,13 +1,14 @@
 
 package bancodemidias;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  *
  * @author marin
  */
-public class Musica extends Reproduzivel {
+public class Musica extends Reproduzivel implements Serializable {
     private String[] interpretes;
     private String[] autores;
 

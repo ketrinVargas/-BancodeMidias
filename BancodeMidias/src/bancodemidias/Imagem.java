@@ -58,15 +58,6 @@ public class Imagem extends Midia implements Serializable {
         this.data = data;
     }
     
-    @Override
-    public String toString() {
-        return "{" +
-            super.toString() +
-            " fotografo='" + getFotografo() + "'" +
-            ", pessoas='" + getPessoas() + "'" +
-            ", local='" + getLocal() + "'" +
-            ", data='" + getData() + "'" +
-            "}";
-    }
+   
    
 }

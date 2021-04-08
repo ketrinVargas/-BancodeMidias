@@ -8,14 +8,21 @@ package bancodemidias;
 import java.io.Serializable;
 
 public abstract class Midia implements Serializable{
+    private static ListaDeMidias listaDeMidias;
+    private int id;
     private String caminhoDoArquivo;
     private String titulo;
     private String descricao;
 
-    public Midia(String caminhoDoArquivo, String titulo, String descricao) {
+    public Midia(String caminhoDoArquivo, String titulo, String descricao){
+        this.id = listaDeMidias.quantidadeDeMidias();
         this.caminhoDoArquivo = caminhoDoArquivo;
         this.titulo = titulo;
         this.descricao = descricao;
+    }
+    
+    public int getId(){
+        return id;
     }
 
     public String getCaminhoDoArquivo() {
