@@ -57,6 +57,11 @@ public class Imagem extends Midia implements Serializable {
     public void setData(Date data) {
         this.data = data;
     }
+
+    @Override
+    public String getGenero(String genero) {
+        return null;
+    }
     
    
    
