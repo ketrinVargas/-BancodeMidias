@@ -205,7 +205,7 @@ public class CadastroImagensFrame extends javax.swing.JInternalFrame {
 
     private void botaoConfirmaImagensActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoConfirmaImagensActionPerformed
         
-        if (jTextFieldTitulo.getText().equals("")
+       /* if (jTextFieldTitulo.getText().equals("")
                 || jTextFieldDescricao.getText().equals("")
                 || jTextFieldFotografo.getText().equals("")
                 || jTextFieldPessoas.getText().equals("")
@@ -232,7 +232,7 @@ public class CadastroImagensFrame extends javax.swing.JInternalFrame {
             }
             
             
-        }
+        }*/
         
 
     }//GEN-LAST:event_botaoConfirmaImagensActionPerformed

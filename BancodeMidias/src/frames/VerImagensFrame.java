@@ -92,7 +92,7 @@ public class VerImagensFrame extends javax.swing.JInternalFrame {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", "Título", "Data", " " }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -181,10 +181,10 @@ public class VerImagensFrame extends javax.swing.JInternalFrame {
                     }
                 }
                 if (!error) {
-                    if (listImagem.remove(aux)) {
+                    if (!(listImagem.remove(Integer.parseInt(aux)))){
                         JOptionPane.showMessageDialog(null, "ID não encontrado.");
                     } else {
-                        JOptionPane.showMessageDialog(null, "Filme deletado com sucesso.");
+                        JOptionPane.showMessageDialog(null, "Imagem deletada com sucesso.");
                         try {
                             listImagem.salvar();
                         } catch (IOException ex) {

@@ -226,7 +226,7 @@ public class CadastroFilmesFrame extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTextFieldAnoActionPerformed
 
     private void botaoConfirmaFilmesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoConfirmaFilmesActionPerformed
-         if (jTextFieldTitulo.getText().equals("")
+      /*   if (jTextFieldTitulo.getText().equals("")
                 || jTextFieldDescricao.getText().equals("")
                 || jComboBoxGenero.getSelectedItem().equals("")
                 || jComboBoxIdioma.getSelectedItem().equals("")
@@ -257,7 +257,7 @@ public class CadastroFilmesFrame extends javax.swing.JInternalFrame {
 
             }
             
-         }
+         }*/
              
         
         
