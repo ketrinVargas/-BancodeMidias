@@ -6,6 +6,7 @@
 package bancodemidias;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public abstract class Midia implements Serializable{
     private static ListaDeMidias listaDeMidias;
@@ -48,6 +49,9 @@ public abstract class Midia implements Serializable{
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
-
+    
+    public abstract String getGenero(String genero);
+    
+    public abstract Date getData();
       
 }

@@ -48,10 +48,6 @@ public class Reproduzivel extends Midia implements Serializable{
         this.duracao = duracao;
     }
 
-    public Date getAno() {
-        return this.ano;
-    }
-
     public void setAno(Date ano) {
         this.ano = ano;
     }
@@ -60,4 +56,10 @@ public class Reproduzivel extends Midia implements Serializable{
     public String getGenero(String genero) {
         return this.genero;
     }
+
+    public Date getData() {
+        return this.ano ;
+    }
+
+    
 }

@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import bancodemidias.Reproduzivel;
 
 /**
  *
@@ -56,6 +57,18 @@ public class ListaDeMidias {
            }
            return lista;
        }
+       public List contemNoGenero(String genero){
+           List<Midia> lista = new ArrayList();
+           for (Midia m : listaMidias){
+               String generoEncontrado = m.getGenero(genero);
+               if(generoEncontrado != null){
+                   if (generoEncontrado.trim().toLowerCase().contains(genero.toLowerCase().trim())){
+                       lista.add(m);
+                   }
+               }
+           }
+           return lista;
+       }
    }
    
    public boolean salvar() throws IOException{
@@ -83,9 +96,10 @@ public class ListaDeMidias {
        Collections.sort(listaMidias, Comparator.comparing(Midia::getTitulo));
    }
    
-   /*public void ordenaData(){
-       Collections.sort(listaMidias, Comparator.comparing(Midia.class.::));
-
-   }*/
+   public void ordenaData(){
+       Collections.sort(listaMidias, Comparator.comparing(Midia::getData));
+   }
+   
+   
 
 }

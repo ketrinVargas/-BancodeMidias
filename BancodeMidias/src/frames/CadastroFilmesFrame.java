@@ -41,8 +41,8 @@ public class CadastroFilmesFrame extends javax.swing.JInternalFrame {
         jLabel9 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        jComboBox1 = new javax.swing.JComboBox<String>();
+        jComboBox2 = new javax.swing.JComboBox<String>();
         jTextField3 = new javax.swing.JTextField();
         jTextField4 = new javax.swing.JTextField();
         jTextField5 = new javax.swing.JTextField();
@@ -71,9 +71,14 @@ public class CadastroFilmesFrame extends javax.swing.JInternalFrame {
 
         jLabel9.setText("Ano");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "<Selecione o Gênero>", "Comédia", "Cult", "Infantil", "Romance", "Suspense", "Terror" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "<Selecione o Gênero>", "Comédia", "Cult", "Infantil", "Romance", "Suspense", "Terror" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "<Selecione o Idioma>", "Espanhol", "Inglês", "Português" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "<Selecione o Idioma>", "Espanhol", "Inglês", "Português" }));
 
         jTextField6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -188,6 +193,10 @@ public class CadastroFilmesFrame extends javax.swing.JInternalFrame {
     private void botaoConfirmaFilmesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoConfirmaFilmesActionPerformed
          JOptionPane.showMessageDialog(null, "Cadastro Efetuado!");
     }//GEN-LAST:event_botaoConfirmaFilmesActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

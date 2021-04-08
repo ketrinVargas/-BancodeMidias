@@ -50,10 +50,6 @@ public class Imagem extends Midia implements Serializable {
         this.local = local;
     }
 
-    public Date getData() {
-        return this.data;
-    }
-
     public void setData(Date data) {
         this.data = data;
     }
@@ -62,7 +58,9 @@ public class Imagem extends Midia implements Serializable {
     public String getGenero(String genero) {
         return null;
     }
-    
-   
+
+    public Date getData() {
+        return this.data;
+    }
    
 }
