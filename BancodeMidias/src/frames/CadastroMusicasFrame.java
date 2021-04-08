@@ -237,7 +237,7 @@ public class CadastroMusicasFrame extends javax.swing.JInternalFrame {
 
     private void botaoConfirmaMusicasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoConfirmaMusicasActionPerformed
 
-      /* if (jTextFieldTitulo.getText().equals("")
+       if (jTextFieldTitulo.getText().equals("")
                 || jTextFieldDescricao.getText().equals("")
                 || jTextFieldGenero.getText().equals("")
                 || jTextFieldIdioma.getText().equals("")
@@ -265,7 +265,7 @@ public class CadastroMusicasFrame extends javax.swing.JInternalFrame {
                     listMusica.salvar();
                 } catch (IOException ex) {
                     Logger.getLogger(CadastroMusicasFrame.class.getName()).log(Level.SEVERE, null, ex);
-                }*/
+                }
       
       
        JOptionPane.showMessageDialog(null, "Título: " +jTextFieldTitulo.getText()+ "Descrição: " + jTextFieldDescricao.getText()
