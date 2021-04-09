@@ -20,9 +20,10 @@ public class VerFilmesFrame extends javax.swing.JInternalFrame {
     /**
      * Creates new form VerFilmesFrame
      */
-    private ListaDeMidias listFilme;
-    public VerFilmesFrame() {
+    private ListaDeMidias listMidias ;
+    public VerFilmesFrame(ListaDeMidias midias) {
         initComponents();
+        listMidias = midias;
     }
 
     /**
@@ -188,12 +189,12 @@ public class VerFilmesFrame extends javax.swing.JInternalFrame {
                     }
                 }
                 if (!error) {
-                    if (!(listFilme.remove(Integer.parseInt(aux)))) {
+                    if (!(listMidias.remove(Integer.parseInt(aux)))) {
                         JOptionPane.showMessageDialog(null, "ID não encontrado.");
                     } else {
                         JOptionPane.showMessageDialog(null, "Filme deletado com sucesso.");
                         try {
-                            listFilme.salvar();
+                            listMidias.salvar();
                         } catch (IOException ex) {
                             Logger.getLogger(VerFilmesFrame.class.getName()).log(Level.SEVERE, null, ex);
                         }

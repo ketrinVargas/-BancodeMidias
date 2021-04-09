@@ -57,27 +57,32 @@
                                       <Component id="jLabel5" alignment="1" min="-2" max="-2" attributes="0"/>
                                       <Component id="jLabel6" alignment="1" min="-2" max="-2" attributes="0"/>
                                       <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="jComboBoxIdioma" max="32767" attributes="0"/>
                                       <Component id="jTextFieldAutores" max="32767" attributes="0"/>
-                                      <Component id="jTextFieldInterpretes" max="32767" attributes="0"/>
-                                      <Component id="jTextFieldTitulo" min="-2" pref="224" max="-2" attributes="0"/>
+                                      <Component id="jTextFieldDiretores" max="32767" attributes="0"/>
                                       <Component id="jTextFieldDescricao" alignment="0" max="32767" attributes="0"/>
                                       <Component id="jComboBoxGenero" alignment="0" max="32767" attributes="0"/>
                                       <Group type="102" alignment="1" attributes="0">
+                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                          <Component id="botaoConfirmaFilmes" min="-2" pref="87" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" attributes="0">
+                                          <Component id="jTextFieldTitulo" min="-2" pref="224" max="-2" attributes="0"/>
+                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
                                           <Component id="jTextFieldDuracao" min="-2" pref="59" max="-2" attributes="0"/>
                                           <EmptySpace max="32767" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="botaoConfirmaFilmes" min="-2" pref="87" max="-2" attributes="0"/>
-                                              <Group type="102" attributes="0">
-                                                  <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
-                                                  <EmptySpace max="-2" attributes="0"/>
-                                                  <Component id="jTextFieldAno" min="-2" pref="64" max="-2" attributes="0"/>
-                                              </Group>
-                                          </Group>
+                                          <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="jTextFieldAno" min="-2" pref="64" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                                       </Group>
+                                      <Component id="jTextFieldInterpretes1" alignment="0" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
@@ -125,16 +130,21 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTextFieldInterpretes" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jTextFieldInterpretes1" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jTextFieldDiretores" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="28" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jTextFieldDuracao" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTextFieldDuracao" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jTextFieldAno" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="32" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="Arquivo" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                       <Component id="txtFile" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -234,7 +244,10 @@
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldAutores">
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextFieldInterpretes">
+        <Component class="javax.swing.JTextField" name="jTextFieldDiretores">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldDiretoresActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldDuracao">
         </Component>
@@ -263,6 +276,13 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtFileActionPerformed"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JTextField" name="jTextFieldInterpretes1">
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel10">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Diretores"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>

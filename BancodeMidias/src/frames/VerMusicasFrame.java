@@ -20,9 +20,10 @@ public class VerMusicasFrame extends javax.swing.JInternalFrame {
     /**
      * Creates new form VerMusicasFrame
      */
-     private ListaDeMidias listMusica;
-    public VerMusicasFrame() {
+  private ListaDeMidias listMidias ;
+    public VerMusicasFrame(ListaDeMidias midias) {
         initComponents();
+        listMidias = midias;
     }
 
     /**
@@ -161,12 +162,12 @@ public class VerMusicasFrame extends javax.swing.JInternalFrame {
                     }
                 }
                 if (!error) {
-                    if (!(listMusica.remove(Integer.parseInt(aux)))) {
+                    if (!(listMidias.remove(Integer.parseInt(aux)))) {
                         JOptionPane.showMessageDialog(null, "ID não encontrado.");
                     } else {
                         JOptionPane.showMessageDialog(null, "Musica deletado com sucesso.");
                         try {
-                            listMusica.salvar();
+                            listMidias.salvar();
                         } catch (IOException ex) {
                             Logger.getLogger(VerFilmesFrame.class.getName()).log(Level.SEVERE, null, ex);
                         }

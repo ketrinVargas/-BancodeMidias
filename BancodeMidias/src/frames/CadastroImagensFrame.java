@@ -7,13 +7,16 @@ package frames;
 
 import bancodemidias.Imagem;
 import bancodemidias.ListaDeMidias;
+import bancodemidias.Midia;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -28,15 +31,16 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class CadastroImagensFrame extends javax.swing.JInternalFrame {
     
-    private ListaDeMidias listImagem;
-
+    
     /**
      * Creates new form CadastroFotosFrame
      */
 
-    BufferedImage imagem;
-    public CadastroImagensFrame() {
+    private ListaDeMidias listMidias ;
+    
+    public CadastroImagensFrame(ListaDeMidias midias) {
         initComponents();
+        listMidias = midias;
     }
 
     /**
@@ -205,7 +209,8 @@ public class CadastroImagensFrame extends javax.swing.JInternalFrame {
 
     private void botaoConfirmaImagensActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoConfirmaImagensActionPerformed
         
-       /* if (jTextFieldTitulo.getText().equals("")
+        if (txtFile.getText().equals("")
+                ||jTextFieldTitulo.getText().equals("")
                 || jTextFieldDescricao.getText().equals("")
                 || jTextFieldFotografo.getText().equals("")
                 || jTextFieldPessoas.getText().equals("")
@@ -213,26 +218,28 @@ public class CadastroImagensFrame extends javax.swing.JInternalFrame {
                 || jTextFieldData.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Informe todos os campos!");
         } else {
-            Imagem img = new Imagem(jTextFieldTitulo.getText().trim(),
+            Imagem img = new Imagem(
+                    txtFile.getText().trim(),
+                    jTextFieldTitulo.getText().trim(),
                     jTextFieldDescricao.getText().trim(),
                     jTextFieldFotografo.getText().trim(),
                     jTextFieldPessoas.getText().trim(),
                     jTextFieldLocal.getText().trim(),
                     getDate()); 
             
-            if (listImagem.adiciona(img) == false) {
+            if (listMidias.adiciona(img) == false) {
                 JOptionPane.showMessageDialog(null, "Não foi possível salvar.");
             } else {
            JOptionPane.showMessageDialog(null, "Cadastro Efetuado!");
                 try {
-                    listImagem.salvar();
+                    listMidias.salvar();
                 } catch (IOException ex) {
                     Logger.getLogger(CadastroImagensFrame.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
             
             
-        }*/
+        }
         
 
     }//GEN-LAST:event_botaoConfirmaImagensActionPerformed
