@@ -18,7 +18,18 @@ public class Imagem extends Midia implements Serializable {
     private String local;
     private Date data;
 
-    public Imagem(String caminhoDoArquivo, String titulo, String descricao, String fotografo, String[] pessoas, String local, Date data) {
+    /**
+     *
+     * @param caminhoDoArquivo
+     * @param titulo
+     * @param descricao
+     * @param fotografo
+     * @param pessoas
+     * @param local
+     * @param data
+     */
+    public Imagem(String caminhoDoArquivo, String titulo, String descricao, String fotografo, String[] pessoas,
+            String local, Date data) {
         super(caminhoDoArquivo, titulo, descricao);
         this.fotografo = fotografo;
         this.pessoas = pessoas;
@@ -62,5 +73,5 @@ public class Imagem extends Midia implements Serializable {
     public Date getData() {
         return this.data;
     }
-   
+
 }

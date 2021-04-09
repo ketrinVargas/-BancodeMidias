@@ -8,13 +8,27 @@ import java.util.Date;
  *
  * @author marin
  */
-public class Filme extends Reproduzivel implements Serializable{
+public class Filme extends Reproduzivel implements Serializable {
     private String[] diretor;
     private String[] atores;
-    private String[] principais;  
+    private String[] principais;
 
-    public Filme(String caminhoDoArquivo, String titulo, String descricao, String genero, String idioma, int duracao, Date ano, String[] diretor, String[] atores, String[] principais) {
-        super( caminhoDoArquivo,  titulo,  descricao,  genero,  idioma,  duracao, ano);
+    /**
+     *
+     * @param caminhoDoArquivo
+     * @param titulo
+     * @param descricao
+     * @param genero
+     * @param idioma
+     * @param duracao
+     * @param ano
+     * @param diretor
+     * @param atores
+     * @param principais
+     */
+    public Filme(String caminhoDoArquivo, String titulo, String descricao, String genero, String idioma, int duracao,
+            Date ano, String[] diretor, String[] atores, String[] principais) {
+        super(caminhoDoArquivo, titulo, descricao, genero, idioma, duracao, ano);
         this.diretor = diretor;
         this.atores = atores;
         this.principais = principais;
