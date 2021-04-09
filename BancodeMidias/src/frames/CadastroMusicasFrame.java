@@ -263,7 +263,7 @@ public class CadastroMusicasFrame extends javax.swing.JInternalFrame {
                     jTextFieldIdioma.getText().trim(),
                     Integer.parseInt(jTextFieldDuracao.getText().trim()),
                     getDate(),
-                    jTextFieldInterpretes.getText().toString(),
+                    jTextFieldInterpretes.getText(),
                     jTextFieldAutores.getText().toString());
            
   

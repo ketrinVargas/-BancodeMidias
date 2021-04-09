@@ -265,10 +265,11 @@ public class CadastroFilmesFrame extends javax.swing.JInternalFrame {
                     jComboBoxGenero.getSelectedItem().toString(),
                     jComboBoxIdioma.getSelectedItem().toString(),
                     Integer.parseInt(jTextFieldDuracao.getText().trim()),
-                    jTextFieldDiretores.getText().trim(),
-                    jTextFieldAutores.getText().trim(),
-                    jTextFieldInterpretes1.getText().trim(),
-                    getDate()); 
+                    getDate(),
+                    jTextFieldDiretores.getText(),
+                    jTextFieldAutores.getText(),
+                    jTextFieldInterpretes1.getText()
+                   ); 
             
             if (listMidias.adiciona(film) == false) {
                 JOptionPane.showMessageDialog(null, "Não foi possível salvar.");
