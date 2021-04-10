@@ -20,9 +20,10 @@ public class VerFilmesFrame extends javax.swing.JInternalFrame {
     /**
      * Creates new form VerFilmesFrame
      */
-    private ListaDeMidias listFilme;
-    public VerFilmesFrame() {
+    private ListaDeMidias listMidias ;
+    public VerFilmesFrame(ListaDeMidias midias) {
         initComponents();
+        listMidias = midias;
     }
 
     /**
@@ -38,7 +39,7 @@ public class VerFilmesFrame extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        jList1 = new javax.swing.JList<String>();
         jLabel3 = new javax.swing.JLabel();
         jScrollBar1 = new javax.swing.JScrollBar();
         botaoConfirmaFilmesVER = new javax.swing.JButton();
@@ -58,10 +59,10 @@ public class VerFilmesFrame extends javax.swing.JInternalFrame {
             }
         });
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+        jList1.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+            public Object getElementAt(int i) { return strings[i]; }
         });
         jScrollPane1.setViewportView(jList1);
 
@@ -140,7 +141,7 @@ public class VerFilmesFrame extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonEditar)
                     .addComponent(jButtonExcluir))
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addContainerGap(55, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -188,12 +189,12 @@ public class VerFilmesFrame extends javax.swing.JInternalFrame {
                     }
                 }
                 if (!error) {
-                    if (!(listFilme.remove(Integer.parseInt(aux)))) {
+                    if (!(listMidias.remove(Integer.parseInt(aux)))) {
                         JOptionPane.showMessageDialog(null, "ID não encontrado.");
                     } else {
                         JOptionPane.showMessageDialog(null, "Filme deletado com sucesso.");
                         try {
-                            listFilme.salvar();
+                            listMidias.salvar();
                         } catch (IOException ex) {
                             Logger.getLogger(VerFilmesFrame.class.getName()).log(Level.SEVERE, null, ex);
                         }

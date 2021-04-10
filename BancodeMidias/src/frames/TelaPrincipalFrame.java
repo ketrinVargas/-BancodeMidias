@@ -5,19 +5,28 @@
  */
 package frames;
 
+import bancodemidias.ListaDeMidias;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author marin
  */
+
 public class TelaPrincipalFrame extends javax.swing.JFrame {
 
+    private ListaDeMidias listMidia;
     /**
      * Creates new form TelaPrincipalFrame
      */
+    
     public TelaPrincipalFrame() {
         initComponents();
+        try{
+            listMidia = new ListaDeMidias();
+        }catch(Exception e){
+        System.out.println(e.getMessage()); 
+    }
     }
 
     /**
@@ -156,37 +165,37 @@ public class TelaPrincipalFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cadastroFilmesPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastroFilmesPActionPerformed
-        CadastroFilmesFrame telaCadFilme = new CadastroFilmesFrame();
+        CadastroFilmesFrame telaCadFilme = new CadastroFilmesFrame(listMidia);
         jDesktopPane1.add(telaCadFilme); 
         telaCadFilme.setVisible(true);
     }//GEN-LAST:event_cadastroFilmesPActionPerformed
 
     private void CadastroMusicasInicialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadastroMusicasInicialActionPerformed
-        CadastroMusicasFrame telaCadMus = new CadastroMusicasFrame();
+        CadastroMusicasFrame telaCadMus = new CadastroMusicasFrame(listMidia);
         jDesktopPane1.add(telaCadMus); 
         telaCadMus.setVisible(true);
     }//GEN-LAST:event_CadastroMusicasInicialActionPerformed
 
     private void verImagensActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verImagensActionPerformed
-        VerImagensFrame verImg = new VerImagensFrame();
+        VerImagensFrame verImg = new VerImagensFrame(listMidia);
         jDesktopPane1.add(verImg); 
         verImg.setVisible(true);
     }//GEN-LAST:event_verImagensActionPerformed
 
     private void cadastroImagensPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastroImagensPActionPerformed
-        CadastroImagensFrame telaImgMus = new CadastroImagensFrame();
+        CadastroImagensFrame telaImgMus = new CadastroImagensFrame(listMidia);
         jDesktopPane1.add(telaImgMus); 
         telaImgMus.setVisible(true);
     }//GEN-LAST:event_cadastroImagensPActionPerformed
 
     private void verFilmesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verFilmesActionPerformed
-        VerFilmesFrame verFilm = new VerFilmesFrame();
+        VerFilmesFrame verFilm = new VerFilmesFrame(listMidia);
         jDesktopPane1.add(verFilm); 
         verFilm.setVisible(true);
     }//GEN-LAST:event_verFilmesActionPerformed
 
     private void verMusicasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verMusicasActionPerformed
-        VerMusicasFrame verMsc = new VerMusicasFrame();
+        VerMusicasFrame verMsc = new VerMusicasFrame(listMidia);
         jDesktopPane1.add(verMsc); 
         verMsc.setVisible(true);
     }//GEN-LAST:event_verMusicasActionPerformed

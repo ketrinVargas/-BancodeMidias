@@ -7,12 +7,14 @@ package frames;
 
 
 import bancodemidias.ListaDeMidias;
+import bancodemidias.Midia;
 import bancodemidias.Musica;
 import java.io.File;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
@@ -32,11 +34,16 @@ public class CadastroMusicasFrame extends javax.swing.JInternalFrame {
      * Creates new form CadastroMusicasFrame
      */
     
-    private ListaDeMidias listMusica;
+    private ListaDeMidias listMidias ;
+    
+    
+    
     DateFormat df = new SimpleDateFormat("dd/MM/yy");
 
-    public CadastroMusicasFrame() {
+    public CadastroMusicasFrame(ListaDeMidias midias) {
         initComponents();
+        listMidias = midias;
+        
     }
 
     /**
@@ -237,44 +244,44 @@ public class CadastroMusicasFrame extends javax.swing.JInternalFrame {
 
     private void botaoConfirmaMusicasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoConfirmaMusicasActionPerformed
 
-       if (jTextFieldTitulo.getText().equals("")
-                || jTextFieldDescricao.getText().equals("")
-                || jTextFieldGenero.getText().equals("")
-                || jTextFieldIdioma.getText().equals("")
-                || jTextFieldAutores.getText().equals("")
-                || jTextFieldInterpretes.getText().equals("")
-                || jTextFieldDuracao.getText().equals("")
-                || jTextFieldAno.getText().equals("")) {
+       if (txtFile.getText().equals("")
+            ||jTextFieldTitulo.getText().equals("")
+            || jTextFieldDescricao.getText().equals("")
+            || jTextFieldGenero.getText().equals("")
+            || jTextFieldIdioma.getText().equals("")
+            || jTextFieldAutores.getText().equals("")
+            || jTextFieldInterpretes.getText().equals("")
+            || jTextFieldDuracao.getText().equals("")
+            || jTextFieldAno.getText().equals("")) {
+
             JOptionPane.showMessageDialog(null, "Informe todos os campos!");
         } else {
-            Musica music = new Musica(jTextFieldTitulo.getText().trim(),
+            Musica music = new Musica(
+                    txtFile.getText().trim(),
+                    jTextFieldTitulo.getText().trim(),
                     jTextFieldDescricao.getText().trim(),
                     jTextFieldGenero.getText().trim(),
                     jTextFieldIdioma.getText().trim(),
                     Integer.parseInt(jTextFieldDuracao.getText().trim()),
-                    jTextFieldAutores.getText().toString(),
-                    jTextFieldInterpretes.getText().toString(),
-                    getDate());
-           
+                    getDate(),
+                    jTextFieldInterpretes.getText(),
+                    jTextFieldAutores.getText().toString());
   
-            if (listMusica.adiciona(music) == false) {
+            if (listMidias.adiciona(music) == false) {
                 JOptionPane.showMessageDialog(null, "Não foi possível salvar.");
             } else {
-           JOptionPane.showMessageDialog(null, "Cadastro Efetuado!");
+                JOptionPane.showMessageDialog(null, "Cadastro Efetuado!");
                 try {
-                    listMusica.salvar();
+                    listMidias.salvar();
                 } catch (IOException ex) {
                     Logger.getLogger(CadastroMusicasFrame.class.getName()).log(Level.SEVERE, null, ex);
                 }
       
-      
-       JOptionPane.showMessageDialog(null, "Título: " +jTextFieldTitulo.getText()+ "Descrição: " + jTextFieldDescricao.getText()
-        + "Gênero: " + jTextFieldGenero.getText()+ "Idioma: "+jTextFieldIdioma.getText()
-                + "Autores: " + jTextFieldAutores.getText().toString()+ "Interpretes: "+
-                jTextFieldInterpretes.getText().toString()+ "Duração: "+
-                Integer.parseInt(jTextFieldDuracao.getText())+ " Ano "+ jTextFieldAno.getText());   
+            }
        
+       }
        
+   
    
                
     }//GEN-LAST:event_botaoConfirmaMusicasActionPerformed

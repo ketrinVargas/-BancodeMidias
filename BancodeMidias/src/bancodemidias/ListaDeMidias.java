@@ -31,12 +31,27 @@ public class ListaDeMidias {
         return listaMidias.add(midia);
     }
     
-    public int quantidadeDeMidias(){
-        return listaMidias.size();
+    public void editar(int id, Midia midiaNova){
+       for (Midia m : listaMidias){
+          if (id == m.getId()){
+             int index = listaMidias.indexOf(m);
+             listaMidias.set(index, midiaNova);
+          }
+       }
+   }
+    
+    public boolean remove(int id){
+       for (Midia m : listaMidias){
+          if (id == m.getId()){
+              listaMidias.remove(m);
+              return true;
+          }
+       }
+       return false;
     }
     
-    public List getLista(){
-        return listaMidias;
+    public int quantidadeDeMidias(){
+        return listaMidias.size();
     }
     
    public class getMidia{
@@ -75,32 +90,21 @@ public class ListaDeMidias {
        return arquivo.escreveArquivo(listaMidias);
    }
    
-   public void editar(int id, Midia midiaNova){
-       for (Midia m : listaMidias){
-          if (id == m.getId()){
-             int index = listaMidias.indexOf(m);
-             listaMidias.set(index, midiaNova);
-          }
-       }
-   }
-    
-   public boolean remove(int id){
-       for (Midia m : listaMidias){
-          if (id == m.getId()){
-              listaMidias.remove(m);
-              return true;
-          }
-       }
-       return false;
-       
-   }
-   
    public void ordenaAlfabeticamente(){
        Collections.sort(listaMidias, Comparator.comparing(Midia::getTitulo));
    }
    
    public void ordenaData(){
        Collections.sort(listaMidias, Comparator.comparing(Midia::getData));
+   }
+   
+   public class listaObjeto{
+       private static ListaDeMidia listaOrigem = new ListaDeMidia();
+       private List<Class> lista;
+       public listaObjeto(Class tipo){
+           this.lista = new ArrayList<>();
+           this.lista = 
+       }
    }
 
 }

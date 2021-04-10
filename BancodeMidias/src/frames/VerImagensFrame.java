@@ -21,9 +21,10 @@ public class VerImagensFrame extends javax.swing.JInternalFrame {
     /**
      * Creates new form VerImagensFrame
      */
-    private ListaDeMidias listImagem;
-    public VerImagensFrame() {
+   private ListaDeMidias listMidias ;
+    public VerImagensFrame(ListaDeMidias midias) {
         initComponents();
+        listMidias = midias;
     }
 
     /**
@@ -92,7 +93,7 @@ public class VerImagensFrame extends javax.swing.JInternalFrame {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", "Título", "Data", " " }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", "Título", "Data" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -181,12 +182,12 @@ public class VerImagensFrame extends javax.swing.JInternalFrame {
                     }
                 }
                 if (!error) {
-                    if (!(listImagem.remove(Integer.parseInt(aux)))){
+                    if (!(listMidias.remove(Integer.parseInt(aux)))){
                         JOptionPane.showMessageDialog(null, "ID não encontrado.");
                     } else {
                         JOptionPane.showMessageDialog(null, "Imagem deletada com sucesso.");
                         try {
-                            listImagem.salvar();
+                            listMidias.salvar();
                         } catch (IOException ex) {
                             Logger.getLogger(VerFilmesFrame.class.getName()).log(Level.SEVERE, null, ex);
                         }
