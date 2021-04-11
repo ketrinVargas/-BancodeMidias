@@ -7,16 +7,12 @@ package frames;
 
 import bancodemidias.Imagem;
 import bancodemidias.ListaDeMidias;
-import bancodemidias.Midia;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -210,7 +206,7 @@ public class CadastroImagensFrame extends javax.swing.JInternalFrame {
     private void botaoConfirmaImagensActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoConfirmaImagensActionPerformed
         
 
-        if (txtFile.getText().equals("")
+       if (txtFile.getText().equals("")
                 ||jTextFieldTitulo.getText().equals("")
                 || jTextFieldDescricao.getText().equals("")
                 || jTextFieldFotografo.getText().equals("")
@@ -224,7 +220,7 @@ public class CadastroImagensFrame extends javax.swing.JInternalFrame {
                     jTextFieldTitulo.getText().trim(),
                     jTextFieldDescricao.getText().trim(),
                     jTextFieldFotografo.getText().trim(),
-                    jTextFieldPessoas.getText().trim(),
+                    getPessoas(),
                     jTextFieldLocal.getText().trim(),
                     getDate()); 
             
@@ -232,16 +228,16 @@ public class CadastroImagensFrame extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(null, "Não foi possível salvar.");
             } else {
            JOptionPane.showMessageDialog(null, "Cadastro Efetuado!");
-                try {.salvar();
-                } catch (IOExce
-                    listMidiasption ex) {
-                    Logger.getLogger(CadastroImagensFrame.class.getName()).log(Level.SEVERE, null, ex);
+                try { 
+                    listMidias.salvar();
+                } catch (IOException ex) {
+                    Logger.getLogger(CadastroFilmesFrame.class.getName()).log(Level.SEVERE, null, ex);
                 }
+
             }
             
-            
-        }
-        
+         }
+             
 
     }//GEN-LAST:event_botaoConfirmaImagensActionPerformed
 
@@ -321,4 +317,14 @@ public Date getDate() {
          }                
 
  }
+public String [] getPessoas(){
+    
+    try{ 
+        String pessoa =  jTextFieldPessoas.getText().trim();
+        }
+        catch(Exception e) {
+                 return null;    
+     }  
+        return null;
+}
 }

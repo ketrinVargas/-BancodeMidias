@@ -5,7 +5,9 @@
  */
 package frames;
 
+import bancodemidias.Filme;
 import bancodemidias.ListaDeMidias;
+import bancodemidias.Midia;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,11 +23,12 @@ public class VerFilmesFrame extends javax.swing.JInternalFrame {
      * Creates new form VerFilmesFrame
      */
     private ListaDeMidias listMidias ;
+    String aux;
     public VerFilmesFrame(ListaDeMidias midias) {
         initComponents();
         listMidias = midias;
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -167,14 +170,11 @@ public class VerFilmesFrame extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_botaoConfirmaFilmesVERActionPerformed
 
     private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
-             
-
+        // TODO add your handling code here:
     }//GEN-LAST:event_jButtonEditarActionPerformed
 
     private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
         // TODO add your handling code here:
-        
-        String aux;
         boolean error = false;
 
         aux = JOptionPane.showInputDialog("Insira o ID que você deseja excluir: ");
@@ -225,4 +225,5 @@ public class VerFilmesFrame extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
+
 }

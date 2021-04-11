@@ -264,8 +264,8 @@ public class CadastroMusicasFrame extends javax.swing.JInternalFrame {
                     jTextFieldIdioma.getText().trim(),
                     Integer.parseInt(jTextFieldDuracao.getText().trim()),
                     getDate(),
-                    jTextFieldInterpretes.getText(),
-                    jTextFieldAutores.getText().toString());
+                    getInterprete(),
+                    getAutor());
   
             if (listMidias.adiciona(music) == false) {
                 JOptionPane.showMessageDialog(null, "Não foi possível salvar.");
@@ -280,7 +280,6 @@ public class CadastroMusicasFrame extends javax.swing.JInternalFrame {
             }
        
        }
-       
    
    
                
@@ -357,6 +356,25 @@ public Date getDate() {
 
  }
 
+public String [] getInterprete(){
+    
+    try{ 
+        String interprete =  jTextFieldInterpretes.getText().trim();
+        }
+        catch(Exception e) {
+                 return null;    
+     }  
+        return null;
+}
+public String [] getAutor(){
+    try{ 
+        String autor = jTextFieldAutores.getText().trim();
+       }
+        catch(Exception e) {
+                 return null;    
+     }  
+        return null;
+}
 
 
 
