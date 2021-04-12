@@ -12,6 +12,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import bancodemidias.Reproduzivel;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -22,10 +24,21 @@ public class ListaDeMidias {
     private static Arquivo arquivo = new Arquivo();  
     private static List<Midia> listaMidias;
     
-    public ListaDeMidias() throws IOException {
-        arquivo.verificaExistenciaArquivo();
-        listaMidias = arquivo.leArquivo();
+    public ListaDeMidias(){       
     }
+    
+    public void inicia(){
+        arquivo.verificaExistenciaArquivo();
+        try {
+            listaMidias = arquivo.leArquivo();
+        } catch (IOException ex) {
+            Logger.getLogger(ListaDeMidias.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public boolean salvar() throws IOException{
+       return arquivo.escreveArquivo(listaMidias);
+   }
         
     public boolean adiciona(Midia midia){
         return listaMidias.add(midia);
@@ -54,8 +67,22 @@ public class ListaDeMidias {
         return listaMidias.size();
     }
     
-   public class getMidia{
-       public Midia porId(int id){
+    public List pertenceAClasse( Class classe){
+        List<Integer> listaDeIds;
+        listaDeIds = new ArrayList();
+        for (Midia m : listaMidias){
+               if (classe == m.getClass()){
+                   int id = m.getId();
+                   listaDeIds.add(id);
+               }
+           }
+        return listaDeIds;
+    }
+    
+    
+    //////////////////////////////////////////
+   public static class getMidia{
+       public static Midia porId(int id){
            for (Midia m : listaMidias){
                if (id == m.getId()){
                    return m;
@@ -63,7 +90,7 @@ public class ListaDeMidias {
            }
            return null;
        }   
-       public List contemNoTitulo(String texto){
+       public static List contemNoTitulo(String texto){
            List<Midia> lista = new ArrayList();
            for (Midia m : listaMidias){
                if (m.getTitulo().trim().toLowerCase().contains(texto.toLowerCase().trim())){
@@ -72,7 +99,7 @@ public class ListaDeMidias {
            }
            return lista;
        }
-       public List contemNoGenero(String genero){
+       public static List contemNoGenero(String genero){
            List<Midia> lista = new ArrayList();
            for (Midia m : listaMidias){
                String generoEncontrado = m.getGenero(genero);
@@ -86,9 +113,7 @@ public class ListaDeMidias {
        }
    }
    
-   public boolean salvar() throws IOException{
-       return arquivo.escreveArquivo(listaMidias);
-   }
+   
    
    public void ordenaAlfabeticamente(){
        Collections.sort(listaMidias, Comparator.comparing(Midia::getTitulo));
@@ -98,13 +123,6 @@ public class ListaDeMidias {
        Collections.sort(listaMidias, Comparator.comparing(Midia::getData));
    }
    
-   public class listaObjeto{
-       private static ListaDeMidia listaOrigem = new ListaDeMidia();
-       private List<Class> lista;
-       public listaObjeto(Class tipo){
-           this.lista = new ArrayList<>();
-           this.lista = 
-       }
-   }
+   
 
 }
