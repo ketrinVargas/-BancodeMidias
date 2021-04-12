@@ -7,14 +7,12 @@ package frames;
 
 import bancodemidias.Filme;
 import bancodemidias.ListaDeMidias;
-import bancodemidias.Midia;
 import java.io.File;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
@@ -246,7 +244,7 @@ public class CadastroFilmesFrame extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTextFieldAnoActionPerformed
 
     private void botaoConfirmaFilmesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoConfirmaFilmesActionPerformed
-
+        
          if (txtFile.getText().equals("")
                 || jTextFieldTitulo.getText().equals("")
                 || jTextFieldDescricao.getText().equals("")
@@ -267,9 +265,9 @@ public class CadastroFilmesFrame extends javax.swing.JInternalFrame {
                     jComboBoxIdioma.getSelectedItem().toString(),
                     Integer.parseInt(jTextFieldDuracao.getText().trim()),
                     getDate(),
-                    jTextFieldDiretores.getText(),
-                    jTextFieldAutores.getText(),
-                    jTextFieldInterpretes1.getText()
+                    getDiretor(),
+                    getAutor(),
+                    getInterprete()
                    ); 
             
             if (listMidias.adiciona(film) == false) {
@@ -285,6 +283,8 @@ public class CadastroFilmesFrame extends javax.swing.JInternalFrame {
             }
             
          }
+         
+         
              
         
         
@@ -361,4 +361,34 @@ public Date getDate() {
          }                
 
  }
+
+public String [] getDiretor(){
+     try {
+         String diretor = jTextFieldDiretores.getText().trim();
+         }
+        catch(Exception e) {
+                 return null;
+         }  
+        return null;
+}
+
+public String [] getAutor(){
+    try{ 
+        String autor = jTextFieldAutores.getText().trim();
+       }
+        catch(Exception e) {
+                 return null;    
+     }  
+        return null;
+}
+public String [] getInterprete(){
+    
+    try{ 
+        String interprete =  jTextFieldInterpretes1.getText().trim();
+        }
+        catch(Exception e) {
+                 return null;    
+     }  
+        return null;
+}
 }
