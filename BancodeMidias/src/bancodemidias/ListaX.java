@@ -31,13 +31,13 @@ public class ListaX {
     }
     
     public void iniciaListaOrigem(){
-        listaOrigem.inicia();
+        //listaOrigem.inicia();
     }
     
     public void iniciaListaX(){
         idsPertencentes = listaOrigem.pertenceAClasse(tipo);
         for (int i : idsPertencentes){
-            lista.add(ListaDeMidias.getMidia.porId(i));
+            
         }
     }
 

@@ -66,12 +66,23 @@ public class Imagem extends Midia implements Serializable {
     }
 
     @Override
-    public String getGenero(String genero) {
+    public String getGenero( ) {
         return null;
     }
 
     public Date getData() {
         return this.data;
+    }
+
+
+    @Override
+    public String toString() {
+        return super.toString() + "{" +
+            " fotografo='" + getFotografo() + "'" +
+            ", pessoas='" + getPessoas() + "'" +
+            ", local='" + getLocal() + "'" +
+            ", data='" + getData() + "'" +
+            "}";
     }
 
 }

@@ -24,9 +24,21 @@ import java.util.logging.Logger;
  */
 public class Arquivo {
     
-    File arquivo = new File("/customers.bin");
+    private File arquivo;
     
-    public void verificaExistenciaArquivo(){
+    public Arquivo(){
+        arquivo = new File("C:/Users/rafae/Documents/Faculdade/SEGUNDO_SEMESTRE/POO/TP2-BancodeMidias/customers.txt");
+    }
+    
+    public boolean temConteudo(){
+        if (arquivo.length()>0){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
+    public void iniciaArquivo(){
         try {
           if (!arquivo.exists()) {
             arquivo.createNewFile();
@@ -36,18 +48,29 @@ public class Arquivo {
         }
     }
     
-    public List leArquivo() throws FileNotFoundException, IOException{
-        ObjectInputStream entrada;
+    public List leArquivo(){
+        ObjectInputStream entrada = null;
         List lista = null;
-        entrada = new ObjectInputStream( new FileInputStream(arquivo));
-     
-        try {          
-            lista = (ArrayList<Midia>) entrada.readObject();
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Arquivo.class.getName()).log(Level.SEVERE, null, ex);
+        try {
+            entrada = new ObjectInputStream( new FileInputStream(arquivo));
+        } catch (IOException ex) {
+            System.out.println("arquivo vazio");
         }
-        entrada.close();
         
+        try {
+            lista = (ArrayList<Midia>) entrada.readObject();
+        } catch (IOException ex) {
+            lista = null;
+            System.out.println("2");
+        } catch (ClassNotFoundException ex) {
+            System.out.println("3");
+        }
+        
+        try {
+            entrada.close();
+        } catch (IOException ex) {
+                System.out.println("4");
+        }
         return lista;
     }
     

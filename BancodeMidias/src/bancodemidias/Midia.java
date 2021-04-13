@@ -8,21 +8,21 @@ package bancodemidias;
 import java.io.Serializable;
 import java.util.Date;
 
-public abstract class Midia implements Serializable{
-    private static ListaDeMidias listaDeMidias;
+public abstract class Midia implements Serializable {
+    private static int numDeMidias = 0;
     private int id;
     private String caminhoDoArquivo;
     private String titulo;
     private String descricao;
 
-    public Midia(String caminhoDoArquivo, String titulo, String descricao){
-        this.id = listaDeMidias.quantidadeDeMidias();
+    public Midia(String caminhoDoArquivo, String titulo, String descricao) {
+        this.id = numDeMidias++;
         this.caminhoDoArquivo = caminhoDoArquivo;
         this.titulo = titulo;
         this.descricao = descricao;
     }
-    
-    public int getId(){
+
+    public int getId() {
         return id;
     }
 
@@ -49,9 +49,15 @@ public abstract class Midia implements Serializable{
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
-    
-    public abstract String getGenero(String genero);
-    
+
+    public abstract String getGenero();
+
     public abstract Date getData();
-      
+
+    @Override
+    public String toString() {
+        return "{" + " id='" + getId() + "'" + ", caminhoDoArquivo='" + getCaminhoDoArquivo() + "'" + ", titulo='"
+                + getTitulo() + "'" + ", descricao='" + getDescricao() + "'" + "}";
+    }
+
 }

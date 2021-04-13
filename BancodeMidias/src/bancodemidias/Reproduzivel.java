@@ -13,14 +13,14 @@ import java.util.Date;
  *
  * @author rafae
  */
-public class Reproduzivel extends Midia implements Serializable{
+public class Reproduzivel extends Midia implements Serializable {
     private String genero;
     private String idioma;
     private int duracao;
     private Date ano;
 
-
-    public Reproduzivel(String caminhoDoArquivo, String titulo, String descricao, String genero, String idioma, int duracao, Date ano) {
+    public Reproduzivel(String caminhoDoArquivo, String titulo, String descricao, String genero, String idioma,
+            int duracao, Date ano) {
         super(caminhoDoArquivo, titulo, descricao);
         this.genero = genero;
         this.idioma = idioma;
@@ -53,13 +53,18 @@ public class Reproduzivel extends Midia implements Serializable{
     }
 
     @Override
-    public String getGenero(String genero) {
+    public String getGenero() {
         return this.genero;
     }
 
     public Date getData() {
-        return this.ano ;
+        return this.ano;
     }
 
-    
+    @Override
+    public String toString() {
+        return super.toString() + "{" + " genero='" + getGenero() + "'" + ", idioma='" + getIdioma() + "'" + ", duracao='" + getDuracao()
+                + "'" + ", ano='" + getData() + "'" + "}";
+    }
+
 }

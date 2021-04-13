@@ -58,4 +58,10 @@ public class Filme extends Reproduzivel implements Serializable {
         this.principais = principais;
     }
 
+    @Override
+    public String toString() {
+        return super.toString() + "{" + " diretor='" + getDiretor() + "'" + ", atores='" + getAtores() + "'" + ", principais='"
+                + getPrincipais() + "'" + "}";
+    }
+
 }

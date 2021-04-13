@@ -12,6 +12,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import bancodemidias.Reproduzivel;
+import java.io.FileNotFoundException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -23,19 +24,18 @@ public class ListaDeMidias {
     
     private static Arquivo arquivo = new Arquivo();  
     private static List<Midia> listaMidias;
+
     
-    public ListaDeMidias(){       
-    }
-    
-    public void inicia(){
-        arquivo.verificaExistenciaArquivo();
-        try {
+    public ListaDeMidias(){
+        arquivo.iniciaArquivo();
+        if(arquivo.temConteudo()){
             listaMidias = arquivo.leArquivo();
-        } catch (IOException ex) {
-            Logger.getLogger(ListaDeMidias.class.getName()).log(Level.SEVERE, null, ex);
+        }else{
+        listaMidias = new ArrayList();
         }
+        
     }
-    
+
     public boolean salvar() throws IOException{
        return arquivo.escreveArquivo(listaMidias);
    }
@@ -63,7 +63,7 @@ public class ListaDeMidias {
        return false;
     }
     
-    public int quantidadeDeMidias(){
+    public static int quantidadeDeMidias(){
         return listaMidias.size();
     }
     
@@ -81,8 +81,8 @@ public class ListaDeMidias {
     
     
     //////////////////////////////////////////
-   public static class getMidia{
-       public static Midia porId(int id){
+   
+       public Midia getMidiaPorId(int id){
            for (Midia m : listaMidias){
                if (id == m.getId()){
                    return m;
@@ -90,7 +90,7 @@ public class ListaDeMidias {
            }
            return null;
        }   
-       public static List contemNoTitulo(String texto){
+       public List getMidiaContemNoTitulo(String texto){
            List<Midia> lista = new ArrayList();
            for (Midia m : listaMidias){
                if (m.getTitulo().trim().toLowerCase().contains(texto.toLowerCase().trim())){
@@ -99,10 +99,10 @@ public class ListaDeMidias {
            }
            return lista;
        }
-       public static List contemNoGenero(String genero){
+       public List getMidiaContemNoGenero(String genero){
            List<Midia> lista = new ArrayList();
            for (Midia m : listaMidias){
-               String generoEncontrado = m.getGenero(genero);
+               String generoEncontrado = m.getGenero();
                if(generoEncontrado != null){
                    if (generoEncontrado.trim().toLowerCase().contains(genero.toLowerCase().trim())){
                        lista.add(m);
@@ -111,7 +111,7 @@ public class ListaDeMidias {
            }
            return lista;
        }
-   }
+   
    
    
    
