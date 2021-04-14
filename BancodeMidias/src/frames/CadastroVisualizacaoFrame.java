@@ -37,7 +37,7 @@ public class CadastroVisualizacaoFrame extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTFilmesCadastrados = new javax.swing.JTable();
         jBotaoExclui = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        jButtonEDIT = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
@@ -58,7 +58,7 @@ public class CadastroVisualizacaoFrame extends javax.swing.JInternalFrame {
         FDiretores = new javax.swing.JTextField();
         FDuracao = new javax.swing.JTextField();
         FAno = new javax.swing.JTextField();
-        jTextField8 = new javax.swing.JTextField();
+        jFCaminho = new javax.swing.JTextField();
         FGeneros = new javax.swing.JTextField();
         FIdioma = new javax.swing.JTextField();
 
@@ -109,7 +109,12 @@ public class CadastroVisualizacaoFrame extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton1.setText("Editar");
+        jButtonEDIT.setText("Editar");
+        jButtonEDIT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEDITActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -124,7 +129,7 @@ public class CadastroVisualizacaoFrame extends javax.swing.JInternalFrame {
                 .addGap(9, 9, 9)
                 .addComponent(jBotaoExclui, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButtonEDIT, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(220, 220, 220)
@@ -139,7 +144,7 @@ public class CadastroVisualizacaoFrame extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBotaoExclui)
-                    .addComponent(jButton1))
+                    .addComponent(jButtonEDIT))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -190,7 +195,7 @@ public class CadastroVisualizacaoFrame extends javax.swing.JInternalFrame {
             }
         });
 
-        jTextField8.setText("jTextField8");
+        jFCaminho.setText("jTextField8");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -234,7 +239,7 @@ public class CadastroVisualizacaoFrame extends javax.swing.JInternalFrame {
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextField8)))))
+                                        .addComponent(jFCaminho)))))
                         .addGap(0, 54, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -283,7 +288,7 @@ public class CadastroVisualizacaoFrame extends javax.swing.JInternalFrame {
                 .addGap(37, 37, 37)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton3)
-                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jFCaminho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addComponent(jButton2)
                 .addGap(26, 26, 26))
@@ -361,6 +366,19 @@ public class CadastroVisualizacaoFrame extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jTFilmesCadastradosKeyReleased
 
+    private void jButtonEDITActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEDITActionPerformed
+        
+        if (jTFilmesCadastrados.getSelectedRow() != -1){
+            jTFilmesCadastrados.setValueAt(FTitulo.getText(), jTFilmesCadastrados.getSelectedRow(), 0);
+            jTFilmesCadastrados.setValueAt(FGeneros.getText(), jTFilmesCadastrados.getSelectedRow(), 1);
+            jTFilmesCadastrados.setValueAt(FIdioma.getText(), jTFilmesCadastrados.getSelectedRow(), 2);
+            jTFilmesCadastrados.setValueAt(FDuracao.getText(), jTFilmesCadastrados.getSelectedRow(), 3);
+            jTFilmesCadastrados.setValueAt(FAno.getText(), jTFilmesCadastrados.getSelectedRow(), 4);
+     }
+        
+        
+    }//GEN-LAST:event_jButtonEDITActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField FAno;
@@ -374,9 +392,10 @@ public class CadastroVisualizacaoFrame extends javax.swing.JInternalFrame {
     private javax.swing.JTextField FTitulo;
     private javax.swing.JButton jBotaoConfirmaV;
     private javax.swing.JButton jBotaoExclui;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButtonEDIT;
+    private javax.swing.JTextField jFCaminho;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -393,6 +412,5 @@ public class CadastroVisualizacaoFrame extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTFilmesCadastrados;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField jTextField8;
     // End of variables declaration//GEN-END:variables
 }
