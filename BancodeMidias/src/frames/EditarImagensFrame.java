@@ -15,28 +15,28 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.ImageIcon;
+import javafx.stage.Stage;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
- * @author marin
+ * @author ketrim
  */
+public class EditarImagensFrame extends javax.swing.JInternalFrame {
 
-public class CadastroImagensFrame extends javax.swing.JInternalFrame {
-    
-    
     /**
-     * Creates new form CadastroFotosFrame
+     * Creates new form EditarImagensFrame
      */
-
-    private ListaDeMidias listMidia ;
-    
-    public CadastroImagensFrame(ListaDeMidias midias) {
+    private ListaDeMidias listMidia;
+    public EditarImagensFrame(ListaDeMidias midias) {
         initComponents();
         listMidia = midias;
+    }
+    
+     public void cancelar() {
+        
     }
 
     /**
@@ -65,12 +65,12 @@ public class CadastroImagensFrame extends javax.swing.JInternalFrame {
         botaoConfirmaImagens = new javax.swing.JButton();
         Arquivo = new javax.swing.JToggleButton();
         txtFile = new javax.swing.JTextField();
+        Cancelar = new javax.swing.JButton();
 
-        setClosable(true);
-        setTitle("Cadastro de Imagens");
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setText("Cadastro de Imagens");
+        jLabel1.setText("Editar Imagem");
 
         jLabel2.setText("Título");
 
@@ -110,46 +110,54 @@ public class CadastroImagensFrame extends javax.swing.JInternalFrame {
             }
         });
 
+        Cancelar.setText("Cancelar");
+        Cancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CancelarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(28, 28, 28)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addGap(100, 100, 100)
-                        .addComponent(jLabel1)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel5)
-                            .addComponent(Arquivo, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldTitulo)
-                            .addComponent(jTextFieldDescricao)
-                            .addComponent(jTextFieldFotografo)
-                            .addComponent(jTextFieldPessoas)
-                            .addComponent(jTextFieldLocal)
-                            .addComponent(txtFile)
-                            .addComponent(jTextFieldData, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(132, 132, 132)
-                                .addComponent(botaoConfirmaImagens, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel5)
+                    .addComponent(Arquivo, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextFieldTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
+                    .addComponent(jTextFieldDescricao)
+                    .addComponent(jTextFieldFotografo)
+                    .addComponent(jTextFieldPessoas)
+                    .addComponent(jTextFieldLocal)
+                    .addComponent(txtFile)
+                    .addComponent(jTextFieldData, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(50, 50, 50))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(134, 134, 134))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(42, 42, 42)
+                .addComponent(Cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(botaoConfirmaImagens, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(41, 41, 41))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(27, 27, 27)
+                .addGap(36, 36, 36)
                 .addComponent(jLabel1)
-                .addGap(27, 27, 27)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jTextFieldTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -177,9 +185,11 @@ public class CadastroImagensFrame extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Arquivo, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtFile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(33, 33, 33)
-                .addComponent(botaoConfirmaImagens)
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botaoConfirmaImagens)
+                    .addComponent(Cancelar))
+                .addGap(20, 20, 20))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -196,63 +206,56 @@ public class CadastroImagensFrame extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jTextFieldTituloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldTituloActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldTituloActionPerformed
+
     private void botaoConfirmaImagensActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoConfirmaImagensActionPerformed
         
 
-       if (txtFile.getText().equals("")
-                ||jTextFieldTitulo.getText().equals("")
-                || jTextFieldDescricao.getText().equals("")
-                || jTextFieldFotografo.getText().equals("")
-                || jTextFieldPessoas.getText().equals("")
-                || jTextFieldLocal.getText().equals("")
-                || jTextFieldData.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Informe todos os campos!");
-        } else {
-            Imagem img = new Imagem(
-                    txtFile.getText().trim(),
-                    jTextFieldTitulo.getText().trim(),
-                    jTextFieldDescricao.getText().trim(),
-                    jTextFieldFotografo.getText().trim(),
-                    getPessoas(),
-                    jTextFieldLocal.getText().trim(),
-                    getDate()); 
-            
-            if (listMidia.adiciona(img) == false) {
+          /*   Imagem img = new Imagem();
+                img.setCaminhoDoArquivo(txtFile.getText());
+                img.setTitulo(jTextFieldTitulo.getText());
+                img.setDescricao(jTextFieldDescricao.getText());
+                img.setFotografo(jTextFieldFotografo.getText());
+                img.setPessoas(getPessoas());
+                img.setLocal(jTextFieldLocal.getText());
+                img.setData(getDate());
+                               
+         if (listMidia.adiciona(img) == false) {
                 JOptionPane.showMessageDialog(null, "Não foi possível salvar.");
             } else {
-           JOptionPane.showMessageDialog(null, "Cadastro Efetuado!");
-                try { 
+                JOptionPane.showMessageDialog(null, "Edição Efetuado!");
+                try {
                     listMidia.salvar();
                 } catch (IOException ex) {
-                    Logger.getLogger(CadastroFilmesFrame.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(CadastroMusicasFrame.class.getName()).log(Level.SEVERE, null, ex);
                 }
-
-            }
-            
-         }
-             
+      
+            }*/
+    
+      
 
     }//GEN-LAST:event_botaoConfirmaImagensActionPerformed
 
     private void ArquivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ArquivoActionPerformed
         // TODO add your handling code here:
-        
+
         JFileChooser fc = new  JFileChooser();
         fc.setDialogTitle("Buscar Arquivo");
         fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
-        
+
         FileNameExtensionFilter filter = new FileNameExtensionFilter("Imagem", "jpg", "png");
-        
+
         fc.setFileFilter(filter);
         int retorno = fc.showOpenDialog(this);
-        
+
         if(retorno == JFileChooser.APPROVE_OPTION ){
-            
+
             File file = fc.getSelectedFile();
             txtFile.setText(file.getPath());
-             
+            
         }
-        
 
     }//GEN-LAST:event_ArquivoActionPerformed
 
@@ -260,13 +263,16 @@ public class CadastroImagensFrame extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtFileActionPerformed
 
-    private void jTextFieldTituloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldTituloActionPerformed
+    private void CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldTituloActionPerformed
+      
+        
+    }//GEN-LAST:event_CancelarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton Arquivo;
+    private javax.swing.JButton Cancelar;
     private javax.swing.JButton botaoConfirmaImagens;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -284,9 +290,7 @@ public class CadastroImagensFrame extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTextFieldTitulo;
     private javax.swing.JTextField txtFile;
     // End of variables declaration//GEN-END:variables
-
-
-  /**
+ /**
   * Retorna a data já convertida para Date 
   * @return O conteúdo da JDateTextField em formato java.util.Date
   */
@@ -314,5 +318,4 @@ public String [] getPessoas(){
                  return null;    
      }  
         return null;
-}
-}
+}}
