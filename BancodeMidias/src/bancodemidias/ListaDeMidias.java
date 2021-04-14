@@ -44,14 +44,18 @@ public class ListaDeMidias {
         return listaMidias.add(midia);
     }
     
-    public void editar(int id, Midia midiaNova){
-       for (Midia m : listaMidias){
-          if (id == m.getId()){
-             int index = listaMidias.indexOf(m);
-             listaMidias.set(index, midiaNova);
-          }
-       }
-   }
+//    public void editar(int id, Midia midiaNova){
+//       for (Midia m : listaMidias){
+//          if (id == m.getId()){
+//             int index = listaMidias.indexOf(m);
+//             listaMidias.set(index, midiaNova);
+//          }
+//       }
+//   }
+    
+      public void alterar(Midia antigo, Midia novo) {
+        listaMidias.set(listaMidias.indexOf(antigo), novo);
+    }
     
     public boolean remove(int id){
        for (Midia m : listaMidias){
