@@ -382,7 +382,7 @@ public class CadastroVisualizacaoMusica extends javax.swing.JInternalFrame {
         DefaultTableModel dtmMusica = (DefaultTableModel) jTMusicasCadastrados.getModel();
         Object [] dados = {FTitulo.getText(), FGenero.getText(), FIdioma.getText(), FDuracao.getText(), FAno.getText()};
         dtmMusica.addRow(dados);
-        
+     
         if (txtFile.getText().equals("")
             ||FTitulo.getText().equals("")
             || FDescricao.getText().equals("")
