@@ -35,9 +35,7 @@ public class EditarImagensFrame extends javax.swing.JInternalFrame {
         listMidia = midias;
     }
     
-     public void cancelar() {
-        
-    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -65,9 +63,8 @@ public class EditarImagensFrame extends javax.swing.JInternalFrame {
         botaoConfirmaImagens = new javax.swing.JButton();
         Arquivo = new javax.swing.JToggleButton();
         txtFile = new javax.swing.JTextField();
-        Cancelar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setClosable(true);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Editar Imagem");
@@ -110,13 +107,6 @@ public class EditarImagensFrame extends javax.swing.JInternalFrame {
             }
         });
 
-        Cancelar.setText("Cancelar");
-        Cancelar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CancelarActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -146,9 +136,7 @@ public class EditarImagensFrame extends javax.swing.JInternalFrame {
                 .addComponent(jLabel1)
                 .addGap(134, 134, 134))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(42, 42, 42)
-                .addComponent(Cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(42, 262, Short.MAX_VALUE)
                 .addComponent(botaoConfirmaImagens, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(41, 41, 41))
         );
@@ -186,9 +174,7 @@ public class EditarImagensFrame extends javax.swing.JInternalFrame {
                     .addComponent(Arquivo, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtFile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botaoConfirmaImagens)
-                    .addComponent(Cancelar))
+                .addComponent(botaoConfirmaImagens)
                 .addGap(20, 20, 20))
         );
 
@@ -263,16 +249,9 @@ public class EditarImagensFrame extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtFileActionPerformed
 
-    private void CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarActionPerformed
-        // TODO add your handling code here:
-      
-        
-    }//GEN-LAST:event_CancelarActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton Arquivo;
-    private javax.swing.JButton Cancelar;
     private javax.swing.JButton botaoConfirmaImagens;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

@@ -45,6 +45,7 @@ public class VerMusicasFrame extends javax.swing.JInternalFrame {
         jComboBox1 = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
         Tabela = new javax.swing.JTable();
+        Detalhes = new javax.swing.JToggleButton();
 
         setClosable(true);
         setTitle("Musicas Cadastradas");
@@ -82,10 +83,17 @@ public class VerMusicasFrame extends javax.swing.JInternalFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "ID", "Tiítulo", "Gênero", "Idioma"
             }
         ));
         jScrollPane2.setViewportView(Tabela);
+
+        Detalhes.setText("Detalhes");
+        Detalhes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DetalhesActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -97,6 +105,8 @@ public class VerMusicasFrame extends javax.swing.JInternalFrame {
                         .addGap(59, 59, 59)
                         .addComponent(jButtonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Detalhes, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(47, 47, 47)
                         .addComponent(jButtonExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap(49, Short.MAX_VALUE)
@@ -133,11 +143,12 @@ public class VerMusicasFrame extends javax.swing.JInternalFrame {
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23)
+                .addGap(20, 20, 20)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonExcluir)
-                    .addComponent(jButtonEditar))
-                .addContainerGap(42, Short.MAX_VALUE))
+                    .addComponent(jButtonEditar)
+                    .addComponent(Detalhes))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -197,8 +208,13 @@ public class VerMusicasFrame extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jButtonExcluirActionPerformed
 
+    private void DetalhesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DetalhesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_DetalhesActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JToggleButton Detalhes;
     private javax.swing.JTable Tabela;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonEditar;
