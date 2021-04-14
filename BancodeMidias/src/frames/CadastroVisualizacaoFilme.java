@@ -69,14 +69,15 @@ public class CadastroVisualizacaoFilme extends javax.swing.JInternalFrame {
         FDiretores = new javax.swing.JTextField();
         FDuracao = new javax.swing.JTextField();
         FAno = new javax.swing.JTextField();
-        txtFile = new javax.swing.JTextField();
+        FArquivo = new javax.swing.JTextField();
         FGeneros = new javax.swing.JTextField();
         FIdioma = new javax.swing.JTextField();
 
+        setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel2.setText("Itens Cadastrados");
+        jLabel2.setText("Filmes Cadastrados");
 
         jBotaoConfirmaV.setText("Confirma");
         jBotaoConfirmaV.addActionListener(new java.awt.event.ActionListener() {
@@ -90,11 +91,11 @@ public class CadastroVisualizacaoFilme extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Título", "Gênero", "Idioma", "Duração", "Ano"
+                "Título", "Descrição", "Gênero", "Idioma", "Autores", "Intérpretes", "Diretores", "Duração", "Ano"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -131,29 +132,29 @@ public class CadastroVisualizacaoFilme extends javax.swing.JInternalFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(9, 9, 9)
-                .addComponent(jBotaoExclui, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonEDIT, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1071, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addGap(0, 941, Short.MAX_VALUE)
+                .addComponent(jBotaoConfirmaV, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jBotaoConfirmaV, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(198, 198, 198))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(9, 9, 9)
+                        .addComponent(jBotaoExclui, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonEDIT, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(448, 448, 448)
+                        .addComponent(jLabel2)))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(26, Short.MAX_VALUE)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBotaoExclui)
                     .addComponent(jButtonEDIT))
@@ -213,54 +214,54 @@ public class CadastroVisualizacaoFilme extends javax.swing.JInternalFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(17, 17, 17)
+                        .addGap(167, 167, 167)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(FArquivo))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel5)
                                     .addComponent(jLabel3)
                                     .addComponent(jLabel4)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel6)
                                     .addComponent(jLabel7)
                                     .addComponent(jLabel8)
                                     .addComponent(jLabel9)
                                     .addComponent(jLabel10))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(FDuracao, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(133, 133, 133)
+                                        .addComponent(FDuracao, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 105, Short.MAX_VALUE)
                                         .addComponent(jLabel11)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(FAno))
-                                    .addComponent(FAutores)
-                                    .addComponent(FInterpretes)
-                                    .addComponent(FDiretores)
-                                    .addComponent(FIdioma)
-                                    .addComponent(FTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 438, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(FDescricao)
-                                    .addComponent(FGeneros)))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtFile)))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGap(18, 18, 18)
+                                        .addComponent(FAno, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(FDescricao, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(FTitulo, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(FGeneros, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(FIdioma, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(FAutores, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(FInterpretes, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(FDiretores))))
+                        .addGap(0, 316, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(210, 210, 210)
+                .addGap(427, 427, 427)
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(19, 19, 19)
                 .addComponent(jLabel1)
-                .addGap(26, 26, 26)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(FTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -297,8 +298,8 @@ public class CadastroVisualizacaoFilme extends javax.swing.JInternalFrame {
                 .addGap(37, 37, 37)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton3)
-                    .addComponent(txtFile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(FArquivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addComponent(jButton2)
                 .addGap(26, 26, 26))
         );
@@ -322,17 +323,23 @@ public class CadastroVisualizacaoFilme extends javax.swing.JInternalFrame {
     private void jBotaoConfirmaVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotaoConfirmaVActionPerformed
         this.jTabbedPane1.setSelectedIndex(1);
         DefaultTableModel dtmImagens = (DefaultTableModel) jTFilmesCadastrados.getModel();
-        Object [] dados = {FTitulo.getText(), FGeneros.getText(), FIdioma.getText(), FDuracao.getText(), FAno.getText()};
+        Object [] dados = {FTitulo.getText(), FDescricao.getText(), FGeneros.getText(), FIdioma.getText(), FAutores.getText(), 
+            FInterpretes.getText(), FDiretores.getText(), FDuracao.getText(), FAno.getText(), FArquivo.getText()};
         dtmImagens.addRow(dados);
     }//GEN-LAST:event_jBotaoConfirmaVActionPerformed
 
     private void jTFilmesCadastradosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTFilmesCadastradosMouseClicked
         if (jTFilmesCadastrados.getSelectedRow() != -1){
             FTitulo.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 0).toString());
-            FGeneros.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 1).toString());
-            FIdioma.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 2).toString());
-            FDuracao.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 3).toString());
-            FAno.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 4).toString());
+            FDescricao.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 1).toString());
+            FGeneros.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 2).toString());
+            FIdioma.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 3).toString());
+            FAutores.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 4).toString());
+            FInterpretes.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 5).toString());
+            FDiretores.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 6).toString());
+            FDuracao.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 7).toString());
+            FAno.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 7).toString());
+            FArquivo.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 7).toString());
         }else{
             JOptionPane.showMessageDialog(null, "Selecione um produto para editar.");
         }
@@ -341,10 +348,15 @@ public class CadastroVisualizacaoFilme extends javax.swing.JInternalFrame {
     private void jTFilmesCadastradosKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFilmesCadastradosKeyReleased
         if (jTFilmesCadastrados.getSelectedRow() != -1){
             FTitulo.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 0).toString());
-            FGeneros.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 1).toString());
-            FIdioma.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 2).toString());
-            FDuracao.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 3).toString());
-            FAno.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 4).toString());
+            FDescricao.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 1).toString());
+            FGeneros.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 2).toString());
+            FIdioma.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 3).toString());
+            FAutores.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 4).toString());
+            FInterpretes.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 5).toString());
+            FDiretores.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 6).toString());
+            FDuracao.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 7).toString());
+            FAno.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 7).toString());
+            FArquivo.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 7).toString());
         }else{
             JOptionPane.showMessageDialog(null, "Selecione um produto para editar.");
         }
@@ -363,10 +375,11 @@ public class CadastroVisualizacaoFilme extends javax.swing.JInternalFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         this.jTabbedPane1.setSelectedIndex(1);
         DefaultTableModel dtmFilmes = (DefaultTableModel) jTFilmesCadastrados.getModel();
-        Object [] dados = {FTitulo.getText(), FGeneros.getText(), FIdioma.getText(), FDuracao.getText(), FAno.getText()};
+        Object [] dados = {FTitulo.getText(), FDescricao.getText(), FGeneros.getText(), FIdioma.getText(), FAutores.getText(), 
+            FInterpretes.getText(), FDiretores.getText(), FDuracao.getText(), FAno.getText(), FArquivo.getText()};
         dtmFilmes.addRow(dados);
 
-        if (txtFile.getText().equals("")
+        if (FArquivo.getText().equals("")
             || FTitulo.getText().equals("")
             || FDescricao.getText().equals("")
             || FGeneros.getText().equals("")
@@ -379,7 +392,7 @@ public class CadastroVisualizacaoFilme extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Informe todos os campos!");
         } else {
             Filme film = new Filme(
-                txtFile.getText().trim(),
+                FArquivo.getText().trim(),
                 FTitulo.getText().trim(),
                 FDescricao.getText().trim(),
                 FGeneros.getText().trim(),
@@ -423,13 +436,14 @@ public class CadastroVisualizacaoFilme extends javax.swing.JInternalFrame {
             jTFilmesCadastrados.setValueAt(FDuracao.getText(), jTFilmesCadastrados.getSelectedRow(), 3);
             jTFilmesCadastrados.setValueAt(FAno.getText(), jTFilmesCadastrados.getSelectedRow(), 4);
      }else{
-         JOptionPane.showMessageDialog(null, "Selecione um produto para editar.");
+         JOptionPane.showMessageDialog(null, "Selecione um item para editar.");
         }
     }//GEN-LAST:event_jButtonEDITActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField FAno;
+    private javax.swing.JTextField FArquivo;
     private javax.swing.JTextField FAutores;
     private javax.swing.JTextField FDescricao;
     private javax.swing.JTextField FDiretores;
@@ -459,7 +473,6 @@ public class CadastroVisualizacaoFilme extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTFilmesCadastrados;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField txtFile;
     // End of variables declaration//GEN-END:variables
 public Date getDate() {
 
