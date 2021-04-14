@@ -5,20 +5,31 @@
  */
 package frames;
 
+import bancodemidias.Filme;
+import bancodemidias.ListaDeMidias;
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author marin
+ * @author ketrim
  */
-public class CadastroVisualizacaoFrame extends javax.swing.JInternalFrame {
+public class CadastroVisualizacaoFilme extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form CadastroVisualizacaoFrame
+     * Creates new form CadastroVisualizacaoImagem
      */
-    public CadastroVisualizacaoFrame() {
+    private ListaDeMidias listMidia;
+    public CadastroVisualizacaoFilme(ListaDeMidias midias) {
         initComponents();
+        listMidia = midias;
     }
 
     /**
@@ -58,11 +69,11 @@ public class CadastroVisualizacaoFrame extends javax.swing.JInternalFrame {
         FDiretores = new javax.swing.JTextField();
         FDuracao = new javax.swing.JTextField();
         FAno = new javax.swing.JTextField();
-        jFCaminho = new javax.swing.JTextField();
+        txtFile = new javax.swing.JTextField();
         FGeneros = new javax.swing.JTextField();
         FIdioma = new javax.swing.JTextField();
 
-        setClosable(true);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("Itens Cadastrados");
@@ -120,28 +131,29 @@ public class CadastroVisualizacaoFrame extends javax.swing.JInternalFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jBotaoConfirmaV, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 584, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(9, 9, 9)
                 .addComponent(jBotaoExclui, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonEDIT, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(220, 220, 220)
-                .addComponent(jLabel2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jBotaoConfirmaV, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(198, 198, 198))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBotaoExclui)
                     .addComponent(jButtonEDIT))
@@ -155,7 +167,7 @@ public class CadastroVisualizacaoFrame extends javax.swing.JInternalFrame {
         jTabbedPane1.addTab("Visualização", jPanel1);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel1.setText("Cadastro Filmes");
+        jLabel1.setText("Cadastro Filme");
 
         jButton2.setText("Confirma");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -195,8 +207,6 @@ public class CadastroVisualizacaoFrame extends javax.swing.JInternalFrame {
             }
         });
 
-        jFCaminho.setText("jTextField8");
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -204,47 +214,46 @@ public class CadastroVisualizacaoFrame extends javax.swing.JInternalFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(17, 17, 17)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(204, 204, 204)
-                                .addComponent(jLabel1))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(17, 17, 17)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel8)
+                                    .addComponent(jLabel9)
+                                    .addComponent(jLabel10))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jLabel6)
-                                            .addComponent(jLabel5)
-                                            .addComponent(jLabel3)
-                                            .addComponent(jLabel4)
-                                            .addComponent(jLabel7)
-                                            .addComponent(jLabel8)
-                                            .addComponent(jLabel9)
-                                            .addComponent(jLabel10))
+                                        .addComponent(FDuracao, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(133, 133, 133)
+                                        .addComponent(jLabel11)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                                .addComponent(FDuracao, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(133, 133, 133)
-                                                .addComponent(jLabel11)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(FAno))
-                                            .addComponent(FAutores)
-                                            .addComponent(FInterpretes)
-                                            .addComponent(FDiretores)
-                                            .addComponent(FIdioma)
-                                            .addComponent(FTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 438, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(FDescricao)
-                                            .addComponent(FGeneros)))
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jFCaminho)))))
-                        .addGap(0, 54, Short.MAX_VALUE))
+                                        .addComponent(FAno))
+                                    .addComponent(FAutores)
+                                    .addComponent(FInterpretes)
+                                    .addComponent(FDiretores)
+                                    .addComponent(FIdioma)
+                                    .addComponent(FTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 438, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(FDescricao)
+                                    .addComponent(FGeneros)))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtFile)))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(210, 210, 210)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -288,8 +297,8 @@ public class CadastroVisualizacaoFrame extends javax.swing.JInternalFrame {
                 .addGap(37, 37, 37)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton3)
-                    .addComponent(jFCaminho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                    .addComponent(txtFile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton2)
                 .addGap(26, 26, 26))
         );
@@ -311,36 +320,11 @@ public class CadastroVisualizacaoFrame extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBotaoConfirmaVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotaoConfirmaVActionPerformed
-      this.jTabbedPane1.setSelectedIndex(1);
-      DefaultTableModel dtmFilmes = (DefaultTableModel) jTFilmesCadastrados.getModel();      
-      Object [] dados = {FTitulo.getText(), FGeneros.getText(), FIdioma.getText(), FDuracao.getText(), FAno.getText()};
-      dtmFilmes.addRow(dados);
+        this.jTabbedPane1.setSelectedIndex(1);
+        DefaultTableModel dtmImagens = (DefaultTableModel) jTFilmesCadastrados.getModel();
+        Object [] dados = {FTitulo.getText(), FGeneros.getText(), FIdioma.getText(), FDuracao.getText(), FAno.getText()};
+        dtmImagens.addRow(dados);
     }//GEN-LAST:event_jBotaoConfirmaVActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-      this.jTabbedPane1.setSelectedIndex(1);
-      DefaultTableModel dtmFilmes = (DefaultTableModel) jTFilmesCadastrados.getModel();      
-      Object [] dados = {FTitulo.getText(), FGeneros.getText(), FIdioma.getText(), FDuracao.getText(), FAno.getText()};
-      dtmFilmes.addRow(dados);
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void FTituloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FTituloActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_FTituloActionPerformed
-
-    private void jBotaoExcluiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotaoExcluiActionPerformed
-     jTFilmesCadastrados.getSelectedRow();
-     if (jTFilmesCadastrados.getSelectedRow() != -1){
-        DefaultTableModel dtmFilmes = (DefaultTableModel) jTFilmesCadastrados.getModel();      
-        dtmFilmes.removeRow(jTFilmesCadastrados.getSelectedRow());  
-     }else{
-         JOptionPane.showMessageDialog(null, "Selecione um produto para excluir.");
-     } 
-    }//GEN-LAST:event_jBotaoExcluiActionPerformed
 
     private void jTFilmesCadastradosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTFilmesCadastradosMouseClicked
         if (jTFilmesCadastrados.getSelectedRow() != -1){
@@ -348,10 +332,10 @@ public class CadastroVisualizacaoFrame extends javax.swing.JInternalFrame {
             FGeneros.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 1).toString());
             FIdioma.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 2).toString());
             FDuracao.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 3).toString());
-            FAno.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 4).toString());         
-     }else{
-         JOptionPane.showMessageDialog(null, "Selecione um produto para editar.");
-     } 
+            FAno.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 4).toString());
+        }else{
+            JOptionPane.showMessageDialog(null, "Selecione um produto para editar.");
+        }
     }//GEN-LAST:event_jTFilmesCadastradosMouseClicked
 
     private void jTFilmesCadastradosKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFilmesCadastradosKeyReleased
@@ -360,23 +344,87 @@ public class CadastroVisualizacaoFrame extends javax.swing.JInternalFrame {
             FGeneros.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 1).toString());
             FIdioma.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 2).toString());
             FDuracao.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 3).toString());
-            FAno.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 4).toString());         
-     }else{
-         JOptionPane.showMessageDialog(null, "Selecione um produto para editar.");
+            FAno.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 4).toString());
+        }else{
+            JOptionPane.showMessageDialog(null, "Selecione um produto para editar.");
         }
     }//GEN-LAST:event_jTFilmesCadastradosKeyReleased
 
+    private void jBotaoExcluiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotaoExcluiActionPerformed
+        jTFilmesCadastrados.getSelectedRow();
+        if (jTFilmesCadastrados.getSelectedRow() != -1){
+            DefaultTableModel dtmFilmes = (DefaultTableModel) jTFilmesCadastrados.getModel();
+            dtmFilmes.removeRow(jTFilmesCadastrados.getSelectedRow());
+        }else{
+            JOptionPane.showMessageDialog(null, "Selecione um produto para excluir.");
+        }
+    }//GEN-LAST:event_jBotaoExcluiActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        this.jTabbedPane1.setSelectedIndex(1);
+        DefaultTableModel dtmFilmes = (DefaultTableModel) jTFilmesCadastrados.getModel();
+        Object [] dados = {FTitulo.getText(), FGeneros.getText(), FIdioma.getText(), FDuracao.getText(), FAno.getText()};
+        dtmFilmes.addRow(dados);
+
+        if (txtFile.getText().equals("")
+            || FTitulo.getText().equals("")
+            || FDescricao.getText().equals("")
+            || FGeneros.getText().equals("")
+            || FIdioma.getText().equals("")
+            || FDiretores.getText().equals("")
+            || FAutores.getText().equals("")
+            || FInterpretes.getText().equals("")
+            || FDuracao.getText().equals("")
+            || FAno.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Informe todos os campos!");
+        } else {
+            Filme film = new Filme(
+                txtFile.getText().trim(),
+                FTitulo.getText().trim(),
+                FDescricao.getText().trim(),
+                FGeneros.getText().trim(),
+                FIdioma.getText().trim(),
+                Integer.parseInt(FDuracao.getText().trim()),
+                getDate(),
+                getDiretor(),
+                getAutor(),
+                getInterprete()
+            );
+
+            if (listMidia.adiciona(film) == false) {
+                JOptionPane.showMessageDialog(null, "Não foi possível salvar.");
+            } else {
+                JOptionPane.showMessageDialog(null, "Cadastro Efetuado!");
+                try {
+                    listMidia.salvar();
+                } catch (IOException ex) {
+                    Logger.getLogger(CadastroVisualizacaoFilme.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+            }
+
+        }
+
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void FTituloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FTituloActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_FTituloActionPerformed
+
     private void jButtonEDITActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEDITActionPerformed
-        
         if (jTFilmesCadastrados.getSelectedRow() != -1){
             jTFilmesCadastrados.setValueAt(FTitulo.getText(), jTFilmesCadastrados.getSelectedRow(), 0);
             jTFilmesCadastrados.setValueAt(FGeneros.getText(), jTFilmesCadastrados.getSelectedRow(), 1);
             jTFilmesCadastrados.setValueAt(FIdioma.getText(), jTFilmesCadastrados.getSelectedRow(), 2);
             jTFilmesCadastrados.setValueAt(FDuracao.getText(), jTFilmesCadastrados.getSelectedRow(), 3);
             jTFilmesCadastrados.setValueAt(FAno.getText(), jTFilmesCadastrados.getSelectedRow(), 4);
-     }
-        
-        
+     }else{
+         JOptionPane.showMessageDialog(null, "Selecione um produto para editar.");
+        }
     }//GEN-LAST:event_jButtonEDITActionPerformed
 
 
@@ -395,7 +443,6 @@ public class CadastroVisualizacaoFrame extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButtonEDIT;
-    private javax.swing.JTextField jFCaminho;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -412,5 +459,50 @@ public class CadastroVisualizacaoFrame extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTFilmesCadastrados;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTextField txtFile;
     // End of variables declaration//GEN-END:variables
+public Date getDate() {
+
+         String dataStr = FAno.getText().substring(0, 8);
+         if (FAno.equals("  /  /  ")) return null;
+         DateFormat df = new SimpleDateFormat("dd/MM/yy");
+         df.setLenient(false);
+         try {
+                 return df.parse(dataStr);
+         }
+         catch(ParseException e) {
+                 e.printStackTrace();
+                 return null;
+         }                
+
+ }
+
+public String [] getDiretor(){
+     try {
+         String diretor = FDiretores.getText().trim();
+         }
+        catch(Exception e) {
+                 return null;
+         }  
+        return null;
 }
+
+public String [] getAutor(){
+    try{ 
+        String autor = FAutores.getText().trim();
+       }
+        catch(Exception e) {
+                 return null;    
+     }  
+        return null;
+}
+public String [] getInterprete(){
+    
+    try{ 
+        String interprete =  FInterpretes.getText().trim();
+        }
+        catch(Exception e) {
+                 return null;    
+     }  
+        return null;
+}}

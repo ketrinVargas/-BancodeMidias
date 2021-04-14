@@ -44,7 +44,6 @@ public class TelaPrincipalFrame extends javax.swing.JFrame {
         cadastroFilmesP = new javax.swing.JMenuItem();
         cadastroImagensP = new javax.swing.JMenuItem();
         CadastroMusicasInicial = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         verFilmes = new javax.swing.JMenuItem();
         verImagens = new javax.swing.JMenuItem();
@@ -93,14 +92,6 @@ public class TelaPrincipalFrame extends javax.swing.JFrame {
             }
         });
         jMenu1.add(CadastroMusicasInicial);
-
-        jMenuItem1.setText("jMenuItem1");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jMenuItem1);
 
         jMenuBar1.add(jMenu1);
 
@@ -174,39 +165,33 @@ public class TelaPrincipalFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cadastroFilmesPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastroFilmesPActionPerformed
-        CadastroFilmesFrame telaCadFilme = new CadastroFilmesFrame(listMidia);
-        jDesktopPane1.add(telaCadFilme); 
-        telaCadFilme.setVisible(true);
+      CadastroVisualizacaoFilme Filme = new CadastroVisualizacaoFilme(listMidia);
+      jDesktopPane1.add(Filme);
+      Filme.setVisible(true);
     }//GEN-LAST:event_cadastroFilmesPActionPerformed
 
     private void CadastroMusicasInicialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadastroMusicasInicialActionPerformed
-        CadastroMusicasFrame telaCadMus = new CadastroMusicasFrame(listMidia);
-        jDesktopPane1.add(telaCadMus); 
-        telaCadMus.setVisible(true);
+      CadastroVisualizacaoMusica Musica = new CadastroVisualizacaoMusica(listMidia);
+      jDesktopPane1.add(Musica);
+      Musica.setVisible(true);
     }//GEN-LAST:event_CadastroMusicasInicialActionPerformed
 
     private void verImagensActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verImagensActionPerformed
-        VerImagensFrame verImg = new VerImagensFrame(listMidia);
-        jDesktopPane1.add(verImg); 
-        verImg.setVisible(true);
+     
     }//GEN-LAST:event_verImagensActionPerformed
 
     private void cadastroImagensPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastroImagensPActionPerformed
-        CadastroImagensFrame telaImgMus = new CadastroImagensFrame(listMidia);
-        jDesktopPane1.add(telaImgMus); 
-        telaImgMus.setVisible(true);
+       CadastroVisualizacaoImagem Imagem = new CadastroVisualizacaoImagem(listMidia);
+      jDesktopPane1.add(Imagem);
+      Imagem.setVisible(true);
     }//GEN-LAST:event_cadastroImagensPActionPerformed
 
     private void verFilmesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verFilmesActionPerformed
-        VerFilmesFrame verFilm = new VerFilmesFrame(listMidia);
-        jDesktopPane1.add(verFilm); 
-        verFilm.setVisible(true);
+       
     }//GEN-LAST:event_verFilmesActionPerformed
 
     private void verMusicasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verMusicasActionPerformed
-        VerMusicasFrame verMsc = new VerMusicasFrame(listMidia);
-        jDesktopPane1.add(verMsc); 
-        verMsc.setVisible(true);
+        
     }//GEN-LAST:event_verMusicasActionPerformed
 
     private void comoUsarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comoUsarActionPerformed
@@ -222,12 +207,6 @@ public class TelaPrincipalFrame extends javax.swing.JFrame {
                 + "\nEm casos de filmes e músicas a busca também pode ser feita por Gênero."
                 + "\nQuaisquer dúvidas entre em contato com a equipe de desenvolvimento :D");
     }//GEN-LAST:event_sobreOSistemaActionPerformed
-
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-      CadastroVisualizacaoFrame testeTela = new CadastroVisualizacaoFrame();
-      jDesktopPane1.add(testeTela);
-      testeTela.setVisible(true);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -275,7 +254,6 @@ public class TelaPrincipalFrame extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem sobreOSistema;
     private javax.swing.JMenuItem verFilmes;
     private javax.swing.JMenuItem verImagens;
