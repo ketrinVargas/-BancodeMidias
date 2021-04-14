@@ -31,6 +31,9 @@ public abstract class Midia implements Serializable {
     }
 
     public void setCaminhoDoArquivo(String caminhoDoArquivo) {
+        if (caminhoDoArquivo == null) {
+            throw new NullPointerException("Caminho vazio.");
+        }
         this.caminhoDoArquivo = caminhoDoArquivo;
     }
 
@@ -39,6 +42,9 @@ public abstract class Midia implements Serializable {
     }
 
     public void setTitulo(String titulo) {
+        if (titulo == null) {
+            throw new IllegalArgumentException("Título vazio.");
+        }
         this.titulo = titulo;
     }
 
