@@ -5,6 +5,7 @@
  */
 package frames;
 
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -32,9 +33,11 @@ public class CadastroVisualizacaoFrame extends javax.swing.JInternalFrame {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        jBotaoConfirmaV = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTFilmesCadastrados = new javax.swing.JTable();
+        jBotaoExclui = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
@@ -59,13 +62,15 @@ public class CadastroVisualizacaoFrame extends javax.swing.JInternalFrame {
         FGeneros = new javax.swing.JTextField();
         FIdioma = new javax.swing.JTextField();
 
+        setClosable(true);
+
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("Itens Cadastrados");
 
-        jButton1.setText("Confirma");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jBotaoConfirmaV.setText("Confirma");
+        jBotaoConfirmaV.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jBotaoConfirmaVActionPerformed(evt);
             }
         });
 
@@ -76,32 +81,69 @@ public class CadastroVisualizacaoFrame extends javax.swing.JInternalFrame {
             new String [] {
                 "Título", "Gênero", "Idioma", "Duração", "Ano"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTFilmesCadastrados.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTFilmesCadastradosMouseClicked(evt);
+            }
+        });
+        jTFilmesCadastrados.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTFilmesCadastradosKeyReleased(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTFilmesCadastrados);
+
+        jBotaoExclui.setText("Excluir");
+        jBotaoExclui.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBotaoExcluiActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("Editar");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(198, 198, 198)
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jBotaoConfirmaV, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 584, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(9, 9, 9)
+                .addComponent(jBotaoExclui, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(220, 220, 220)
                 .addComponent(jLabel2)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 584, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jBotaoExclui)
+                    .addComponent(jButton1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(jBotaoConfirmaV)
                 .addContainerGap())
         );
 
@@ -175,25 +217,25 @@ public class CadastroVisualizacaoFrame extends javax.swing.JInternalFrame {
                                             .addComponent(jLabel9)
                                             .addComponent(jLabel10))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(jPanel2Layout.createSequentialGroup()
                                                 .addComponent(FDuracao, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(133, 133, 133)
                                                 .addComponent(jLabel11)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(FAno, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE))
-                                            .addComponent(FTitulo)
+                                                .addComponent(FAno))
                                             .addComponent(FAutores)
-                                            .addComponent(FDescricao)
                                             .addComponent(FInterpretes)
                                             .addComponent(FDiretores)
-                                            .addComponent(FGeneros)
-                                            .addComponent(FIdioma)))
+                                            .addComponent(FIdioma)
+                                            .addComponent(FTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 438, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(FDescricao)
+                                            .addComponent(FGeneros)))
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jTextField8)))))
-                        .addGap(0, 121, Short.MAX_VALUE))
+                        .addGap(0, 54, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -242,7 +284,7 @@ public class CadastroVisualizacaoFrame extends javax.swing.JInternalFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton3)
                     .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addComponent(jButton2)
                 .addGap(26, 26, 26))
         );
@@ -263,26 +305,61 @@ public class CadastroVisualizacaoFrame extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jBotaoConfirmaVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotaoConfirmaVActionPerformed
       this.jTabbedPane1.setSelectedIndex(1);
-      DefaultTableModel dtmFilmes = (DefaultTableModel) jTFilmesCadastrados.getModel();
-      Object[] dados = (FTitulo.getText();FIdioma.getText();FIdioma.getText();FDuracao.getText();FAno.getText());
+      DefaultTableModel dtmFilmes = (DefaultTableModel) jTFilmesCadastrados.getModel();      
+      Object [] dados = {FTitulo.getText(), FGeneros.getText(), FIdioma.getText(), FDuracao.getText(), FAno.getText()};
       dtmFilmes.addRow(dados);
-      
-      
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jBotaoConfirmaVActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+      this.jTabbedPane1.setSelectedIndex(1);
+      DefaultTableModel dtmFilmes = (DefaultTableModel) jTFilmesCadastrados.getModel();      
+      Object [] dados = {FTitulo.getText(), FGeneros.getText(), FIdioma.getText(), FDuracao.getText(), FAno.getText()};
+      dtmFilmes.addRow(dados);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void FTituloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FTituloActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_FTituloActionPerformed
+
+    private void jBotaoExcluiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotaoExcluiActionPerformed
+     jTFilmesCadastrados.getSelectedRow();
+     if (jTFilmesCadastrados.getSelectedRow() != -1){
+        DefaultTableModel dtmFilmes = (DefaultTableModel) jTFilmesCadastrados.getModel();      
+        dtmFilmes.removeRow(jTFilmesCadastrados.getSelectedRow());  
+     }else{
+         JOptionPane.showMessageDialog(null, "Selecione um produto para excluir.");
+     } 
+    }//GEN-LAST:event_jBotaoExcluiActionPerformed
+
+    private void jTFilmesCadastradosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTFilmesCadastradosMouseClicked
+        if (jTFilmesCadastrados.getSelectedRow() != -1){
+            FTitulo.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 0).toString());
+            FGeneros.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 1).toString());
+            FIdioma.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 2).toString());
+            FDuracao.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 3).toString());
+            FAno.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 4).toString());         
+     }else{
+         JOptionPane.showMessageDialog(null, "Selecione um produto para editar.");
+     } 
+    }//GEN-LAST:event_jTFilmesCadastradosMouseClicked
+
+    private void jTFilmesCadastradosKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFilmesCadastradosKeyReleased
+        if (jTFilmesCadastrados.getSelectedRow() != -1){
+            FTitulo.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 0).toString());
+            FGeneros.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 1).toString());
+            FIdioma.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 2).toString());
+            FDuracao.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 3).toString());
+            FAno.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 4).toString());         
+     }else{
+         JOptionPane.showMessageDialog(null, "Selecione um produto para editar.");
+        }
+    }//GEN-LAST:event_jTFilmesCadastradosKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -295,6 +372,8 @@ public class CadastroVisualizacaoFrame extends javax.swing.JInternalFrame {
     private javax.swing.JTextField FIdioma;
     private javax.swing.JTextField FInterpretes;
     private javax.swing.JTextField FTitulo;
+    private javax.swing.JButton jBotaoConfirmaV;
+    private javax.swing.JButton jBotaoExclui;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
