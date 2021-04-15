@@ -17,6 +17,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -93,11 +94,11 @@ public class CadastroVisualizacaoFilme extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Título", "Descrição", "Gênero", "Idioma", "Autores", "Intérpretes", "Diretores", "Duração", "Ano"
+                "Caminho", "Título", "Descrição", "Gênero", "Idioma", "Autores", "Intérpretes", "Diretores", "Duração", "Ano"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -134,9 +135,9 @@ public class CadastroVisualizacaoFilme extends javax.swing.JInternalFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1040, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1071, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 910, Short.MAX_VALUE)
+                .addGap(0, 941, Short.MAX_VALUE)
                 .addComponent(jBotaoConfirmaV, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -144,7 +145,7 @@ public class CadastroVisualizacaoFilme extends javax.swing.JInternalFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(9, 9, 9)
                         .addComponent(jBotaoExclui, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButtonEDIT, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(448, 448, 448)
@@ -154,7 +155,7 @@ public class CadastroVisualizacaoFilme extends javax.swing.JInternalFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(26, Short.MAX_VALUE)
+                .addContainerGap(30, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -251,7 +252,7 @@ public class CadastroVisualizacaoFilme extends javax.swing.JInternalFrame {
                                     .addComponent(FAutores, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(FInterpretes, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(FDiretores))))
-                        .addGap(0, 285, Short.MAX_VALUE)))
+                        .addGap(0, 316, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(427, 427, 427)
@@ -312,7 +313,7 @@ public class CadastroVisualizacaoFilme extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1045, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -325,23 +326,24 @@ public class CadastroVisualizacaoFilme extends javax.swing.JInternalFrame {
     private void jBotaoConfirmaVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotaoConfirmaVActionPerformed
         this.jTabbedPane1.setSelectedIndex(1);
         DefaultTableModel dtmImagens = (DefaultTableModel) jTFilmesCadastrados.getModel();
-        Object [] dados = {FTitulo.getText(), FDescricao.getText(), FGeneros.getText(), FIdioma.getText(), FAutores.getText(), 
-            FInterpretes.getText(), FDiretores.getText(), FDuracao.getText(), FAno.getText(), FArquivo.getText()};
+        Object [] dados = {FArquivo.getText(), FTitulo.getText(), FDescricao.getText(), FGeneros.getText(), FIdioma.getText(), FAutores.getText(), 
+            FInterpretes.getText(), FDiretores.getText(), FDuracao.getText(), FAno.getText()};
         dtmImagens.addRow(dados);
     }//GEN-LAST:event_jBotaoConfirmaVActionPerformed
 
     private void jTFilmesCadastradosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTFilmesCadastradosMouseClicked
         if (jTFilmesCadastrados.getSelectedRow() != -1){
-            FTitulo.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 0).toString());
-            FDescricao.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 1).toString());
-            FGeneros.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 2).toString());
-            FIdioma.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 3).toString());
-            FAutores.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 4).toString());
-            FInterpretes.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 5).toString());
-            FDiretores.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 6).toString());
-            FDuracao.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 7).toString());
-            FAno.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 7).toString());
-            FArquivo.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 7).toString());
+            FArquivo.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 0).toString());
+            FTitulo.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 1).toString());
+            FDescricao.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 2).toString());
+            FGeneros.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 3).toString());
+            FIdioma.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 4).toString());
+            FAutores.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 5).toString());
+            FInterpretes.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 6).toString());
+            FDiretores.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 7).toString());
+            FDuracao.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 8).toString());
+            FAno.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 9).toString());
+            
         }else{
             JOptionPane.showMessageDialog(null, "Selecione um produto para editar.");
         }
@@ -349,16 +351,16 @@ public class CadastroVisualizacaoFilme extends javax.swing.JInternalFrame {
 
     private void jTFilmesCadastradosKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFilmesCadastradosKeyReleased
         if (jTFilmesCadastrados.getSelectedRow() != -1){
-            FTitulo.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 0).toString());
-            FDescricao.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 1).toString());
-            FGeneros.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 2).toString());
-            FIdioma.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 3).toString());
-            FAutores.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 4).toString());
-            FInterpretes.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 5).toString());
-            FDiretores.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 6).toString());
-            FDuracao.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 7).toString());
-            FAno.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 7).toString());
-            FArquivo.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 7).toString());
+             FArquivo.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 0).toString());
+            FTitulo.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 1).toString());
+            FDescricao.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 2).toString());
+            FGeneros.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 3).toString());
+            FIdioma.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 4).toString());
+            FAutores.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 5).toString());
+            FInterpretes.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 6).toString());
+            FDiretores.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 7).toString());
+            FDuracao.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 8).toString());
+            FAno.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 9).toString());
         }else{
             JOptionPane.showMessageDialog(null, "Selecione um produto para editar.");
         }
@@ -377,8 +379,8 @@ public class CadastroVisualizacaoFilme extends javax.swing.JInternalFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         this.jTabbedPane1.setSelectedIndex(1);
         DefaultTableModel dtmFilmes = (DefaultTableModel) jTFilmesCadastrados.getModel();
-        Object [] dados = {FTitulo.getText(), FDescricao.getText(), FGeneros.getText(), FIdioma.getText(), FAutores.getText(), 
-            FInterpretes.getText(), FDiretores.getText(), FDuracao.getText(), FAno.getText(), FArquivo.getText()};
+                Object [] dados = {FArquivo.getText(), FTitulo.getText(), FDescricao.getText(), FGeneros.getText(), FIdioma.getText(), FAutores.getText(), 
+            FInterpretes.getText(), FDiretores.getText(), FDuracao.getText(), FAno.getText()};
         dtmFilmes.addRow(dados);
 
         if (FArquivo.getText().equals("")
@@ -424,7 +426,9 @@ public class CadastroVisualizacaoFilme extends javax.swing.JInternalFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-          JFileChooser fc = new  JFileChooser();
+        
+           
+        JFileChooser fc = new  JFileChooser();
         fc.setDialogTitle("Buscar Arquivo");
         fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
         
@@ -444,12 +448,18 @@ public class CadastroVisualizacaoFilme extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_FTituloActionPerformed
 
     private void jButtonEDITActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEDITActionPerformed
+
         if (jTFilmesCadastrados.getSelectedRow() != -1){
-            jTFilmesCadastrados.setValueAt(FTitulo.getText(), jTFilmesCadastrados.getSelectedRow(), 0);
-            jTFilmesCadastrados.setValueAt(FGeneros.getText(), jTFilmesCadastrados.getSelectedRow(), 1);
-            jTFilmesCadastrados.setValueAt(FIdioma.getText(), jTFilmesCadastrados.getSelectedRow(), 2);
-            jTFilmesCadastrados.setValueAt(FDuracao.getText(), jTFilmesCadastrados.getSelectedRow(), 3);
-            jTFilmesCadastrados.setValueAt(FAno.getText(), jTFilmesCadastrados.getSelectedRow(), 4);
+            jTFilmesCadastrados.setValueAt(FArquivo.getText(), jTFilmesCadastrados.getSelectedRow(), 0);
+            jTFilmesCadastrados.setValueAt(FTitulo.getText(), jTFilmesCadastrados.getSelectedRow(), 1);
+            jTFilmesCadastrados.setValueAt(FDescricao.getText(), jTFilmesCadastrados.getSelectedRow(), 2);
+            jTFilmesCadastrados.setValueAt(FGeneros.getText(), jTFilmesCadastrados.getSelectedRow(), 3);
+            jTFilmesCadastrados.setValueAt(FIdioma.getText(), jTFilmesCadastrados.getSelectedRow(), 4);
+            jTFilmesCadastrados.setValueAt(FAutores.getText(), jTFilmesCadastrados.getSelectedRow(), 5);
+            jTFilmesCadastrados.setValueAt(FInterpretes.getText(), jTFilmesCadastrados.getSelectedRow(), 6);
+            jTFilmesCadastrados.setValueAt(FDiretores.getText(), jTFilmesCadastrados.getSelectedRow(), 7);
+            jTFilmesCadastrados.setValueAt(FDuracao.getText(), jTFilmesCadastrados.getSelectedRow(), 8);
+            jTFilmesCadastrados.setValueAt(FAno.getText(), jTFilmesCadastrados.getSelectedRow(), 9);
      }else{
          JOptionPane.showMessageDialog(null, "Selecione um item para editar.");
         }

@@ -30,8 +30,7 @@ public class CadastroVisualizacaoImagem extends javax.swing.JInternalFrame {
     /**
      * Creates new form CadastroVisualizacaoFrame
      */
-    private ListaDeMidias listMidia;
-
+     private ListaDeMidias listMidia;
     public CadastroVisualizacaoImagem(ListaDeMidias midias) {
         initComponents();
         listMidia = midias;
@@ -56,7 +55,7 @@ public class CadastroVisualizacaoImagem extends javax.swing.JInternalFrame {
         jButton1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        ICadConfirma = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -64,13 +63,13 @@ public class CadastroVisualizacaoImagem extends javax.swing.JInternalFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
-        ITitulo = new javax.swing.JTextField();
-        IDescricao = new javax.swing.JTextField();
-        ILocal = new javax.swing.JTextField();
-        IData = new javax.swing.JTextField();
-        IArquivo = new javax.swing.JTextField();
-        IFotografo = new javax.swing.JTextField();
-        IPessoas = new javax.swing.JTextField();
+        FTitulo = new javax.swing.JTextField();
+        FDescricao = new javax.swing.JTextField();
+        FLocal = new javax.swing.JTextField();
+        FData = new javax.swing.JTextField();
+        txtFile = new javax.swing.JTextField();
+        FFotografo = new javax.swing.JTextField();
+        FPessoas = new javax.swing.JTextField();
 
         setClosable(true);
 
@@ -89,7 +88,7 @@ public class CadastroVisualizacaoImagem extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Caminho", "Título", "Descrição", "Fotógrafo", "Pessoas", "Local", "Data"
+                "Caminho", "Título", "Descrição", "Fotógrafo", "Pessoas", "Data", "Local"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -134,7 +133,7 @@ public class CadastroVisualizacaoImagem extends javax.swing.JInternalFrame {
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jBotaoConfirmaV, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 970, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 920, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -168,10 +167,10 @@ public class CadastroVisualizacaoImagem extends javax.swing.JInternalFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("Cadastro Imagem");
 
-        ICadConfirma.setText("Confirma");
-        ICadConfirma.addActionListener(new java.awt.event.ActionListener() {
+        jButton2.setText("Confirma");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ICadConfirmaActionPerformed(evt);
+                jButton2ActionPerformed(evt);
             }
         });
 
@@ -194,9 +193,9 @@ public class CadastroVisualizacaoImagem extends javax.swing.JInternalFrame {
             }
         });
 
-        ITitulo.addActionListener(new java.awt.event.ActionListener() {
+        FTitulo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ITituloActionPerformed(evt);
+                FTituloActionPerformed(evt);
             }
         });
 
@@ -213,16 +212,16 @@ public class CadastroVisualizacaoImagem extends javax.swing.JInternalFrame {
                                 .addGap(20, 20, 20)
                                 .addComponent(jLabel3)
                                 .addGap(18, 18, 18)
-                                .addComponent(ITitulo))
+                                .addComponent(FTitulo))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addGap(18, 18, 18)
-                                .addComponent(IDescricao))))
+                                .addComponent(FDescricao))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(189, 189, 189)
                         .addComponent(jLabel5)
                         .addGap(18, 18, 18)
-                        .addComponent(IFotografo))
+                        .addComponent(FFotografo))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(153, 153, 153)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -232,12 +231,12 @@ public class CadastroVisualizacaoImagem extends javax.swing.JInternalFrame {
                             .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(IData, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 376, Short.MAX_VALUE))
-                            .addComponent(IPessoas)
-                            .addComponent(ILocal)
-                            .addComponent(IArquivo))))
+                            .addComponent(FData, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(FLocal, javax.swing.GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE)
+                                .addComponent(FPessoas))
+                            .addComponent(txtFile, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(195, 195, 195))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -245,7 +244,7 @@ public class CadastroVisualizacaoImagem extends javax.swing.JInternalFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(388, 388, 388))
-                    .addComponent(ICadConfirma, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -255,33 +254,33 @@ public class CadastroVisualizacaoImagem extends javax.swing.JInternalFrame {
                 .addGap(29, 29, 29)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(ITitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(FTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(IDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(FDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(IFotografo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(FFotografo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(IPessoas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(FPessoas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ILocal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(FLocal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7))
                 .addGap(26, 26, 26)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(IData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(FData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
                 .addGap(34, 34, 34)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(IArquivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtFile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
-                .addComponent(ICadConfirma)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
+                .addComponent(jButton2)
                 .addContainerGap())
         );
 
@@ -302,17 +301,16 @@ public class CadastroVisualizacaoImagem extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBotaoConfirmaVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotaoConfirmaVActionPerformed
-        this.jTabbedPane1.setSelectedIndex(1);
+      this.jTabbedPane1.setSelectedIndex(1);
         DefaultTableModel dtmImagens = (DefaultTableModel) jTImagensCadastrados.getModel();
-        Object[] dados = {ITitulo.getText(), IDescricao.getText(), IFotografo.getText(), IPessoas.getText(),
-            ILocal.getText(), IData.getText(), IArquivo.getText()};
+       Object [] dados = {txtFile.getText(), FTitulo.getText(), FDescricao.getText(), FFotografo.getText(),FPessoas.getText(), FData.getText(),FLocal.getText()};
         dtmImagens.addRow(dados);
-
+                                
     }//GEN-LAST:event_jBotaoConfirmaVActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        JFileChooser fc = new  JFileChooser();
+         JFileChooser fc = new  JFileChooser();
         fc.setDialogTitle("Buscar Arquivo");
         fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
         
@@ -325,121 +323,123 @@ public class CadastroVisualizacaoImagem extends javax.swing.JInternalFrame {
         if(retorno == JFileChooser.APPROVE_OPTION ){
             
             File file = fc.getSelectedFile();
-            IArquivo.setText(file.getPath());
+            txtFile.setText(file.getPath());
            
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void ICadConfirmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ICadConfirmaActionPerformed
-        this.jTabbedPane1.setSelectedIndex(1);
-        DefaultTableModel dtmImagens = (DefaultTableModel) jTImagensCadastrados.getModel();
-        Object[] dados = {ITitulo.getText(), IDescricao.getText(), IFotografo.getText(), IPessoas.getText(),
-            ILocal.getText(), IData.getText(), IArquivo.getText()};
-        dtmImagens.addRow(dados);
-
-        if (IArquivo.getText().equals("")
-                || ITitulo.getText().equals("")
-                || IDescricao.getText().equals("")
-                || IFotografo.getText().equals("")
-                || IPessoas.getText().equals("")
-                || ILocal.getText().equals("")
-                || IData.getText().equals("")) {
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+      this.jTabbedPane1.setSelectedIndex(1);
+      DefaultTableModel dtmImagens = (DefaultTableModel) jTImagensCadastrados.getModel();
+      Object [] dados = {txtFile.getText(), FTitulo.getText(), FDescricao.getText(), FFotografo.getText(),FPessoas.getText(), FData.getText(),FLocal.getText()};
+      dtmImagens.addRow(dados);
+      
+      if (txtFile.getText().equals("")
+                || FTitulo.getText().equals("")
+                || FDescricao.getText().equals("")
+                || FFotografo.getText().equals("")
+                || FPessoas.getText().equals("")
+                || FLocal.getText().equals("")
+                || FData.getText().equals("")){
             JOptionPane.showMessageDialog(null, "Informe todos os campos!");
         } else {
             Imagem img = new Imagem(
-                    IArquivo.getText().trim(),
-                    ITitulo.getText().trim(),
-                    IDescricao.getText().trim(),
-                    IFotografo.getText().trim(),
+                    txtFile.getText().trim(),
+                    FTitulo.getText().trim(),
+                    FDescricao.getText().trim(),
+                    FFotografo.getText().trim(),
                     getPessoas(),
-                    ILocal.getText().trim(),
-                    getDate());
-
+                    FLocal.getText().trim(),
+                    getDate()); 
+            
             if (listMidia.adiciona(img) == false) {
                 JOptionPane.showMessageDialog(null, "Não foi possível salvar.");
             } else {
-                JOptionPane.showMessageDialog(null, "Cadastro Efetuado!");
-                try {
+           JOptionPane.showMessageDialog(null, "Cadastro Efetuado!");
+                try { 
                     listMidia.salvar();
                 } catch (IOException ex) {
                     Logger.getLogger(CadastroVisualizacaoImagem.class.getName()).log(Level.SEVERE, null, ex);
                 }
 
             }
+            
+         }
+      
+    }//GEN-LAST:event_jButton2ActionPerformed
 
-        }
-
-    }//GEN-LAST:event_ICadConfirmaActionPerformed
-
-    private void ITituloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ITituloActionPerformed
+    private void FTituloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FTituloActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_ITituloActionPerformed
+    }//GEN-LAST:event_FTituloActionPerformed
 
     private void jBotaoExcluiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotaoExcluiActionPerformed
-        jTImagensCadastrados.getSelectedRow();
-        if (jTImagensCadastrados.getSelectedRow() != -1) {
-            DefaultTableModel dtmImagens = (DefaultTableModel) jTImagensCadastrados.getModel();
-            dtmImagens.removeRow(jTImagensCadastrados.getSelectedRow());
-        } else {
-            JOptionPane.showMessageDialog(null, "Selecione um produto para excluir.");
-        }
+     jTImagensCadastrados.getSelectedRow();
+     if (jTImagensCadastrados.getSelectedRow() != -1){
+        DefaultTableModel dtmImagens = (DefaultTableModel) jTImagensCadastrados.getModel();      
+        dtmImagens.removeRow(jTImagensCadastrados.getSelectedRow());  
+     }else{
+         JOptionPane.showMessageDialog(null, "Selecione um produto para excluir.");
+     } 
     }//GEN-LAST:event_jBotaoExcluiActionPerformed
 
     private void jTImagensCadastradosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTImagensCadastradosMouseClicked
-        if (jTImagensCadastrados.getSelectedRow() != -1) {
-            ITitulo.setText(jTImagensCadastrados.getValueAt(jTImagensCadastrados.getSelectedRow(), 0).toString());
-            IDescricao.setText(jTImagensCadastrados.getValueAt(jTImagensCadastrados.getSelectedRow(), 1).toString());
-            IFotografo.setText(jTImagensCadastrados.getValueAt(jTImagensCadastrados.getSelectedRow(), 2).toString());
-            IPessoas.setText(jTImagensCadastrados.getValueAt(jTImagensCadastrados.getSelectedRow(), 3).toString());
-            ILocal.setText(jTImagensCadastrados.getValueAt(jTImagensCadastrados.getSelectedRow(), 5).toString());
-            IData.setText(jTImagensCadastrados.getValueAt(jTImagensCadastrados.getSelectedRow(), 6).toString());
-            IArquivo.setText(jTImagensCadastrados.getValueAt(jTImagensCadastrados.getSelectedRow(), 7).toString());
-        } else {
-            JOptionPane.showMessageDialog(null, "Selecione um produto para editar.");
-        }
+        if (jTImagensCadastrados.getSelectedRow() != -1){
+            txtFile.setText(jTImagensCadastrados.getValueAt(jTImagensCadastrados.getSelectedRow(), 0).toString());
+            FTitulo.setText(jTImagensCadastrados.getValueAt(jTImagensCadastrados.getSelectedRow(), 1).toString());
+            FDescricao.setText(jTImagensCadastrados.getValueAt(jTImagensCadastrados.getSelectedRow(), 2).toString());
+            FFotografo.setText(jTImagensCadastrados.getValueAt(jTImagensCadastrados.getSelectedRow(), 3).toString());
+            FPessoas.setText(jTImagensCadastrados.getValueAt(jTImagensCadastrados.getSelectedRow(), 4).toString());   
+             FData.setText(jTImagensCadastrados.getValueAt(jTImagensCadastrados.getSelectedRow(), 5).toString()); 
+            FLocal.setText(jTImagensCadastrados.getValueAt(jTImagensCadastrados.getSelectedRow(), 6).toString());            
+     }else{
+         JOptionPane.showMessageDialog(null, "Selecione um produto para editar.");
+     } 
     }//GEN-LAST:event_jTImagensCadastradosMouseClicked
 
     private void jTImagensCadastradosKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTImagensCadastradosKeyReleased
-        if (jTImagensCadastrados.getSelectedRow() != -1) {
-            ITitulo.setText(jTImagensCadastrados.getValueAt(jTImagensCadastrados.getSelectedRow(), 0).toString());
-            IDescricao.setText(jTImagensCadastrados.getValueAt(jTImagensCadastrados.getSelectedRow(), 1).toString());
-            IFotografo.setText(jTImagensCadastrados.getValueAt(jTImagensCadastrados.getSelectedRow(), 2).toString());
-            IPessoas.setText(jTImagensCadastrados.getValueAt(jTImagensCadastrados.getSelectedRow(), 3).toString());
-            ILocal.setText(jTImagensCadastrados.getValueAt(jTImagensCadastrados.getSelectedRow(), 4).toString());
-            IData.setText(jTImagensCadastrados.getValueAt(jTImagensCadastrados.getSelectedRow(), 5).toString());
-            IArquivo.setText(jTImagensCadastrados.getValueAt(jTImagensCadastrados.getSelectedRow(), 6).toString());
-        } else {
-            JOptionPane.showMessageDialog(null, "Selecione uma imagem para editar.");
+        if (jTImagensCadastrados.getSelectedRow() != -1){
+            txtFile.setText(jTImagensCadastrados.getValueAt(jTImagensCadastrados.getSelectedRow(), 0).toString());
+            FTitulo.setText(jTImagensCadastrados.getValueAt(jTImagensCadastrados.getSelectedRow(), 1).toString());
+            FDescricao.setText(jTImagensCadastrados.getValueAt(jTImagensCadastrados.getSelectedRow(), 2).toString());
+            FFotografo.setText(jTImagensCadastrados.getValueAt(jTImagensCadastrados.getSelectedRow(), 3).toString());
+            FPessoas.setText(jTImagensCadastrados.getValueAt(jTImagensCadastrados.getSelectedRow(), 4).toString()); 
+            FData.setText(jTImagensCadastrados.getValueAt(jTImagensCadastrados.getSelectedRow(), 5).toString()); 
+            FLocal.setText(jTImagensCadastrados.getValueAt(jTImagensCadastrados.getSelectedRow(), 6).toString());   
+                    
+     }else{
+         JOptionPane.showMessageDialog(null, "Selecione um produto para editar.");
         }
     }//GEN-LAST:event_jTImagensCadastradosKeyReleased
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if (jTImagensCadastrados.getSelectedRow() != -1) {
-            jTImagensCadastrados.setValueAt(ITitulo.getText(), jTImagensCadastrados.getSelectedRow(), 0);
-            jTImagensCadastrados.setValueAt(IDescricao.getText(), jTImagensCadastrados.getSelectedRow(), 1);
-            jTImagensCadastrados.setValueAt(IFotografo.getText(), jTImagensCadastrados.getSelectedRow(), 2);
-            jTImagensCadastrados.setValueAt(IPessoas.getText(), jTImagensCadastrados.getSelectedRow(), 3);
-            jTImagensCadastrados.setValueAt(ILocal.getText(), jTImagensCadastrados.getSelectedRow(), 4);
-            jTImagensCadastrados.setValueAt(IData.getText(), jTImagensCadastrados.getSelectedRow(), 5);
-            jTImagensCadastrados.setValueAt(IArquivo.getText(), jTImagensCadastrados.getSelectedRow(), 6);
-        } else {
-            JOptionPane.showMessageDialog(null, "Selecione uma imagem para editar.");
+         if (jTImagensCadastrados.getSelectedRow() != -1){
+            jTImagensCadastrados.setValueAt(txtFile.getText(), jTImagensCadastrados.getSelectedRow(), 0);
+            jTImagensCadastrados.setValueAt(FTitulo.getText(), jTImagensCadastrados.getSelectedRow(), 1);
+            jTImagensCadastrados.setValueAt(FDescricao.getText(), jTImagensCadastrados.getSelectedRow(), 2);
+           jTImagensCadastrados.setValueAt(FFotografo.getText(), jTImagensCadastrados.getSelectedRow(), 3);
+            jTImagensCadastrados.setValueAt(FPessoas.getText(), jTImagensCadastrados.getSelectedRow(), 4);
+            jTImagensCadastrados.setValueAt(FData.getText(), jTImagensCadastrados.getSelectedRow(), 5);
+            jTImagensCadastrados.setValueAt(FLocal.getText(), jTImagensCadastrados.getSelectedRow(), 6);
+            
+
+
+     }else{
+         JOptionPane.showMessageDialog(null, "Selecione um produto para editar.");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField IArquivo;
-    private javax.swing.JButton ICadConfirma;
-    private javax.swing.JTextField IData;
-    private javax.swing.JTextField IDescricao;
-    private javax.swing.JTextField IFotografo;
-    private javax.swing.JTextField ILocal;
-    private javax.swing.JTextField IPessoas;
-    private javax.swing.JTextField ITitulo;
+    private javax.swing.JTextField FData;
+    private javax.swing.JTextField FDescricao;
+    private javax.swing.JTextField FFotografo;
+    private javax.swing.JTextField FLocal;
+    private javax.swing.JTextField FPessoas;
+    private javax.swing.JTextField FTitulo;
     private javax.swing.JButton jBotaoConfirmaV;
     private javax.swing.JButton jBotaoExclui;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -454,36 +454,39 @@ public class CadastroVisualizacaoImagem extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTImagensCadastrados;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTextField txtFile;
     // End of variables declaration//GEN-END:variables
 /**
-     * Retorna a data já convertida para Date
-     *
-     * @return O conteúdo da JDateTextField em formato java.util.Date
-     */
-    public Date getDate() {
+  * Retorna a data já convertida para Date 
+  * @return O conteúdo da JDateTextField em formato java.util.Date
+  */
+public Date getDate() {
 
-        String dataStr = IData.getText().substring(0, 8);
-        if (IData.equals("  /  /  ")) {
-            return null;
+         String dataStr = FData.getText().substring(0, 8);
+         if (FData.equals("  /  /  ")) return null;
+         DateFormat df = new SimpleDateFormat("dd/MM/yy");
+         df.setLenient(false);
+         try {
+                 return df.parse(dataStr);
+         }
+         catch(ParseException e) {
+                 e.printStackTrace();
+                 return null;
+         }                
+
+ }
+public String [] getPessoas(){
+    
+    try{ 
+        String pessoa =  FPessoas.getText().trim();
         }
-        DateFormat df = new SimpleDateFormat("dd/MM/yy");
-        df.setLenient(false);
-        try {
-            return df.parse(dataStr);
-        } catch (ParseException e) {
-            e.printStackTrace();
-            return null;
-        }
-
-    }
-
-    public String[] getPessoas() {
-
-        try {
-            String pessoa = IPessoas.getText().trim();
-        } catch (Exception e) {
-            return null;
-        }
+        catch(Exception e) {
+                 return null;    
+     }  
         return null;
-    }
 }
+}
+
+
+
+

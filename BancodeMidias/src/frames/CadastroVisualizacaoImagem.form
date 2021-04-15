@@ -53,7 +53,7 @@
                       <Component id="jBotaoConfirmaV" min="-2" pref="120" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
-                  <Component id="jScrollPane1" alignment="1" pref="970" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" alignment="1" pref="920" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
@@ -123,8 +123,8 @@
                         <Column editable="false" title="Descri&#xe7;&#xe3;o" type="java.lang.Object"/>
                         <Column editable="false" title="Fot&#xf3;grafo" type="java.lang.Object"/>
                         <Column editable="false" title="Pessoas" type="java.lang.Object"/>
-                        <Column editable="false" title="Local" type="java.lang.Object"/>
                         <Column editable="false" title="Data" type="java.lang.Object"/>
+                        <Column editable="false" title="Local" type="java.lang.Object"/>
                       </Table>
                     </Property>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -216,12 +216,12 @@
                                       <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                                       <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="ITitulo" max="32767" attributes="0"/>
+                                      <Component id="FTitulo" max="32767" attributes="0"/>
                                   </Group>
                                   <Group type="102" attributes="0">
                                       <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="IDescricao" max="32767" attributes="0"/>
+                                      <Component id="FDescricao" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -229,7 +229,7 @@
                               <EmptySpace min="-2" pref="189" max="-2" attributes="0"/>
                               <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="IFotografo" max="32767" attributes="0"/>
+                              <Component id="FFotografo" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="153" max="-2" attributes="0"/>
@@ -241,14 +241,14 @@
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <Component id="IData" min="-2" pref="144" max="-2" attributes="0"/>
-                                      <EmptySpace min="0" pref="376" max="32767" attributes="0"/>
+                                  <Component id="FData" min="-2" pref="144" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="FLocal" pref="470" max="32767" attributes="0"/>
+                                      <Component id="FPessoas" max="32767" attributes="0"/>
                                   </Group>
-                                  <Component id="IPessoas" max="32767" attributes="0"/>
-                                  <Component id="ILocal" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="IArquivo" max="32767" attributes="0"/>
+                                  <Component id="txtFile" alignment="0" min="-2" pref="470" max="-2" attributes="0"/>
                               </Group>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace min="-2" pref="195" max="-2" attributes="0"/>
@@ -260,7 +260,7 @@
                               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="388" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="ICadConfirma" alignment="1" min="-2" pref="120" max="-2" attributes="0"/>
+                          <Component id="jButton2" alignment="1" min="-2" pref="120" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -273,40 +273,40 @@
                       <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="ITitulo" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="FTitulo" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="IDescricao" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="FDescricao" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="IFotografo" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="FFotografo" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="IPessoas" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="FPessoas" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="ILocal" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="FLocal" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="IData" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="FData" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="IArquivo" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtFile" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jButton3" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="71" max="32767" attributes="0"/>
-                      <Component id="ICadConfirma" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="67" max="32767" attributes="0"/>
+                      <Component id="jButton2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -321,12 +321,12 @@
                 <Property name="text" type="java.lang.String" value="Cadastro Imagem"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="ICadConfirma">
+            <Component class="javax.swing.JButton" name="jButton2">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Confirma"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ICadConfirmaActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel3">
@@ -367,22 +367,22 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton3ActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JTextField" name="ITitulo">
+            <Component class="javax.swing.JTextField" name="FTitulo">
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ITituloActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="FTituloActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JTextField" name="IDescricao">
+            <Component class="javax.swing.JTextField" name="FDescricao">
             </Component>
-            <Component class="javax.swing.JTextField" name="ILocal">
+            <Component class="javax.swing.JTextField" name="FLocal">
             </Component>
-            <Component class="javax.swing.JTextField" name="IData">
+            <Component class="javax.swing.JTextField" name="FData">
             </Component>
-            <Component class="javax.swing.JTextField" name="IArquivo">
+            <Component class="javax.swing.JTextField" name="txtFile">
             </Component>
-            <Component class="javax.swing.JTextField" name="IFotografo">
+            <Component class="javax.swing.JTextField" name="FFotografo">
             </Component>
-            <Component class="javax.swing.JTextField" name="IPessoas">
+            <Component class="javax.swing.JTextField" name="FPessoas">
             </Component>
           </SubComponents>
         </Container>
