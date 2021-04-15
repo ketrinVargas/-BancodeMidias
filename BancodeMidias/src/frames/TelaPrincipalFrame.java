@@ -22,10 +22,11 @@ public class TelaPrincipalFrame extends javax.swing.JFrame {
     
     public TelaPrincipalFrame() {
         initComponents();
+        this.setExtendedState(MAXIMIZED_BOTH); 
         try{
             listMidia = new ListaDeMidias();
         }catch(Exception e){
-        System.out.println(e.getMessage()); 
+        JOptionPane.showMessageDialog(null, "Erro"); 
     }
     }
 
@@ -39,15 +40,9 @@ public class TelaPrincipalFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jDesktopPane1 = new javax.swing.JDesktopPane();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jButton1 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        cadastroFilmesP = new javax.swing.JMenuItem();
-        cadastroImagensP = new javax.swing.JMenuItem();
-        CadastroMusicasInicial = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
-        verFilmes = new javax.swing.JMenuItem();
-        verImagens = new javax.swing.JMenuItem();
-        verMusicas = new javax.swing.JMenuItem();
         ajuda = new javax.swing.JMenu();
         comoUsar = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
@@ -56,72 +51,43 @@ public class TelaPrincipalFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Banco de Mídias");
 
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", "Imagem", "Música", "Filme" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("Entrar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jDesktopPane1.setLayer(jComboBox1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
         jDesktopPane1Layout.setHorizontalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                .addGap(70, 70, 70)
+                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jComboBox1, 0, 257, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(73, Short.MAX_VALUE))
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 279, Short.MAX_VALUE)
+            .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                .addGap(118, 118, 118)
+                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton1)
+                .addContainerGap(100, Short.MAX_VALUE))
         );
-
-        jMenu1.setText("Cadastros");
-
-        cadastroFilmesP.setText("Filmes");
-        cadastroFilmesP.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cadastroFilmesPActionPerformed(evt);
-            }
-        });
-        jMenu1.add(cadastroFilmesP);
-
-        cadastroImagensP.setText("Imagens");
-        cadastroImagensP.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cadastroImagensPActionPerformed(evt);
-            }
-        });
-        jMenu1.add(cadastroImagensP);
-
-        CadastroMusicasInicial.setText("Músicas");
-        CadastroMusicasInicial.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CadastroMusicasInicialActionPerformed(evt);
-            }
-        });
-        jMenu1.add(CadastroMusicasInicial);
-
-        jMenuBar1.add(jMenu1);
-
-        jMenu2.setText("Mídias");
-
-        verFilmes.setText("Filmes");
-        verFilmes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                verFilmesActionPerformed(evt);
-            }
-        });
-        jMenu2.add(verFilmes);
-
-        verImagens.setText("Imagens");
-        verImagens.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                verImagensActionPerformed(evt);
-            }
-        });
-        jMenu2.add(verImagens);
-
-        verMusicas.setText("Musicas");
-        verMusicas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                verMusicasActionPerformed(evt);
-            }
-        });
-        jMenu2.add(verMusicas);
-
-        jMenuBar1.add(jMenu2);
 
         ajuda.setText("Ajuda");
 
@@ -164,49 +130,49 @@ public class TelaPrincipalFrame extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cadastroFilmesPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastroFilmesPActionPerformed
-      CadastroVisualizacaoFilme Filme = new CadastroVisualizacaoFilme(listMidia);
-      jDesktopPane1.add(Filme);
-      Filme.setVisible(true);
-    }//GEN-LAST:event_cadastroFilmesPActionPerformed
-
-    private void CadastroMusicasInicialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadastroMusicasInicialActionPerformed
-      CadastroVisualizacaoMusica Musica = new CadastroVisualizacaoMusica(listMidia);
-      jDesktopPane1.add(Musica);
-      Musica.setVisible(true);
-    }//GEN-LAST:event_CadastroMusicasInicialActionPerformed
-
-    private void verImagensActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verImagensActionPerformed
-     
-    }//GEN-LAST:event_verImagensActionPerformed
-
-    private void cadastroImagensPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastroImagensPActionPerformed
-       CadastroVisualizacaoImagem Imagem = new CadastroVisualizacaoImagem(listMidia);
-      jDesktopPane1.add(Imagem);
-      Imagem.setVisible(true);
-    }//GEN-LAST:event_cadastroImagensPActionPerformed
-
-    private void verFilmesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verFilmesActionPerformed
-       
-    }//GEN-LAST:event_verFilmesActionPerformed
-
-    private void verMusicasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verMusicasActionPerformed
-        
-    }//GEN-LAST:event_verMusicasActionPerformed
-
     private void comoUsarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comoUsarActionPerformed
-        JOptionPane.showMessageDialog(jMenu1, "Acesse as abas do menu superior Cadastros para realizar o cadastro de mídias."
+        JOptionPane.showMessageDialog(jMenuBar1, "Acesse as abas do menu superior Cadastros para realizar o cadastro de mídias."
                 + "\nAcesse as abas do menu superior Mídias para visualizar as mídias cadastradas."
                 + "\nPara saber mais sobre o sistema acesse a aba Sobre");
     }//GEN-LAST:event_comoUsarActionPerformed
 
     private void sobreOSistemaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sobreOSistemaActionPerformed
-        JOptionPane.showMessageDialog(jMenu1, "Bem-Vindo ao  Sistema Banco de Mídias"
+        JOptionPane.showMessageDialog(jMenuBar1, "Bem-Vindo ao  Sistema Banco de Mídias"
                 + "\nO presente sistema tem como propósito cadastrar, alterar, excluir e visualizar mídias."
                 + "\nVocê pode consultar suas mídias por: Título ou Data."
                 + "\nEm casos de filmes e músicas a busca também pode ser feita por Gênero."
                 + "\nQuaisquer dúvidas entre em contato com a equipe de desenvolvimento :D");
     }//GEN-LAST:event_sobreOSistemaActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        
+       
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        String indice = jComboBox1.getSelectedItem().toString();
+        switch (indice) {
+            case "Imagem":
+                CadastroVisualizacaoImagem Imagem = new CadastroVisualizacaoImagem(listMidia);
+                jDesktopPane1.add(Imagem);
+                Imagem.setVisible(true);
+               
+                break;
+            case "Música":
+                CadastroVisualizacaoMusica Musica = new CadastroVisualizacaoMusica(listMidia);
+                jDesktopPane1.add(Musica);
+                Musica.setVisible(true);
+               
+                break;
+            case "Filme":
+                  CadastroVisualizacaoFilme Filme = new CadastroVisualizacaoFilme(listMidia);
+                  jDesktopPane1.add(Filme);
+                  Filme.setVisible(true);
+                
+                break;
+        }      
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -244,19 +210,13 @@ public class TelaPrincipalFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuItem CadastroMusicasInicial;
     private javax.swing.JMenu ajuda;
-    private javax.swing.JMenuItem cadastroFilmesP;
-    private javax.swing.JMenuItem cadastroImagensP;
     private javax.swing.JMenuItem comoUsar;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JDesktopPane jDesktopPane1;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem sobreOSistema;
-    private javax.swing.JMenuItem verFilmes;
-    private javax.swing.JMenuItem verImagens;
-    private javax.swing.JMenuItem verMusicas;
     // End of variables declaration//GEN-END:variables
 }

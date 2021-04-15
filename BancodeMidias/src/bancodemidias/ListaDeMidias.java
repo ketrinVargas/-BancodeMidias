@@ -6,13 +6,15 @@
 
 package bancodemidias;
 
+import bancodemidias.Reproduzivel;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import bancodemidias.Reproduzivel;
-import java.io.FileNotFoundException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -24,6 +26,7 @@ public class ListaDeMidias {
     
     private static Arquivo arquivo = new Arquivo();  
     private static List<Midia> listaMidias;
+    private static List<Midia>ultimaLista;
 
     
     public ListaDeMidias(){
@@ -71,6 +74,7 @@ public class ListaDeMidias {
         return listaMidias.size();
     }
     
+        //////////////////////////////////////////
     public List pertenceAClasse( Class classe){
         List<Integer> listaDeIds;
         listaDeIds = new ArrayList();
@@ -82,10 +86,6 @@ public class ListaDeMidias {
            }
         return listaDeIds;
     }
-    
-    
-    //////////////////////////////////////////
-   
        public Midia getMidiaPorId(int id){
            for (Midia m : listaMidias){
                if (id == m.getId()){
@@ -115,18 +115,42 @@ public class ListaDeMidias {
            }
            return lista;
        }
-   
+   ////////////////////////////////////////////
    
    
    
    public void ordenaAlfabeticamente(){
-       Collections.sort(listaMidias, Comparator.comparing(Midia::getTitulo));
+       Collections.sort(ultimaLista, Comparator.comparing(Midia::getTitulo));
    }
    
    public void ordenaData(){
-       Collections.sort(listaMidias, Comparator.comparing(Midia::getData));
+       Collections.sort(ultimaLista, Comparator.comparing(Midia::getData));
    }
    
-   
+    /**
+     *
+     * @param obj classe a ser procuradada
+     * @param procura o q foi pesquisado
+     * @param metodo onde será pesquisado,  ex: Midia.class.getDeclaredMethod("getTitulo")
+     * @return
+     * @throws IllegalAccessException
+     * @throws IllegalArgumentException
+     * @throws InvocationTargetException
+     */
+    public static String getLista(Object obj, String procura, Method metodo) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException{
+       ultimaLista = new ArrayList();
+       for(Midia m : listaMidias){
+           if (obj.getClass().isInstance(m)){
+               if (procura==null){
+                   ultimaLista.add(m);
+               }else{
+                   if (String.valueOf(metodo.invoke(m)).trim().toLowerCase().contains(procura.toLowerCase().trim())){
+                       ultimaLista.add(m);
+                   }
+               }
+           }
+       }
+       return ultimaLista.toString();
+   }
 
 }

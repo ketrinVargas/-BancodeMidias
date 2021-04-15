@@ -8,6 +8,7 @@ package frames;
 import bancodemidias.Filme;
 import bancodemidias.Imagem;
 import bancodemidias.ListaDeMidias;
+import java.io.File;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -15,7 +16,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -309,6 +312,22 @@ public class CadastroVisualizacaoImagem extends javax.swing.JInternalFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+        JFileChooser fc = new  JFileChooser();
+        fc.setDialogTitle("Buscar Arquivo");
+        fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        
+
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Imagem", "jpg", "png");
+        
+        fc.setFileFilter(filter);
+        int retorno = fc.showOpenDialog(this);
+        
+        if(retorno == JFileChooser.APPROVE_OPTION ){
+            
+            File file = fc.getSelectedFile();
+            IArquivo.setText(file.getPath());
+           
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void ICadConfirmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ICadConfirmaActionPerformed

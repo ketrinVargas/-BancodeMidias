@@ -7,6 +7,7 @@ package frames;
 
 import bancodemidias.ListaDeMidias;
 import bancodemidias.Musica;
+import java.io.File;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -14,6 +15,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -418,6 +420,19 @@ public class CadastroVisualizacaoMusica extends javax.swing.JInternalFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+          JFileChooser fc = new  JFileChooser();
+        fc.setDialogTitle("Buscar Arquivo");
+        fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        
+        
+        int retorno = fc.showOpenDialog(this);
+        
+        if(retorno == JFileChooser.APPROVE_OPTION ){
+            
+            File file = fc.getSelectedFile();
+            MArquivo.setText(file.getPath());
+           
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void MTituloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MTituloActionPerformed
