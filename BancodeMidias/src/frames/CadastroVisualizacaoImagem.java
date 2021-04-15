@@ -8,7 +8,9 @@ package frames;
 import bancodemidias.Filme;
 import bancodemidias.Imagem;
 import bancodemidias.ListaDeMidias;
+import static bancodemidias.ListaDeMidias.getltimaLista;
 import bancodemidias.Midia;
+import static com.sun.media.jfxmediaimpl.MediaUtils.error;
 import java.io.File;
 import java.io.IOException;
 import java.text.DateFormat;
@@ -79,7 +81,7 @@ public class CadastroVisualizacaoImagem extends javax.swing.JInternalFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("Imagens Cadastradas");
 
-        jBotaoConfirmaV.setText("Confirma");
+        jBotaoConfirmaV.setText("Atualizar");
         jBotaoConfirmaV.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBotaoConfirmaVActionPerformed(evt);
@@ -147,16 +149,12 @@ public class CadastroVisualizacaoImagem extends javax.swing.JInternalFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jBotaoExclui, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(218, 218, 218)
                 .addComponent(jBotaoConfirmaV, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 888, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -167,7 +165,14 @@ public class CadastroVisualizacaoImagem extends javax.swing.JInternalFrame {
                                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(Pesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jBotaoExclui, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 888, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -328,11 +333,9 @@ public class CadastroVisualizacaoImagem extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBotaoConfirmaVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotaoConfirmaVActionPerformed
-      this.jTabbedPane1.setSelectedIndex(1);
-        DefaultTableModel dtmImagens = (DefaultTableModel) jTImagensCadastrados.getModel();
-       Object [] dados = {txtFile.getText(), FTitulo.getText(), FDescricao.getText(), FFotografo.getText(),FPessoas.getText(), FData.getText(),FLocal.getText()};
-        dtmImagens.addRow(dados);
-                                
+
+      getltimaLista();
+                                   
     }//GEN-LAST:event_jBotaoConfirmaVActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -381,7 +384,7 @@ public class CadastroVisualizacaoImagem extends javax.swing.JInternalFrame {
                     FLocal.getText().trim(),
                     getDate()); 
             
-            if (!(listMidias.adiciona(img) == false)) {
+            if (listMidias.adiciona(img) == false) {
                 JOptionPane.showMessageDialog(null, "Não foi possível salvar.");
             } else {
            JOptionPane.showMessageDialog(null, "Cadastro Efetuado!");
@@ -402,13 +405,30 @@ public class CadastroVisualizacaoImagem extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_FTituloActionPerformed
 
     private void jBotaoExcluiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotaoExcluiActionPerformed
-     jTImagensCadastrados.getSelectedRow();
-     if (jTImagensCadastrados.getSelectedRow() != -1){
-        DefaultTableModel dtmImagens = (DefaultTableModel) jTImagensCadastrados.getModel();      
-        dtmImagens.removeRow(jTImagensCadastrados.getSelectedRow());  
-     }else{
-         JOptionPane.showMessageDialog(null, "Selecione um produto para excluir.");
-     } 
+     jTImagensCadastrados.getSelectedRow();            
+       if (jTImagensCadastrados.getSelectedRow() != -1){
+            jTImagensCadastrados.setValueAt(txtFile.getText(), jTImagensCadastrados.getSelectedRow(), 0);
+            jTImagensCadastrados.setValueAt(FTitulo.getText(), jTImagensCadastrados.getSelectedRow(), 1);
+            jTImagensCadastrados.setValueAt(FDescricao.getText(), jTImagensCadastrados.getSelectedRow(), 2);
+            jTImagensCadastrados.setValueAt(FFotografo.getText(), jTImagensCadastrados.getSelectedRow(), 3);
+            jTImagensCadastrados.setValueAt(FPessoas.getText(), jTImagensCadastrados.getSelectedRow(), 4);
+            jTImagensCadastrados.setValueAt(FData.getText(), jTImagensCadastrados.getSelectedRow(), 5);
+            jTImagensCadastrados.setValueAt(FLocal.getText(), jTImagensCadastrados.getSelectedRow(), 6);
+            
+                    if (listMidias.remove(jTImagensCadastrados.getSelectedRow())) {
+                        JOptionPane.showMessageDialog(null, "Campo não encontro");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Campo deletado com sucesso.");
+                         DefaultTableModel dtmImagens = (DefaultTableModel) jTImagensCadastrados.getModel(); 
+                         dtmImagens.removeRow(jTImagensCadastrados.getSelectedRow());  
+                try {
+                    listMidias.salvar();
+                } catch (IOException ex) {
+                    Logger.getLogger(CadastroVisualizacaoImagem.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                    }
+          }
+    
     }//GEN-LAST:event_jBotaoExcluiActionPerformed
 
     private void jTImagensCadastradosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTImagensCadastradosMouseClicked
@@ -462,10 +482,10 @@ public class CadastroVisualizacaoImagem extends javax.swing.JInternalFrame {
         String indice = jComboBox1.getSelectedItem().toString();
         switch (indice) {
             case "Título":
+            ListaDeMidias.ordenaAlfabeticamente();
           break;
             case "Data":
-               
-               
+            ListaDeMidias.ordenaData();
                 break;
            
         }      

@@ -119,13 +119,17 @@ public class ListaDeMidias {
    
    
    
-   public void ordenaAlfabeticamente(){
+   public static void ordenaAlfabeticamente(){
        Collections.sort(ultimaLista, Comparator.comparing(Midia::getTitulo));
    }
    
-   public void ordenaData(){
+   public static void ordenaData(){
        Collections.sort(ultimaLista, Comparator.comparing(Midia::getData));
    }
+   
+   public static String getltimaLista(){
+        return ultimaLista.toString();
+    }
    
     /**
      *
