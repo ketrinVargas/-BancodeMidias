@@ -71,6 +71,7 @@ public class CadastroVisualizacaoMusica extends javax.swing.JInternalFrame {
         jLabel10 = new javax.swing.JLabel();
         MAno = new javax.swing.JTextField();
 
+        setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
