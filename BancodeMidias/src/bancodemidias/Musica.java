@@ -6,38 +6,55 @@ import java.util.Date;
 
 /**
  *
- * @author marin
+ * @author Ketrin d. Vargas, Marina B. Otokovieski, Rafael Souza
  */
 public class Musica extends Reproduzivel implements Serializable {
-    private String[] interpretes;
-    private String[] autores;
+    private String interpretes;
+    private String autores;
 
+    /**
+     *
+     * @param caminhoDoArquivo
+     * @param titulo
+     * @param descricao
+     * @param genero
+     * @param idioma
+     * @param duracao
+     * @param ano
+     * @param interpretes
+     * @param autores
+     */
     public Musica(String caminhoDoArquivo, String titulo, String descricao, String genero, String idioma, int duracao,
-            Date ano, String[] interpretes, String[] autores) {
+            Date ano, String interpretes, String autores) {
         super(caminhoDoArquivo, titulo, descricao, genero, idioma, duracao, ano);
         this.interpretes = interpretes;
         this.autores = autores;
     }
 
-    public String[] getInterpretes() {
+    public String getInterpretes() {
         return this.interpretes;
     }
 
-    public void setInterpretes(String[] interpretes) {
+    public void setInterpretes(String interpretes) {
         this.interpretes = interpretes;
     }
 
-    public String[] getAutores() {
+    public String getAutores() {
         return this.autores;
     }
 
-    public void setAutores(String[] autores) {
+    public void setAutores(String autores) {
         this.autores = autores;
     }
 
     @Override
     public String toString() {
-        return super.toString() + "{" + " interpretes='" + getInterpretes() + "'" + ", autores='" + getAutores() + "'" + "}";
+        return null;
+    }
+
+    @Override
+    public String getDiretores() {
+        return null;
     }
 
 }

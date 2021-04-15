@@ -20,13 +20,13 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author rafael
+ * @author Ketrin d. Vargas, Marina B. Otokovieski, Rafael Souza
  */
 public class ListaDeMidias {
     
     private static Arquivo arquivo = new Arquivo();  
     private static List<Midia> listaMidias;
-    private static List<Midia>ultimaLista;
+    private static List<Midia> ultimaLista;
 
     
     public ListaDeMidias(){
@@ -34,12 +34,12 @@ public class ListaDeMidias {
         if(arquivo.temConteudo()){
             listaMidias = arquivo.leArquivo();
         }else{
-        listaMidias = new ArrayList();
+            listaMidias = new ArrayList();
         }
         
     }
 
-    public boolean salvar() throws IOException{
+    public static boolean salvar() throws IOException{
        return arquivo.escreveArquivo(listaMidias);
    }
         
@@ -47,20 +47,23 @@ public class ListaDeMidias {
         return listaMidias.add(midia);
     }
     
-//    public void editar(int id, Midia midiaNova){
-//       for (Midia m : listaMidias){
-//          if (id == m.getId()){
-//             int index = listaMidias.indexOf(m);
-//             listaMidias.set(index, midiaNova);
-//          }
-//       }
-//   }
+    public boolean editar(int id, Midia midiaNova){
+      boolean result = false;
+      for (Midia m : listaMidias){
+          if (id == m.getId()){
+             int index = listaMidias.indexOf(m);
+             listaMidias.set(index, midiaNova);
+             result = true;
+         }
+       }
+      return result;
+   }
     
-      public void alterar(Midia antigo, Midia novo) {
-        listaMidias.set(listaMidias.indexOf(antigo), novo);
-    }
+     // public void alterar(Midia antigo, Midia novo) {
+      //  listaMidias.set(listaMidias.indexOf(antigo), novo);
+    //}
     
-    public boolean remove(int id){
+    public static boolean remove(int id){
        for (Midia m : listaMidias){
           if (id == m.getId()){
               listaMidias.remove(m);
@@ -120,11 +123,11 @@ public class ListaDeMidias {
    
    
    public static void ordenaAlfabeticamente(){
-       Collections.sort(ultimaLista, Comparator.comparing(Midia::getTitulo));
+       Collections.sort(listaMidias, Comparator.comparing(Midia::getTitulo));
    }
    
    public static void ordenaData(){
-       Collections.sort(ultimaLista, Comparator.comparing(Midia::getData));
+       Collections.sort(listaMidias, Comparator.comparing(Midia::getData));
    }
    
    public static String getltimaLista(){
@@ -141,7 +144,7 @@ public class ListaDeMidias {
      * @throws IllegalArgumentException
      * @throws InvocationTargetException
      */
-    public static String getLista(Object obj, String procura, Method metodo) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException{
+    public static List<Midia> getLista(Object obj, String procura, Method metodo) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException{
        ultimaLista = new ArrayList();
        for(Midia m : listaMidias){
            if (obj.getClass().isInstance(m)){
@@ -154,7 +157,7 @@ public class ListaDeMidias {
                }
            }
        }
-       return ultimaLista.toString();
+       return ultimaLista;
    }
 
 }

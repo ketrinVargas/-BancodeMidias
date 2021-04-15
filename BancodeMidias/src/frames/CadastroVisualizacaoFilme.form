@@ -54,26 +54,24 @@
                       <Component id="jBotaoExclui" min="-2" pref="145" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="307" max="-2" attributes="0"/>
                       <Component id="jButtonEDIT" min="-2" pref="146" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="jBotaoConfirmaV" min="-2" pref="120" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                      <EmptySpace min="33" pref="473" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="-2" pref="188" max="-2" attributes="0"/>
-                              <Component id="jComboBox1" min="-2" pref="186" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="jTextFPesquisa" min="-2" pref="238" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="Pesquisar" min="-2" pref="103" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="440" max="-2" attributes="0"/>
-                              <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="440" max="-2" attributes="0"/>
+                      <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="498" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="jBotaoSalvarV" min="-2" pref="120" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
+                      <Component id="jComboBox1" min="-2" pref="110" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                      <Component id="PesquisarF" min="-2" pref="100" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="jTextFPesquisa" min="-2" pref="238" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="Pesquisar" min="-2" pref="103" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="81" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -82,17 +80,28 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="Pesquisar" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jComboBox1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextFPesquisa" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jComboBox1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jBotaoSalvarV" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="PesquisarF" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="Pesquisar" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jTextFPesquisa" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
-                      <EmptySpace pref="16" max="32767" attributes="0"/>
                       <Component id="jScrollPane1" min="-2" pref="297" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jBotaoConfirmaV" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jBotaoExclui" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jButtonEDIT" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -110,12 +119,12 @@
                 <Property name="text" type="java.lang.String" value="Filmes Cadastrados"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jBotaoConfirmaV">
+            <Component class="javax.swing.JButton" name="jBotaoSalvarV">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Confirma"/>
+                <Property name="text" type="java.lang.String" value="Salvar"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBotaoConfirmaVActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBotaoSalvarVActionPerformed"/>
               </Events>
             </Component>
             <Container class="javax.swing.JScrollPane" name="jScrollPane1">
@@ -243,6 +252,17 @@
               </AuxValues>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextFPesquisa">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFPesquisaActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="PesquisarF">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Ordenar"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="PesquisarFActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -366,7 +386,7 @@
                           <Component id="jButton3" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="FArquivo" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="18" max="32767" attributes="0"/>
+                      <EmptySpace pref="31" max="32767" attributes="0"/>
                       <Component id="jButton2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                   </Group>
@@ -461,6 +481,9 @@
             <Component class="javax.swing.JTextField" name="FAno">
             </Component>
             <Component class="javax.swing.JTextField" name="FArquivo">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="FArquivoActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="FGeneros">
             </Component>

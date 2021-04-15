@@ -20,7 +20,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author rafael
+ * @author Ketrin d. Vargas, Marina B. Otokovieski, Rafael Souza
  */
 public class Arquivo {
     

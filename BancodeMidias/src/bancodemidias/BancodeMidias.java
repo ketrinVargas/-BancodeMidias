@@ -14,7 +14,7 @@ import java.util.List;
 
 /**
  *
- * @author marin
+ * @author Ketrin d. Vargas, Marina B. Otokovieski, Rafael Souza
  */
 public class BancodeMidias {
 

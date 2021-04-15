@@ -6,12 +6,12 @@ import java.util.Date;
 
 /**
  *
- * @author marin
+ * @author Ketrin d. Vargas, Marina B. Otokovieski, Rafael Souza
  */
 public class Filme extends Reproduzivel implements Serializable {
-    private String[] diretor;
-    private String[] atores;
-    private String[] principais;
+    private String diretor;
+    private String atores;
+    private String principais;
 
     /**
      *
@@ -27,34 +27,34 @@ public class Filme extends Reproduzivel implements Serializable {
      * @param principais
      */
     public Filme(String caminhoDoArquivo, String titulo, String descricao, String genero, String idioma, int duracao,
-            Date ano, String[] diretor, String[] atores, String[] principais) {
+            Date ano, String diretor, String atores, String principais) {
         super(caminhoDoArquivo, titulo, descricao, genero, idioma, duracao, ano);
         this.diretor = diretor;
         this.atores = atores;
         this.principais = principais;
     }
 
-    public String[] getDiretor() {
+    public String getDiretor() {
         return this.diretor;
     }
 
-    public void setDiretor(String[] diretor) {
+    public void setDiretor(String diretor) {
         this.diretor = diretor;
     }
 
-    public String[] getAtores() {
+    public String getAtores() {
         return this.atores;
     }
 
-    public void setAtores(String[] atores) {
+    public void setAtores(String atores) {
         this.atores = atores;
     }
 
-    public String[] getPrincipais() {
+    public String getPrincipais() {
         return this.principais;
     }
 
-    public void setPrincipais(String[] principais) {
+    public void setPrincipais(String principais) {
         this.principais = principais;
     }
 
@@ -62,6 +62,21 @@ public class Filme extends Reproduzivel implements Serializable {
     public String toString() {
         return super.toString() + "{" + " diretor='" + getDiretor() + "'" + ", atores='" + getAtores() + "'" + ", principais='"
                 + getPrincipais() + "'" + "}";
+    }
+
+    @Override
+    public String getAutores() {
+        return this.atores;
+    }
+
+    @Override
+    public String getInterpretes() {
+        return this.principais;
+    }
+
+    @Override
+    public String getDiretores() {
+        return this.diretor;
     }
 
 }

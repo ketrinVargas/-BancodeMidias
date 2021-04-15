@@ -5,17 +5,23 @@
  */
 package frames;
 
+import bancodemidias.Imagem;
 import bancodemidias.ListaDeMidias;
+import bancodemidias.Midia;
+import java.lang.reflect.InvocationTargetException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
  *
- * @author marin
+ * @author Ketrin d. Vargas, Marina B. Otokovieski, Rafael Souza
  */
 
 public class TelaPrincipalFrame extends javax.swing.JFrame {
 
-    private ListaDeMidias listMidia;
+    private static ListaDeMidias listMidia;
+
     /**
      * Creates new form TelaPrincipalFrame
      */
@@ -26,8 +32,8 @@ public class TelaPrincipalFrame extends javax.swing.JFrame {
         try{
             listMidia = new ListaDeMidias();
         }catch(Exception e){
-        JOptionPane.showMessageDialog(null, "Erro"); 
-    }
+            JOptionPane.showMessageDialog(null, "Erro em lista de midia"); 
+        }
     }
 
     /**
@@ -153,19 +159,46 @@ public class TelaPrincipalFrame extends javax.swing.JFrame {
         String indice = jComboBox1.getSelectedItem().toString();
         switch (indice) {
             case "Imagem":
-                CadastroVisualizacaoImagem Imagem = new CadastroVisualizacaoImagem(listMidia);
-                jDesktopPane1.add(Imagem);
+                CadastroVisualizacaoImagem Imagem = null;
+        try {
+            Imagem = new CadastroVisualizacaoImagem(listMidia);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(TelaPrincipalFrame.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalArgumentException ex) {
+            Logger.getLogger(TelaPrincipalFrame.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InvocationTargetException ex) {
+            Logger.getLogger(TelaPrincipalFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                jDesktopPane1.add(Imagem);                
                 Imagem.setVisible(true);
                
                 break;
             case "Música":
-                CadastroVisualizacaoMusica Musica = new CadastroVisualizacaoMusica(listMidia);
+                CadastroVisualizacaoMusica Musica = null;
+        try {
+            Musica = new CadastroVisualizacaoMusica(listMidia);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(TelaPrincipalFrame.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalArgumentException ex) {
+            Logger.getLogger(TelaPrincipalFrame.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InvocationTargetException ex) {
+            Logger.getLogger(TelaPrincipalFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
                 jDesktopPane1.add(Musica);
                 Musica.setVisible(true);
                
                 break;
             case "Filme":
-                  CadastroVisualizacaoFilme Filme = new CadastroVisualizacaoFilme(listMidia);
+                  CadastroVisualizacaoFilme Filme = null;
+        try {
+            Filme = new CadastroVisualizacaoFilme();
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(TelaPrincipalFrame.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalArgumentException ex) {
+            Logger.getLogger(TelaPrincipalFrame.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InvocationTargetException ex) {
+            Logger.getLogger(TelaPrincipalFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
                   jDesktopPane1.add(Filme);
                   Filme.setVisible(true);
                 
@@ -207,6 +240,14 @@ public class TelaPrincipalFrame extends javax.swing.JFrame {
                 new TelaPrincipalFrame().setVisible(true);
             }
         });
+    }
+    
+    public static boolean editar(int id, Midia m){
+        return listMidia.editar(id, m);
+    }
+    
+    public static boolean adicionar(Midia m){
+        return listMidia.adiciona(m);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

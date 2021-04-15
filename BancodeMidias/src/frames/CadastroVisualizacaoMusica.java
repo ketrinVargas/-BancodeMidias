@@ -5,14 +5,19 @@
  */
 package frames;
 
+import bancodemidias.Imagem;
 import bancodemidias.ListaDeMidias;
+import bancodemidias.Midia;
 import bancodemidias.Musica;
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
@@ -22,17 +27,26 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author ketrim
+ * @author Ketrin d. Vargas, Marina B. Otokovieski, Rafael Souza
  */
 public class CadastroVisualizacaoMusica extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form CadastroVisualizacaoMusica
      */
-    private ListaDeMidias listMidias;
-    public CadastroVisualizacaoMusica(ListaDeMidias midias) {
+    private DefaultTableModel dtmMusicas;
+    private static List<Midia> listaMusica;
+    private static int[] indexId;
+    private static int ide;
+    private static boolean editavel;
+    
+     public CadastroVisualizacaoMusica(ListaDeMidias midias) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+        indexId = new int[1000];
+        listaMusica= new ArrayList();
         initComponents();
-        listMidias = midias;
+        inicia();
+        ide = 0;
+        editavel = false;
     }
 
     /**
@@ -57,14 +71,14 @@ public class CadastroVisualizacaoMusica extends javax.swing.JInternalFrame {
         jTextFpesqui = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        BotaoConfirmaCadastro = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
+        BotaoArquivo = new javax.swing.JButton();
         FTitulo = new javax.swing.JTextField();
         FDescricao = new javax.swing.JTextField();
         FAutores = new javax.swing.JTextField();
@@ -204,10 +218,10 @@ public class CadastroVisualizacaoMusica extends javax.swing.JInternalFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("Cadastro Música");
 
-        jButton2.setText("Confirma");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        BotaoConfirmaCadastro.setText("Confirma");
+        BotaoConfirmaCadastro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                BotaoConfirmaCadastroActionPerformed(evt);
             }
         });
 
@@ -223,10 +237,10 @@ public class CadastroVisualizacaoMusica extends javax.swing.JInternalFrame {
 
         jLabel8.setText("Ano");
 
-        jButton3.setText("Arquivo");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        BotaoArquivo.setText("Arquivo");
+        BotaoArquivo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                BotaoArquivoActionPerformed(evt);
             }
         });
 
@@ -264,7 +278,7 @@ public class CadastroVisualizacaoMusica extends javax.swing.JInternalFrame {
                                 .addGap(17, 17, 17)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(BotaoArquivo, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(txtFile))
                                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -312,7 +326,7 @@ public class CadastroVisualizacaoMusica extends javax.swing.JInternalFrame {
                         .addGap(0, 470, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(BotaoConfirmaCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(228, 228, 228)
@@ -356,10 +370,10 @@ public class CadastroVisualizacaoMusica extends javax.swing.JInternalFrame {
                     .addComponent(FAno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3)
+                    .addComponent(BotaoArquivo)
                     .addComponent(txtFile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2)
+                .addComponent(BotaoConfirmaCadastro)
                 .addGap(26, 26, 26))
         );
 
@@ -380,10 +394,21 @@ public class CadastroVisualizacaoMusica extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBotaoConfirmaVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotaoConfirmaVActionPerformed
-        this.jTabbedPane1.setSelectedIndex(1);
-        DefaultTableModel dtmMusica = (DefaultTableModel) jTMusicasCadastrados.getModel();
-        Object [] dados = {txtFile.getText(),FTitulo.getText(),FDescricao.getText(), FGenero.getText(), FIdioma.getText(),FAutores.getText(),FInterpretes.getText(), FDuracao.getText(), FAno.getText()};
-        dtmMusica.addRow(dados);
+        
+        try{
+            ListaDeMidias.salvar();
+        }catch(Exception e){
+            Logger.getLogger(CadastroVisualizacaoMusica.class.getName()).log(Level.SEVERE, null, e);
+        }
+        
+        try {
+            listarMusicas();
+        } catch (IllegalAccessException ex) {
+                    Logger.getLogger(CadastroVisualizacaoMusica.class.getName()).log(Level.SEVERE, null, ex);
+        } catch ( InvocationTargetException ex) {
+                    Logger.getLogger(CadastroVisualizacaoMusica.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      
 
     }//GEN-LAST:event_jBotaoConfirmaVActionPerformed
 
@@ -420,79 +445,94 @@ public class CadastroVisualizacaoMusica extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTMusicasCadastradosKeyReleased
 
     private void jBotaoExcluiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotaoExcluiActionPerformed
-        jTMusicasCadastrados.getSelectedRow();
-        if (jTMusicasCadastrados.getSelectedRow() != -1){
-            DefaultTableModel dtmMusicas = (DefaultTableModel) jTMusicasCadastrados.getModel();
-            dtmMusicas.removeRow(jTMusicasCadastrados.getSelectedRow());
-        }else{
-            JOptionPane.showMessageDialog(null, "Selecione um produto para excluir.");
+        int index = jTMusicasCadastrados.getSelectedRow();
+        int id = getId(index);
+        
+        // If construido para tratar exceção
+        if (ListaDeMidias.remove(id)) {
+            JOptionPane.showMessageDialog(null, "Campo não encontro");
+        } else {
+           try {
+               ListaDeMidias.salvar();
+               DefaultTableModel dtmMusicas = (DefaultTableModel) jTMusicasCadastrados.getModel(); 
+               dtmMusicas.removeRow(jTMusicasCadastrados.getSelectedRow()); 
+               JOptionPane.showMessageDialog(null, "Campo deletado com sucesso.");
+            } catch (IOException ex) {
+                Logger.getLogger(CadastroVisualizacaoMusica.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_jBotaoExcluiActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-         this.jTabbedPane1.setSelectedIndex(1);
-        DefaultTableModel dtmMusica = (DefaultTableModel) jTMusicasCadastrados.getModel();
-        Object [] dados = {txtFile.getText(),FTitulo.getText(),FDescricao.getText(), FGenero.getText(), FIdioma.getText(),FAutores.getText(),FInterpretes.getText(), FDuracao.getText(), FAno.getText()};
-        dtmMusica.addRow(dados);
-     
-        if (txtFile.getText().equals("")
-            ||FTitulo.getText().equals("")
-            || FDescricao.getText().equals("")
-            || FGenero.getText().equals("")
-            || FIdioma.getText().equals("")
-            || FAutores.getText().equals("")
-            || FInterpretes.getText().equals("")
-            || FDuracao.getText().equals("")
-            || FAno.getText().equals("")) {
-
+    private void BotaoConfirmaCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoConfirmaCadastroActionPerformed
+         if (txtFile.getText().equals("") || FTitulo.getText().equals("")|| FDescricao.getText().equals("")|| FGenero.getText().equals("")|| FIdioma.getText().equals("")
+                 || FAutores.getText().equals("")|| FInterpretes.getText().equals("") 
+                 || FDuracao.getText().equals("") || FAno.getText().equals("") ){
             JOptionPane.showMessageDialog(null, "Informe todos os campos!");
-        } else {
-            Musica music = new Musica(
-                    txtFile.getText().trim(),
-                    FTitulo.getText().trim(),
-                    FDescricao.getText().trim(),
-                    FGenero.getText().toString(),
-                    FIdioma.getText().toString(),
-                    Integer.parseInt(FDuracao.getText().trim()),
-                    getDate(),
-                    getInterprete(),
-                    getAutor());
-  
-            if (listMidias.adiciona(music) == false) {
-                JOptionPane.showMessageDialog(null, "Não foi possível salvar.");
-            } else {
-                JOptionPane.showMessageDialog(null, "Cadastro Efetuado!");
-                try {
-                    listMidias.salvar();
+      } else {
+             
+             /**
+     *
+     * @param caminhoDoArquivo
+     * @param titulo
+     * @param descricao
+     * @param genero
+     * @param idioma
+     * @param duracao
+     * @param ano
+     * @param interpretes
+     * @param autores
+     */
+          Musica msc = new Musica(
+                  txtFile.getText().trim(),
+                  FTitulo.getText().trim(),
+                  FDescricao.getText().trim(),
+                  FGenero.getText().trim(),
+                  FIdioma.getText().trim(),
+                  Integer.parseInt(FDuracao.getText().trim()),
+                  getDate(),                   
+                  FInterpretes.getText().trim(), 
+                  FAutores.getText().trim());
+            if (editavel)
+                 
+                
+                if (TelaPrincipalFrame.editar(ide, msc) == false) {
+                    JOptionPane.showMessageDialog(null, "Não foi possível editar.");
+                    editavel = false;
+                } else {
+                    JOptionPane.showMessageDialog(null, "Edição efetuada!");
+                    editavel = false;
+                try { 
+                    ListaDeMidias.salvar();
                 } catch (IOException ex) {
                     Logger.getLogger(CadastroVisualizacaoMusica.class.getName()).log(Level.SEVERE, null, ex);
                 }
-      
-            }
-       
-       }     
-    }//GEN-LAST:event_jButton2ActionPerformed
+                limpar();
+            }     
+         }
+    }//GEN-LAST:event_BotaoConfirmaCadastroActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void BotaoArquivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoArquivoActionPerformed
         // TODO add your handling code here:
-         JFileChooser fc = new  JFileChooser();
+        JFileChooser fc = new  JFileChooser();
         fc.setDialogTitle("Buscar Arquivo");
         fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
         
-       
+
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Imagem", "jpg", "png");
+        
+        fc.setFileFilter(filter);
         int retorno = fc.showOpenDialog(this);
         
         if(retorno == JFileChooser.APPROVE_OPTION ){
             
             File file = fc.getSelectedFile();
             txtFile.setText(file.getPath());
-            
            
          } else {
                 JOptionPane.showMessageDialog(null, "Erro no arquivo");
         }
         
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_BotaoArquivoActionPerformed
 
     private void FTituloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FTituloActionPerformed
         // TODO add your handling code here:
@@ -504,7 +544,8 @@ public class CadastroVisualizacaoMusica extends javax.swing.JInternalFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-            if (jTMusicasCadastrados.getSelectedRow() != -1){
+        // If construido para tratar exceção    
+        if (jTMusicasCadastrados.getSelectedRow() != -1){
             jTMusicasCadastrados.setValueAt(txtFile.getText(), jTMusicasCadastrados.getSelectedRow(), 0);
             jTMusicasCadastrados.setValueAt(FTitulo.getText(), jTMusicasCadastrados.getSelectedRow(), 1);
             jTMusicasCadastrados.setValueAt(FDescricao.getText(), jTMusicasCadastrados.getSelectedRow(), 2);
@@ -551,6 +592,8 @@ public class CadastroVisualizacaoMusica extends javax.swing.JInternalFrame {
   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BotaoArquivo;
+    private javax.swing.JButton BotaoConfirmaCadastro;
     private javax.swing.JTextField FAno;
     private javax.swing.JTextField FAutores;
     private javax.swing.JTextField FDescricao;
@@ -563,8 +606,6 @@ public class CadastroVisualizacaoMusica extends javax.swing.JInternalFrame {
     private javax.swing.JButton jBotaoConfirmaV;
     private javax.swing.JButton jBotaoExclui;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -590,20 +631,26 @@ public class CadastroVisualizacaoMusica extends javax.swing.JInternalFrame {
   * @return O conteúdo da JDateTextField em formato java.util.Date
   */
 public Date getDate() {
-       
          String dataStr = FAno.getText().substring(0, 8);
-         if (FAno.equals("  /  /  ")) return null;
-        DateFormat df = new SimpleDateFormat("dd/MM/yy");
+         if (FAno.equals("  /  /  ")) { return null;
+         }else{ 
+         DateFormat df = new SimpleDateFormat("dd/mm/yyyy");
          df.setLenient(false);
          try {
-                 return df.parse(dataStr);
+            return df.parse(dataStr);
          }
          catch(ParseException e) {
-                 e.printStackTrace();
-                 return null;
-         }                
+              e.printStackTrace();
+            return null;
+         }    
+         }
 
  }
+
+public static int getId(int index){
+        return indexId[index];
+}
+
 
 public String [] getInterprete(){
     
@@ -625,7 +672,86 @@ public String [] getAutor(){
         return null;
 }
 
+public void listarMusicas() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException{
+    Musica objetoMusica =  new Musica(null, null, null, null, null, 0, null, null, null);
+    dtmMusicas = (DefaultTableModel) jTMusicasCadastrados.getModel();
+    listaMusica = ListaDeMidias.getLista(objetoMusica, null, null);
 
+    for (int i = 0; i<listaMusica.size(); i++){
+        Midia midia = listaMusica.get(i);
+        indexId[i++] = midia.getId(); 
+    }
+
+    int indexador = 0;
+    for (Midia m : listaMusica){
+        jTMusicasCadastrados.setValueAt(m.getCaminhoDoArquivo(), indexador, 0);
+        jTMusicasCadastrados.setValueAt(m.getTitulo(), indexador, 1);
+        jTMusicasCadastrados.setValueAt(m.getDescricao(), indexador, 2);
+        jTMusicasCadastrados.setValueAt(m.getGenero(), indexador, 3);
+        jTMusicasCadastrados.setValueAt(m.getIdioma(), indexador, 4);
+        jTMusicasCadastrados.setValueAt(m.getAutores(), indexador, 5);
+        jTMusicasCadastrados.setValueAt(m.getInterpretes(), indexador, 6);
+        jTMusicasCadastrados.setValueAt(m.getDuracao(), indexador, 7);
+        jTMusicasCadastrados.setValueAt(m.getAno(), indexador, 8);
+        indexador++;
+    }    
+    
+}
+
+ private void limpar() {
+        txtFile.setText("");
+        FTitulo.setText("");
+        FDescricao.setText("");
+        FGenero.setText("");
+        FIdioma.setText("");
+        FAutores.setText("");
+        FInterpretes.setText("");
+        FDuracao.setText("");
+        FAno.setText("");
+    }
+ 
+ private void inicia() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException{
+     Musica objetoMusica =  new Musica(null, null, null, null, null, 0, null, null, null);
+        listaMusica = ListaDeMidias.getLista(objetoMusica, null, null);
+        dtmMusicas = (DefaultTableModel) jTMusicasCadastrados.getModel();
+        for (int i = 0; i<listaMusica.size(); i++){
+            Object obj = null;
+        dtmMusicas.addRow((Object[]) obj);
+        }
+        
+        int indexador = 0;
+    for (Midia m : listaMusica){
+        jTMusicasCadastrados.setValueAt(m.getCaminhoDoArquivo(), indexador, 0);
+        jTMusicasCadastrados.setValueAt(m.getTitulo(), indexador, 1);
+        jTMusicasCadastrados.setValueAt(m.getDescricao(), indexador, 2);
+        jTMusicasCadastrados.setValueAt(m.getGenero(), indexador, 3);
+        jTMusicasCadastrados.setValueAt(m.getIdioma(), indexador, 4);
+        jTMusicasCadastrados.setValueAt(m.getAutores(), indexador, 5);
+        jTMusicasCadastrados.setValueAt(m.getInterpretes(), indexador, 6);
+        jTMusicasCadastrados.setValueAt(m.getDuracao(), indexador, 7);
+        jTMusicasCadastrados.setValueAt(m.getAno(), indexador, 8);
+        indexador++;
+    }
+ }
+ 
+ private void criarMusica(Imagem img){
+      
+            
+            if (TelaPrincipalFrame.adicionar(img) == false) {
+                JOptionPane.showMessageDialog(null, "Não foi possível salvar.");
+            } else {
+                JOptionPane.showMessageDialog(null, "Cadastro Efetuado!");
+                Object obj = null;
+                dtmMusicas.addRow((Object[]) obj);
+                try { 
+                    ListaDeMidias.salvar();
+                } catch (IOException ex) {
+                    Logger.getLogger(CadastroVisualizacaoImagem.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                limpar();
+            }    
+            
+ }
 
 }
 

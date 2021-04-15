@@ -13,10 +13,15 @@ import bancodemidias.Midia;
 import static com.sun.media.jfxmediaimpl.MediaUtils.error;
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
@@ -26,17 +31,26 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author marin
+ * @author Ketrin d. Vargas, Marina B. Otokovieski, Rafael Souza
  */
 public class CadastroVisualizacaoImagem extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form CadastroVisualizacaoFrame
      */
-     private ListaDeMidias listMidias;
-    public CadastroVisualizacaoImagem(ListaDeMidias midias) {
+    private DefaultTableModel dtmImagens;
+    private static List<Midia> listaImagem;
+    private static int[] indexId;
+    private static int ide;
+    private static boolean editavel;
+    
+    public CadastroVisualizacaoImagem(ListaDeMidias midias) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+        indexId = new int[1000];
+        listaImagem= new ArrayList();
         initComponents();
-        listMidias = midias;
+        inicia();
+        ide = 0;
+        editavel = false;
     }
 
     /**
@@ -51,13 +65,15 @@ public class CadastroVisualizacaoImagem extends javax.swing.JInternalFrame {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jBotaoConfirmaV = new javax.swing.JButton();
+        jBotaoSalvarV = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTImagensCadastrados = new javax.swing.JTable();
         jBotaoExclui = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        jButtonEdit = new javax.swing.JButton();
         Pesquisar = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBox1 = new javax.swing.JComboBox<String>();
+        pesquisa = new javax.swing.JTextField();
+        Pesquisar1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
@@ -81,10 +97,10 @@ public class CadastroVisualizacaoImagem extends javax.swing.JInternalFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("Imagens Cadastradas");
 
-        jBotaoConfirmaV.setText("Atualizar");
-        jBotaoConfirmaV.addActionListener(new java.awt.event.ActionListener() {
+        jBotaoSalvarV.setText("Salvar");
+        jBotaoSalvarV.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBotaoConfirmaVActionPerformed(evt);
+                jBotaoSalvarVActionPerformed(evt);
             }
         });
 
@@ -123,24 +139,38 @@ public class CadastroVisualizacaoImagem extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton1.setText("Editar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonEdit.setText("Editar");
+        jButtonEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonEditActionPerformed(evt);
             }
         });
 
-        Pesquisar.setText("Pesquisar");
+        Pesquisar.setText("Ordenar");
         Pesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 PesquisarActionPerformed(evt);
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", "Título", "Data" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione", "Título", "Data" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
+            }
+        });
+
+        pesquisa.setText("pesquisa");
+        pesquisa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pesquisaActionPerformed(evt);
+            }
+        });
+
+        Pesquisar1.setText("Pesquisa");
+        Pesquisar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Pesquisar1ActionPerformed(evt);
             }
         });
 
@@ -150,29 +180,34 @@ public class CadastroVisualizacaoImagem extends javax.swing.JInternalFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(218, 218, 218)
-                .addComponent(jBotaoConfirmaV, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jButtonEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(362, 362, 362))
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(22, 22, 22)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(356, 356, 356)
-                                .addComponent(jLabel2))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(286, 286, 286)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(Pesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jBotaoExclui, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jBotaoSalvarV, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(Pesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(2, 2, 2))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jBotaoExclui, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 888, Short.MAX_VALUE))))
+                                .addGap(334, 334, 334)
+                                .addComponent(jLabel2)))
+                        .addGap(71, 71, 71)
+                        .addComponent(pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                        .addComponent(Pesquisar1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 900, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -180,17 +215,19 @@ public class CadastroVisualizacaoImagem extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Pesquisar))
-                .addGap(18, 18, 18)
+                    .addComponent(Pesquisar)
+                    .addComponent(jBotaoSalvarV)
+                    .addComponent(pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Pesquisar1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(5, 5, 5)
+                .addGap(12, 12, 12)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBotaoExclui)
-                    .addComponent(jButton1)
-                    .addComponent(jBotaoConfirmaV))
+                    .addComponent(jButtonEdit))
                 .addGap(24, 24, 24))
         );
 
@@ -202,7 +239,7 @@ public class CadastroVisualizacaoImagem extends javax.swing.JInternalFrame {
         jButton2.setText("Confirma");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                BotaoConfirmaCadastroActionPerformed(evt);
             }
         });
 
@@ -221,7 +258,7 @@ public class CadastroVisualizacaoImagem extends javax.swing.JInternalFrame {
         jButton3.setText("Arquivo");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                BotaoArquivoActionPerformed(evt);
             }
         });
 
@@ -311,7 +348,7 @@ public class CadastroVisualizacaoImagem extends javax.swing.JInternalFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtFile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
                 .addComponent(jButton2)
                 .addContainerGap())
         );
@@ -332,15 +369,27 @@ public class CadastroVisualizacaoImagem extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jBotaoConfirmaVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotaoConfirmaVActionPerformed
+    private void jBotaoSalvarVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotaoSalvarVActionPerformed
 
-      getltimaLista();
-                                   
-    }//GEN-LAST:event_jBotaoConfirmaVActionPerformed
+        try{
+            ListaDeMidias.salvar();
+        }catch(Exception e){
+            Logger.getLogger(CadastroVisualizacaoImagem.class.getName()).log(Level.SEVERE, null, e);
+        }
+        
+        try {
+            listarImagens();
+        } catch (IllegalAccessException ex) {
+                    Logger.getLogger(CadastroVisualizacaoImagem.class.getName()).log(Level.SEVERE, null, ex);
+        } catch ( InvocationTargetException ex) {
+                    Logger.getLogger(CadastroVisualizacaoImagem.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      
+    }//GEN-LAST:event_jBotaoSalvarVActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void BotaoArquivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoArquivoActionPerformed
         // TODO add your handling code here:
-         JFileChooser fc = new  JFileChooser();
+        JFileChooser fc = new  JFileChooser();
         fc.setDialogTitle("Buscar Arquivo");
         fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
         
@@ -358,77 +407,75 @@ public class CadastroVisualizacaoImagem extends javax.swing.JInternalFrame {
          } else {
                 JOptionPane.showMessageDialog(null, "Erro no arquivo");
         }
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_BotaoArquivoActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-      this.jTabbedPane1.setSelectedIndex(1);
+    private void BotaoConfirmaCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoConfirmaCadastroActionPerformed
+      /*this.jTabbedPane1.setSelectedIndex(1);
       DefaultTableModel dtmImagens = (DefaultTableModel) jTImagensCadastrados.getModel();
       Object [] dados = {txtFile.getText(), FTitulo.getText(), FDescricao.getText(), FFotografo.getText(),FPessoas.getText(), FData.getText(),FLocal.getText()};
-      dtmImagens.addRow(dados);
+     dtmImagens.addRow(dados);*/
       
-      if (txtFile.getText().equals("")
-                || FTitulo.getText().equals("")
-                || FDescricao.getText().equals("")
-                || FFotografo.getText().equals("")
-                || FPessoas.getText().equals("")
-                || FLocal.getText().equals("")
-                || FData.getText().equals("")){
+      // If construido para tratar exceção
+      if (txtFile.getText().equals("") || FTitulo.getText().equals("")|| FDescricao.getText().equals("")|| FFotografo.getText().equals("")|| FPessoas.getText().equals("")|| FLocal.getText().equals("")|| FData.getText().equals("")){
             JOptionPane.showMessageDialog(null, "Informe todos os campos!");
-        } else {
-            Imagem img = new Imagem(
-                    txtFile.getText().trim(),
-                    FTitulo.getText().trim(),
-                    FDescricao.getText().trim(),
-                    FFotografo.getText().trim(),
-                    getPessoas(),
-                    FLocal.getText().trim(),
-                    getDate()); 
-            
-            if (listMidias.adiciona(img) == false) {
-                JOptionPane.showMessageDialog(null, "Não foi possível salvar.");
-            } else {
-           JOptionPane.showMessageDialog(null, "Cadastro Efetuado!");
+      } else {
+          Imagem img = new Imagem(
+                    txtFile.getText().trim(),FTitulo.getText().trim(),FDescricao.getText().trim(),FFotografo.getText().trim(),FPessoas.getText().trim(),FLocal.getText().trim(),getDate());
+            if (editavel){
+                 
+                
+                if (TelaPrincipalFrame.editar(ide, img) == false) {
+                    JOptionPane.showMessageDialog(null, "Não foi possível editar.");
+                    editavel = false;
+                } else {
+                    JOptionPane.showMessageDialog(null, "Edição efetuada!");
+                    editavel = false;
                 try { 
-                    listMidias.salvar();
+                    ListaDeMidias.salvar();
                 } catch (IOException ex) {
                     Logger.getLogger(CadastroVisualizacaoImagem.class.getName()).log(Level.SEVERE, null, ex);
                 }
-
+                limpar();
+            } 
+                
+                
+                
+            }else{
+                criarImagem(img);
             }
-            
          }
+
+        try {
+            listarImagens();
+        } catch (IllegalAccessException ex) {
+                    Logger.getLogger(CadastroVisualizacaoImagem.class.getName()).log(Level.SEVERE, null, ex);
+        } catch ( InvocationTargetException ex) {
+                    Logger.getLogger(CadastroVisualizacaoImagem.class.getName()).log(Level.SEVERE, null, ex);
+        }
       
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_BotaoConfirmaCadastroActionPerformed
 
     private void FTituloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FTituloActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_FTituloActionPerformed
 
     private void jBotaoExcluiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotaoExcluiActionPerformed
-     jTImagensCadastrados.getSelectedRow();            
-       if (jTImagensCadastrados.getSelectedRow() != -1){
-            jTImagensCadastrados.setValueAt(txtFile.getText(), jTImagensCadastrados.getSelectedRow(), 0);
-            jTImagensCadastrados.setValueAt(FTitulo.getText(), jTImagensCadastrados.getSelectedRow(), 1);
-            jTImagensCadastrados.setValueAt(FDescricao.getText(), jTImagensCadastrados.getSelectedRow(), 2);
-            jTImagensCadastrados.setValueAt(FFotografo.getText(), jTImagensCadastrados.getSelectedRow(), 3);
-            jTImagensCadastrados.setValueAt(FPessoas.getText(), jTImagensCadastrados.getSelectedRow(), 4);
-            jTImagensCadastrados.setValueAt(FData.getText(), jTImagensCadastrados.getSelectedRow(), 5);
-            jTImagensCadastrados.setValueAt(FLocal.getText(), jTImagensCadastrados.getSelectedRow(), 6);
-            
-                    if (listMidias.remove(jTImagensCadastrados.getSelectedRow())) {
-                        JOptionPane.showMessageDialog(null, "Campo não encontro");
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Campo deletado com sucesso.");
-                         DefaultTableModel dtmImagens = (DefaultTableModel) jTImagensCadastrados.getModel(); 
-                         dtmImagens.removeRow(jTImagensCadastrados.getSelectedRow());  
-                try {
-                    listMidias.salvar();
-                } catch (IOException ex) {
-                    Logger.getLogger(CadastroVisualizacaoImagem.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                    }
-          }
-    
+        int index = jTImagensCadastrados.getSelectedRow();
+        int id = getId(index);
+        
+        // If construido para tratar exceção
+        if (ListaDeMidias.remove(id)) {
+            JOptionPane.showMessageDialog(null, "Campo não encontro");
+        } else {
+           try {
+               ListaDeMidias.salvar();
+               DefaultTableModel dtmImagens = (DefaultTableModel) jTImagensCadastrados.getModel(); 
+               dtmImagens.removeRow(jTImagensCadastrados.getSelectedRow()); 
+               JOptionPane.showMessageDialog(null, "Campo deletado com sucesso.");
+            } catch (IOException ex) {
+                Logger.getLogger(CadastroVisualizacaoMusica.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }//GEN-LAST:event_jBotaoExcluiActionPerformed
 
     private void jTImagensCadastradosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTImagensCadastradosMouseClicked
@@ -446,7 +493,7 @@ public class CadastroVisualizacaoImagem extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTImagensCadastradosMouseClicked
 
     private void jTImagensCadastradosKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTImagensCadastradosKeyReleased
-        if (jTImagensCadastrados.getSelectedRow() != -1){
+        /*if (jTImagensCadastrados.getSelectedRow() != -1){
             txtFile.setText(jTImagensCadastrados.getValueAt(jTImagensCadastrados.getSelectedRow(), 0).toString());
             FTitulo.setText(jTImagensCadastrados.getValueAt(jTImagensCadastrados.getSelectedRow(), 1).toString());
             FDescricao.setText(jTImagensCadastrados.getValueAt(jTImagensCadastrados.getSelectedRow(), 2).toString());
@@ -457,43 +504,57 @@ public class CadastroVisualizacaoImagem extends javax.swing.JInternalFrame {
                     
      }else{
          JOptionPane.showMessageDialog(null, "Selecione um produto para editar.");
-        }
+        }*/
     }//GEN-LAST:event_jTImagensCadastradosKeyReleased
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-         if (jTImagensCadastrados.getSelectedRow() != -1){
-            jTImagensCadastrados.setValueAt(txtFile.getText(), jTImagensCadastrados.getSelectedRow(), 0);
-            jTImagensCadastrados.setValueAt(FTitulo.getText(), jTImagensCadastrados.getSelectedRow(), 1);
-            jTImagensCadastrados.setValueAt(FDescricao.getText(), jTImagensCadastrados.getSelectedRow(), 2);
-           jTImagensCadastrados.setValueAt(FFotografo.getText(), jTImagensCadastrados.getSelectedRow(), 3);
-            jTImagensCadastrados.setValueAt(FPessoas.getText(), jTImagensCadastrados.getSelectedRow(), 4);
-            jTImagensCadastrados.setValueAt(FData.getText(), jTImagensCadastrados.getSelectedRow(), 5);
-            jTImagensCadastrados.setValueAt(FLocal.getText(), jTImagensCadastrados.getSelectedRow(), 6);
+    private void jButtonEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditActionPerformed
+        if (jTImagensCadastrados.getSelectedRow() != -1){
+            ide = getId(jTImagensCadastrados.getSelectedRow());
+            editavel = true;
+            txtFile.setText(jTImagensCadastrados.getValueAt(jTImagensCadastrados.getSelectedRow(), 0).toString());
+            FTitulo.setText(jTImagensCadastrados.getValueAt(jTImagensCadastrados.getSelectedRow(), 1).toString());
+            FDescricao.setText(jTImagensCadastrados.getValueAt(jTImagensCadastrados.getSelectedRow(), 2).toString());
+            FFotografo.setText(jTImagensCadastrados.getValueAt(jTImagensCadastrados.getSelectedRow(), 3).toString());
+            FPessoas.setText(jTImagensCadastrados.getValueAt(jTImagensCadastrados.getSelectedRow(), 4).toString()); 
+            FData.setText(jTImagensCadastrados.getValueAt(jTImagensCadastrados.getSelectedRow(), 5).toString()); 
+            FLocal.setText(jTImagensCadastrados.getValueAt(jTImagensCadastrados.getSelectedRow(), 6).toString());  
             
-
-
-     }else{
-         JOptionPane.showMessageDialog(null, "Selecione um produto para editar.");
+        }else{
+            JOptionPane.showMessageDialog(null, "Selecione um produto para editar.");
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jButtonEditActionPerformed
 
     private void PesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PesquisarActionPerformed
         // TODO add your handling code here:
         String indice = jComboBox1.getSelectedItem().toString();
         switch (indice) {
             case "Título":
-            ListaDeMidias.ordenaAlfabeticamente();
-          break;
+                ListaDeMidias.ordenaAlfabeticamente();
+           break;
             case "Data":
-            ListaDeMidias.ordenaData();
-                break;
-           
-        }      
+                ListaDeMidias.ordenaData();
+            break;  
+        }  
+        try {
+            listarImagens();
+        } catch (IllegalAccessException ex) {
+                    Logger.getLogger(CadastroVisualizacaoImagem.class.getName()).log(Level.SEVERE, null, ex);
+        } catch ( InvocationTargetException ex) {
+                    Logger.getLogger(CadastroVisualizacaoImagem.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_PesquisarActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void Pesquisar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Pesquisar1ActionPerformed
+
+    }//GEN-LAST:event_Pesquisar1ActionPerformed
+
+    private void pesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesquisaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pesquisaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -504,11 +565,12 @@ public class CadastroVisualizacaoImagem extends javax.swing.JInternalFrame {
     private javax.swing.JTextField FPessoas;
     private javax.swing.JTextField FTitulo;
     private javax.swing.JButton Pesquisar;
-    private javax.swing.JButton jBotaoConfirmaV;
+    private javax.swing.JButton Pesquisar1;
     private javax.swing.JButton jBotaoExclui;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jBotaoSalvarV;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButtonEdit;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -523,6 +585,7 @@ public class CadastroVisualizacaoImagem extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTImagensCadastrados;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTextField pesquisa;
     private javax.swing.JTextField txtFile;
     // End of variables declaration//GEN-END:variables
 /**
@@ -530,30 +593,104 @@ public class CadastroVisualizacaoImagem extends javax.swing.JInternalFrame {
   * @return O conteúdo da JDateTextField em formato java.util.Date
   */
 public Date getDate() {
-
          String dataStr = FData.getText().substring(0, 8);
-         if (FData.equals("  /  /  ")) return null;
-         DateFormat df = new SimpleDateFormat("dd/MM/yy");
+         if (FData.equals("  /  /  ")) { return null;
+         }else{ 
+         DateFormat df = new SimpleDateFormat("dd/mm/yyyy");
          df.setLenient(false);
          try {
-                 return df.parse(dataStr);
+            return df.parse(dataStr);
          }
          catch(ParseException e) {
-                 e.printStackTrace();
-                 return null;
-         }                
+              e.printStackTrace();
+            return null;
+         }    
+         }
 
  }
-public String [] getPessoas(){
-    
-    try{ 
-        String pessoa =  FPessoas.getText().trim();
-        }
-        catch(Exception e) {
-                 return null;    
-     }  
-        return null;
+
+public static int getId(int index){
+        return indexId[index];
 }
+
+public void listarImagens() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException{
+    Imagem objetoImagem =  new Imagem(null, null, null, null, null, null, null);
+    dtmImagens = (DefaultTableModel) jTImagensCadastrados.getModel();
+    listaImagem = ListaDeMidias.getLista(objetoImagem, null, null);
+
+    for (int i = 0; i<listaImagem.size(); i++){
+        Midia midia = listaImagem.get(i);
+        indexId[i++] = midia.getId(); 
+    }
+
+    int indexador = 0;
+    for (Midia m : listaImagem){
+        jTImagensCadastrados.setValueAt(m.getCaminhoDoArquivo(), indexador, 0);
+        jTImagensCadastrados.setValueAt(m.getTitulo(), indexador, 1);
+        jTImagensCadastrados.setValueAt(m.getDescricao(), indexador, 2);
+        jTImagensCadastrados.setValueAt(m.getFotografo(), indexador, 3);
+        jTImagensCadastrados.setValueAt(m.getPessoas(), indexador, 4);
+        jTImagensCadastrados.setValueAt(m.getData(), indexador, 5);
+        jTImagensCadastrados.setValueAt(m.getLocal(), indexador, 6);
+        indexador++;
+    }
+    
+    
+}
+
+ private void limpar() {
+        txtFile.setText("");
+        FTitulo.setText("");
+        FDescricao.setText("");
+        FFotografo.setText("");
+        FPessoas.setText("");
+        FLocal.setText("");
+        FData.setText("");
+      
+    }
+ 
+ private void inicia() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException{
+     Imagem objetoImagem =  new Imagem(null, null, null, null, null, null, null);
+        listaImagem = ListaDeMidias.getLista(objetoImagem, null, null);
+        dtmImagens = (DefaultTableModel) jTImagensCadastrados.getModel();
+        for (int i = 0; i<listaImagem.size(); i++){
+            Object obj = null;
+        dtmImagens.addRow((Object[]) obj);
+        }
+        
+        int indexador = 0;
+    for (Midia m : listaImagem){
+        jTImagensCadastrados.setValueAt(m.getCaminhoDoArquivo(), indexador, 0);
+        jTImagensCadastrados.setValueAt(m.getTitulo(), indexador, 1);
+        jTImagensCadastrados.setValueAt(m.getDescricao(), indexador, 2);
+        jTImagensCadastrados.setValueAt(m.getFotografo(), indexador, 3);
+        jTImagensCadastrados.setValueAt(m.getPessoas(), indexador, 4);
+        jTImagensCadastrados.setValueAt(m.getData(), indexador, 5);
+        jTImagensCadastrados.setValueAt(m.getLocal(), indexador, 6);
+        
+        indexador++;
+    }
+ }
+ 
+ private void criarImagem(Imagem img){
+      
+            
+            if (TelaPrincipalFrame.adicionar(img) == false) {
+                JOptionPane.showMessageDialog(null, "Não foi possível salvar.");
+            } else {
+                JOptionPane.showMessageDialog(null, "Cadastro Efetuado!");
+                Object obj = null;
+                dtmImagens.addRow((Object[]) obj);
+                try { 
+                    ListaDeMidias.salvar();
+                } catch (IOException ex) {
+                    Logger.getLogger(CadastroVisualizacaoImagem.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                limpar();
+            }    
+            
+ }
+
 }
 
 

@@ -7,12 +7,17 @@ package frames;
 
 import bancodemidias.Filme;
 import bancodemidias.ListaDeMidias;
+import bancodemidias.Midia;
+import static frames.CadastroVisualizacaoImagem.getId;
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
@@ -22,17 +27,27 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author ketrim
+ * @author Ketrin d. Vargas, Marina B. Otokovieski, Rafael Souza
  */
 public class CadastroVisualizacaoFilme extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form CadastroVisualizacaoImagem
      */
+    
+    private DefaultTableModel dtmFilme;
+    private static List<Midia> listaFilme;
+    private static int[] indexId;
+    private static int ide;
+    private static boolean editavel;
     private ListaDeMidias listMidias;
-    public CadastroVisualizacaoFilme(ListaDeMidias midias) {
+    public CadastroVisualizacaoFilme( ) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+        indexId = new int[1000];
+        listaFilme= new ArrayList();
         initComponents();
-        listMidias = midias;
+        inicia();
+        ide = 0;
+        editavel = false;
     }
 
     /**
@@ -47,14 +62,15 @@ public class CadastroVisualizacaoFilme extends javax.swing.JInternalFrame {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jBotaoConfirmaV = new javax.swing.JButton();
+        jBotaoSalvarV = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTFilmesCadastrados = new javax.swing.JTable();
         jBotaoExclui = new javax.swing.JButton();
         jButtonEDIT = new javax.swing.JButton();
         Pesquisar = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBox1 = new javax.swing.JComboBox<String>();
         jTextFPesquisa = new javax.swing.JTextField();
+        PesquisarF = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
@@ -85,10 +101,10 @@ public class CadastroVisualizacaoFilme extends javax.swing.JInternalFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("Filmes Cadastrados");
 
-        jBotaoConfirmaV.setText("Confirma");
-        jBotaoConfirmaV.addActionListener(new java.awt.event.ActionListener() {
+        jBotaoSalvarV.setText("Salvar");
+        jBotaoSalvarV.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBotaoConfirmaVActionPerformed(evt);
+                jBotaoSalvarVActionPerformed(evt);
             }
         });
 
@@ -141,10 +157,23 @@ public class CadastroVisualizacaoFilme extends javax.swing.JInternalFrame {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", "Título", "Data" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione", "Título", "Data" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
+            }
+        });
+
+        jTextFPesquisa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFPesquisaActionPerformed(evt);
+            }
+        });
+
+        PesquisarF.setText("Ordenar");
+        PesquisarF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PesquisarFActionPerformed(evt);
             }
         });
 
@@ -157,38 +186,45 @@ public class CadastroVisualizacaoFilme extends javax.swing.JInternalFrame {
                 .addComponent(jBotaoExclui, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(307, 307, 307)
                 .addComponent(jButtonEDIT, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jBotaoConfirmaV, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33))
+                .addGap(33, 473, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(188, 188, 188)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTextFPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(Pesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(440, 440, 440)
-                        .addComponent(jLabel2)))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(440, 440, 440)
+                .addComponent(jLabel2)
+                .addGap(0, 498, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jBotaoSalvarV, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(68, 68, 68)
+                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
+                .addComponent(PesquisarF, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jTextFPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Pesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(81, 81, 81))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(12, 12, 12)
                 .addComponent(jLabel2)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Pesquisar)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jBotaoSalvarV)
+                            .addComponent(PesquisarF))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Pesquisar)
+                            .addComponent(jTextFPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBotaoConfirmaV)
                     .addComponent(jBotaoExclui)
                     .addComponent(jButtonEDIT))
                 .addContainerGap())
@@ -234,6 +270,12 @@ public class CadastroVisualizacaoFilme extends javax.swing.JInternalFrame {
         FTitulo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 FTituloActionPerformed(evt);
+            }
+        });
+
+        FArquivo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                FArquivoActionPerformed(evt);
             }
         });
 
@@ -328,7 +370,7 @@ public class CadastroVisualizacaoFilme extends javax.swing.JInternalFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton3)
                     .addComponent(FArquivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addComponent(jButton2)
                 .addGap(26, 26, 26))
         );
@@ -349,16 +391,24 @@ public class CadastroVisualizacaoFilme extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jBotaoConfirmaVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotaoConfirmaVActionPerformed
-        this.jTabbedPane1.setSelectedIndex(1);
-        DefaultTableModel dtmImagens = (DefaultTableModel) jTFilmesCadastrados.getModel();
-        Object [] dados = {FArquivo.getText(), FTitulo.getText(), FDescricao.getText(), FGeneros.getText(), FIdioma.getText(), FAutores.getText(), 
-            FInterpretes.getText(), FDiretores.getText(), FDuracao.getText(), FAno.getText()};
-        dtmImagens.addRow(dados);
-    }//GEN-LAST:event_jBotaoConfirmaVActionPerformed
+    private void jBotaoSalvarVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotaoSalvarVActionPerformed
+         try{
+            ListaDeMidias.salvar();
+        }catch(Exception e){
+            Logger.getLogger(CadastroVisualizacaoImagem.class.getName()).log(Level.SEVERE, null, e);
+        }
+        
+        try {
+            listarImagens();
+        } catch (IllegalAccessException ex) {
+                    Logger.getLogger(CadastroVisualizacaoImagem.class.getName()).log(Level.SEVERE, null, ex);
+        } catch ( InvocationTargetException ex) {
+                    Logger.getLogger(CadastroVisualizacaoImagem.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jBotaoSalvarVActionPerformed
 
     private void jTFilmesCadastradosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTFilmesCadastradosMouseClicked
-        if (jTFilmesCadastrados.getSelectedRow() != -1){
+        /*if (jTFilmesCadastrados.getSelectedRow() != -1){
             FArquivo.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 0).toString());
             FTitulo.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 1).toString());
             FDescricao.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 2).toString());
@@ -372,11 +422,11 @@ public class CadastroVisualizacaoFilme extends javax.swing.JInternalFrame {
             
         }else{
             JOptionPane.showMessageDialog(null, "Selecione um produto para editar.");
-        }
+        }*/
     }//GEN-LAST:event_jTFilmesCadastradosMouseClicked
 
     private void jTFilmesCadastradosKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFilmesCadastradosKeyReleased
-        if (jTFilmesCadastrados.getSelectedRow() != -1){
+       /*if (jTFilmesCadastrados.getSelectedRow() != -1){
              FArquivo.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 0).toString());
             FTitulo.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 1).toString());
             FDescricao.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 2).toString());
@@ -389,67 +439,106 @@ public class CadastroVisualizacaoFilme extends javax.swing.JInternalFrame {
             FAno.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 9).toString());
         }else{
             JOptionPane.showMessageDialog(null, "Selecione um produto para editar.");
-        }
+        }*/
     }//GEN-LAST:event_jTFilmesCadastradosKeyReleased
 
     private void jBotaoExcluiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotaoExcluiActionPerformed
-        jTFilmesCadastrados.getSelectedRow();
-        if (jTFilmesCadastrados.getSelectedRow() != -1){
-            DefaultTableModel dtmFilmes = (DefaultTableModel) jTFilmesCadastrados.getModel();
-            dtmFilmes.removeRow(jTFilmesCadastrados.getSelectedRow());
-        }else{
-            JOptionPane.showMessageDialog(null, "Selecione um produto para excluir.");
+        int index = jTFilmesCadastrados.getSelectedRow();
+        int id = getId(index);
+        if (ListaDeMidias.remove(id)) {
+            JOptionPane.showMessageDialog(null, "Campo não encontro");
+        } else {
+           try {
+               ListaDeMidias.salvar();
+               DefaultTableModel dtmImagens = (DefaultTableModel) jTFilmesCadastrados.getModel(); 
+               dtmImagens.removeRow(jTFilmesCadastrados.getSelectedRow()); 
+               JOptionPane.showMessageDialog(null, "Campo deletado com sucesso.");
+            } catch (IOException ex) {
+                Logger.getLogger(CadastroVisualizacaoMusica.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_jBotaoExcluiActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        this.jTabbedPane1.setSelectedIndex(1);
-        DefaultTableModel dtmFilmes = (DefaultTableModel) jTFilmesCadastrados.getModel();
-                Object [] dados = {FArquivo.getText(), FTitulo.getText(), FDescricao.getText(), FGeneros.getText(), FIdioma.getText(), FAutores.getText(), 
-            FInterpretes.getText(), FDiretores.getText(), FDuracao.getText(), FAno.getText()};
-        dtmFilmes.addRow(dados);
-
-        if (FArquivo.getText().equals("")
-            || FTitulo.getText().equals("")
-            || FDescricao.getText().equals("")
-            || FGeneros.getText().equals("")
-            || FIdioma.getText().equals("")
-            || FDiretores.getText().equals("")
-            || FAutores.getText().equals("")
-            || FInterpretes.getText().equals("")
-            || FDuracao.getText().equals("")
-            || FAno.getText().equals("")){
+         /*this.jTabbedPane1.setSelectedIndex(1);
+      DefaultTableModel dtmImagens = (DefaultTableModel) jTFilmesCadastrados.getModel();
+      Object [] dados = {txtFile.getText(), FTitulo.getText(), FDescricao.getText(), FFotografo.getText(),FPessoas.getText(), FData.getText(),FLocal.getText()};
+     dtmImagens.addRow(dados);*/
+      
+    // If construido para tratar exceção 
+      if (FArquivo.getText().equals("") 
+              || FTitulo.getText().equals("")
+              || FDescricao.getText().equals("")
+              || FGeneros.getText().equals("")
+              || FIdioma.getText().equals("")
+              || FAutores.getText().equals("")
+              || FDuracao.getText().equals("")
+              || FAno.getText().equals("")
+              || FDiretores.getText().equals("")){
             JOptionPane.showMessageDialog(null, "Informe todos os campos!");
-        } else {
-            Filme film = new Filme(
-                FArquivo.getText().trim(),
-                FTitulo.getText().trim(),
-                FDescricao.getText().trim(),
-                FGeneros.getText().trim(),
-                FIdioma.getText().trim(),
-                Integer.parseInt(FDuracao.getText().trim()),
-                getDate(),
-                getDiretor(),
-                getAutor(),
-                getInterprete()
-            );
-
-            if (listMidias.adiciona(film) == false) {
-                JOptionPane.showMessageDialog(null, "Não foi possível salvar.");
-            } else {
-                JOptionPane.showMessageDialog(null, "Cadastro Efetuado!");
-                try {
-                    listMidias.salvar();
+      } else {
+          
+          /**
+     *
+     * @param caminhoDoArquivo
+     * @param titulo
+     * @param descricao
+     * @param genero
+     * @param idioma
+     * @param duracao
+     * @param ano
+     * @param diretor
+     * @param atores
+     * @param principais
+     */
+          
+          Filme img = new Filme(
+                  FArquivo.getText().trim(),
+                  FTitulo.getText().trim(),
+                  FDescricao.getText().trim(),
+                  FGeneros.getText().trim(),
+                  FIdioma.getText().trim(),
+                  Integer.parseInt(FDuracao.getText().trim()),
+                  getDate(),
+                  FDiretores.getText().trim(),
+                  FAutores.getText().trim(),
+                  FInterpretes.getText().trim());
+            if (editavel){
+                 
+                
+                if (TelaPrincipalFrame.editar(ide, img) == false) {
+                    JOptionPane.showMessageDialog(null, "Não foi possível editar.");
+                    editavel = false;
+                } else {
+                    JOptionPane.showMessageDialog(null, "Edição efetuada!");
+                    editavel = false;
+                try { 
+                    ListaDeMidias.salvar();
                 } catch (IOException ex) {
-                    Logger.getLogger(CadastroVisualizacaoFilme.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(CadastroVisualizacaoImagem.class.getName()).log(Level.SEVERE, null, ex);
                 }
-
+                limpar();
+            } 
+                
+                
+                
+            }else{
+                criarImagem(img);
             }
+         }
 
+        try {
+            listarImagens();
+        } catch (IllegalAccessException ex) {
+                    Logger.getLogger(CadastroVisualizacaoImagem.class.getName()).log(Level.SEVERE, null, ex);
+        } catch ( InvocationTargetException ex) {
+                    Logger.getLogger(CadastroVisualizacaoImagem.class.getName()).log(Level.SEVERE, null, ex);
         }
+      
 
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    //feito
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         
@@ -461,6 +550,7 @@ public class CadastroVisualizacaoFilme extends javax.swing.JInternalFrame {
         
         int retorno = fc.showOpenDialog(this);
         
+        // If construido para tratar exceção
         if(retorno == JFileChooser.APPROVE_OPTION ){
             
             File file = fc.getSelectedFile();
@@ -476,41 +566,60 @@ public class CadastroVisualizacaoFilme extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_FTituloActionPerformed
 
     private void jButtonEDITActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEDITActionPerformed
-
-        if (jTFilmesCadastrados.getSelectedRow() != -1){
-            jTFilmesCadastrados.setValueAt(FArquivo.getText(), jTFilmesCadastrados.getSelectedRow(), 0);
-            jTFilmesCadastrados.setValueAt(FTitulo.getText(), jTFilmesCadastrados.getSelectedRow(), 1);
-            jTFilmesCadastrados.setValueAt(FDescricao.getText(), jTFilmesCadastrados.getSelectedRow(), 2);
-            jTFilmesCadastrados.setValueAt(FGeneros.getText(), jTFilmesCadastrados.getSelectedRow(), 3);
-            jTFilmesCadastrados.setValueAt(FIdioma.getText(), jTFilmesCadastrados.getSelectedRow(), 4);
-            jTFilmesCadastrados.setValueAt(FAutores.getText(), jTFilmesCadastrados.getSelectedRow(), 5);
-            jTFilmesCadastrados.setValueAt(FInterpretes.getText(), jTFilmesCadastrados.getSelectedRow(), 6);
-            jTFilmesCadastrados.setValueAt(FDiretores.getText(), jTFilmesCadastrados.getSelectedRow(), 7);
-            jTFilmesCadastrados.setValueAt(FDuracao.getText(), jTFilmesCadastrados.getSelectedRow(), 8);
-            jTFilmesCadastrados.setValueAt(FAno.getText(), jTFilmesCadastrados.getSelectedRow(), 9);
-     }else{
-         JOptionPane.showMessageDialog(null, "Selecione um item para editar.");
+if (jTFilmesCadastrados.getSelectedRow() != -1){
+            ide = getId(jTFilmesCadastrados.getSelectedRow());
+            editavel = true;
+            
+            FArquivo.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 0).toString());
+            FTitulo.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 1).toString());
+            FDescricao.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 2).toString());
+            FGeneros.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 3).toString());
+            FIdioma.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 4).toString());
+            FAutores.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 5).toString());
+            FInterpretes.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 6).toString());
+            FDiretores.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 7).toString());
+            FDuracao.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 8).toString());
+            FAno.setText(jTFilmesCadastrados.getValueAt(jTFilmesCadastrados.getSelectedRow(), 9).toString());            
+        }else{
+            JOptionPane.showMessageDialog(null, "Selecione um produto para editar.");
         }
     }//GEN-LAST:event_jButtonEDITActionPerformed
 
     private void PesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PesquisarActionPerformed
         // TODO add your handling code here:
-        String indice = jComboBox1.getSelectedItem().toString();
+       String indice = jComboBox1.getSelectedItem().toString();
         switch (indice) {
             case "Título":
-      
-                break;
+                ListaDeMidias.ordenaAlfabeticamente();
+           break;
             case "Data":
-               
-               
-                break;
-           
-        }   
+                ListaDeMidias.ordenaData();
+            break;  
+        }  
+        try {
+            listarImagens();
+        } catch (IllegalAccessException ex) {
+                    Logger.getLogger(CadastroVisualizacaoImagem.class.getName()).log(Level.SEVERE, null, ex);
+        } catch ( InvocationTargetException ex) {
+                    Logger.getLogger(CadastroVisualizacaoImagem.class.getName()).log(Level.SEVERE, null, ex);
+        }  
     }//GEN-LAST:event_PesquisarActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void PesquisarFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PesquisarFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_PesquisarFActionPerformed
+
+    private void jTextFPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFPesquisaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFPesquisaActionPerformed
+
+    private void FArquivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FArquivoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_FArquivoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -525,8 +634,9 @@ public class CadastroVisualizacaoFilme extends javax.swing.JInternalFrame {
     private javax.swing.JTextField FInterpretes;
     private javax.swing.JTextField FTitulo;
     private javax.swing.JButton Pesquisar;
-    private javax.swing.JButton jBotaoConfirmaV;
+    private javax.swing.JButton PesquisarF;
     private javax.swing.JButton jBotaoExclui;
+    private javax.swing.JButton jBotaoSalvarV;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButtonEDIT;
@@ -550,47 +660,109 @@ public class CadastroVisualizacaoFilme extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTextFPesquisa;
     // End of variables declaration//GEN-END:variables
 public Date getDate() {
-
          String dataStr = FAno.getText().substring(0, 8);
-         if (FAno.equals("  /  /  ")) return null;
-         DateFormat df = new SimpleDateFormat("dd/MM/yy");
+         if (FAno.equals("  /  /  ")) { return null;
+         }else{ 
+         DateFormat df = new SimpleDateFormat("dd/mm/yyyy");
          df.setLenient(false);
          try {
-                 return df.parse(dataStr);
+            return df.parse(dataStr);
          }
          catch(ParseException e) {
-                 e.printStackTrace();
-                 return null;
-         }                
+              e.printStackTrace();
+            return null;
+         }    
+         }
 
  }
 
-public String [] getDiretor(){
-     try {
-         String diretor = FDiretores.getText().trim();
-         }
-        catch(Exception e) {
-                 return null;
-         }  
-        return null;
+public static int getId(int index){
+        return indexId[index];
 }
 
-public String [] getAutor(){
-    try{ 
-        String autor = FAutores.getText().trim();
-       }
-        catch(Exception e) {
-                 return null;    
-     }  
-        return null;
-}
-public String [] getInterprete(){
+public void listarImagens() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException{
+    Filme objetoFilme =  new Filme(null, null, null, null, null, 0, null, null, null, null);
+    dtmFilme = (DefaultTableModel) jTFilmesCadastrados.getModel();
+    listaFilme = ListaDeMidias.getLista(objetoFilme, null, null);
+
+    for (int i = 0; i<listaFilme.size(); i++){
+        Midia midia = listaFilme.get(i);
+        indexId[i++] = midia.getId(); 
+    }
+
+    int indexador = 0;
+    for (Midia m : listaFilme){
+        jTFilmesCadastrados.setValueAt(m.getCaminhoDoArquivo(), indexador, 0);
+        jTFilmesCadastrados.setValueAt(m.getTitulo(), indexador, 1);
+        jTFilmesCadastrados.setValueAt(m.getDescricao(), indexador, 2);
+        jTFilmesCadastrados.setValueAt(m.getFotografo(), indexador, 3);
+        jTFilmesCadastrados.setValueAt(m.getPessoas(), indexador, 4);
+        jTFilmesCadastrados.setValueAt(m.getData(), indexador, 5);
+        jTFilmesCadastrados.setValueAt(m.getLocal(), indexador, 6);
+        indexador++;
+    }
     
-    try{ 
-        String interprete =  FInterpretes.getText().trim();
+    
+}
+
+ private void limpar() {
+
+
+        FArquivo.setText("");
+        FTitulo.setText("");
+        FDescricao.setText("");
+        FGeneros.setText("");
+        FIdioma.setText("");
+        FAutores.setText("");
+        FInterpretes.setText("");      
+        FDiretores.setText("");
+        FDuracao.setText("");
+        FAno.setText("");
+            
+    }
+ 
+ private void inicia() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException{
+     Filme objetoFilme =  new Filme(null, null, null, null, null, 0, null, null, null, null);
+        listaFilme = ListaDeMidias.getLista(objetoFilme, null, null);
+        dtmFilme = (DefaultTableModel) jTFilmesCadastrados.getModel();
+        for (int i = 0; i<listaFilme.size(); i++){
+            Object obj = null;
+        dtmFilme.addRow((Object[]) obj);
         }
-        catch(Exception e) {
-                 return null;    
-     }  
-        return null;
-}}
+        
+        int indexador = 0;
+    for (Midia m : listaFilme){
+        jTFilmesCadastrados.setValueAt(m.getCaminhoDoArquivo(), indexador, 0);
+        jTFilmesCadastrados.setValueAt(m.getTitulo(), indexador, 1);
+        jTFilmesCadastrados.setValueAt(m.getDescricao(), indexador, 2);
+        jTFilmesCadastrados.setValueAt(m.getGenero(), indexador, 3);
+        jTFilmesCadastrados.setValueAt(m.getIdioma(), indexador, 4);
+        jTFilmesCadastrados.setValueAt(m.getAutores(), indexador, 5);
+        jTFilmesCadastrados.setValueAt(m.getInterpretes(), indexador, 6);
+        jTFilmesCadastrados.setValueAt(m.getDiretores(), indexador, 7);
+        jTFilmesCadastrados.setValueAt(m.getDuracao(), indexador, 8);
+        jTFilmesCadastrados.setValueAt(m.getAno(), indexador, 9);
+        
+        indexador++;
+    }
+ }
+ 
+ private void criarImagem(Filme flm){
+      
+            
+            if (TelaPrincipalFrame.adicionar(flm) == false) {
+                JOptionPane.showMessageDialog(null, "Não foi possível salvar.");
+            } else {
+                JOptionPane.showMessageDialog(null, "Cadastro Efetuado!");
+                Object obj = null;
+                dtmFilme.addRow((Object[]) obj);
+                try { 
+                    ListaDeMidias.salvar();
+                } catch (IOException ex) {
+                    Logger.getLogger(CadastroVisualizacaoImagem.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                limpar();
+            }    
+            
+ }
+}

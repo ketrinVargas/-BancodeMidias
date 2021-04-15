@@ -10,11 +10,11 @@ import java.util.Date;
 
 /**
  *
- * @author marin
+ * @author Ketrin d. Vargas, Marina B. Otokovieski, Rafael Souza
  */
 public class Imagem extends Midia implements Serializable {
     private String fotografo;
-    private String[] pessoas;
+    private String pessoas;
     private String local;
     private Date data;
 
@@ -28,7 +28,7 @@ public class Imagem extends Midia implements Serializable {
      * @param local
      * @param data
      */
-    public Imagem(String caminhoDoArquivo, String titulo, String descricao, String fotografo, String[] pessoas,
+    public Imagem(String caminhoDoArquivo, String titulo, String descricao, String fotografo, String pessoas,
             String local, Date data) {
         super(caminhoDoArquivo, titulo, descricao);
         this.fotografo = fotografo;
@@ -37,6 +37,7 @@ public class Imagem extends Midia implements Serializable {
         this.data = data;
     }
 
+    @Override
     public String getFotografo() {
         return this.fotografo;
     }
@@ -44,15 +45,17 @@ public class Imagem extends Midia implements Serializable {
     public void setFotografo(String fotografo) {
         this.fotografo = fotografo;
     }
-
-    public String[] getPessoas() {
+    
+    @Override
+    public String getPessoas() {
         return this.pessoas;
     }
 
-    public void setPessoas(String[] pessoas) {
+    public void setPessoas(String pessoas) {
         this.pessoas = pessoas;
     }
 
+    @Override
     public String getLocal() {
         return this.local;
     }
@@ -83,6 +86,36 @@ public class Imagem extends Midia implements Serializable {
             ", local='" + getLocal() + "'" +
             ", data='" + getData() + "'" +
             "}";
+    }
+
+    @Override
+    public String getIdioma() {
+        return null;
+    }
+
+    @Override
+    public String getAutores() {
+        return null;
+        }
+
+    @Override
+    public String getInterpretes() {
+        return null;
+    }
+
+    @Override
+    public String getDiretores() {
+        return null;
+    }
+
+    @Override
+    public int getDuracao() {
+        return 0;
+    }
+
+    @Override
+    public Date getAno() {
+        return null;
     }
 
 }

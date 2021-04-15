@@ -11,9 +11,9 @@ import java.util.Date;
 
 /**
  *
- * @author rafae
+ * @author Ketrin d. Vargas, Marina B. Otokovieski, Rafael Souza
  */
-public class Reproduzivel extends Midia implements Serializable {
+public abstract class Reproduzivel extends Midia implements Serializable {
     private String genero;
     private String idioma;
     private int duracao;
@@ -39,7 +39,7 @@ public class Reproduzivel extends Midia implements Serializable {
     public void setIdioma(String idioma) {
         this.idioma = idioma;
     }
-
+    
     public int getDuracao() {
         return this.duracao;
     }
@@ -51,6 +51,11 @@ public class Reproduzivel extends Midia implements Serializable {
     public void setAno(Date ano) {
         this.ano = ano;
     }
+    
+    @Override
+    public Date getAno(){
+        return this.ano;
+    }
 
     @Override
     public String getGenero() {
@@ -60,11 +65,37 @@ public class Reproduzivel extends Midia implements Serializable {
     public Date getData() {
         return this.ano;
     }
+    
+    @Override
+    public  String getFotografo(){
+        return null;
+    }
+    
+    @Override
+    public  String getPessoas(){
+        return null;
+    }
+    
+    @Override
+    public  String getLocal(){
+        return null;
+    }
 
     @Override
     public String toString() {
         return super.toString() + "{" + " genero='" + getGenero() + "'" + ", idioma='" + getIdioma() + "'" + ", duracao='" + getDuracao()
                 + "'" + ", ano='" + getData() + "'" + "}";
     }
+
+    @Override
+    public abstract String getAutores();
+
+    @Override
+    public abstract String getInterpretes();
+
+    @Override
+    public abstract String getDiretores();
+
+   
 
 }

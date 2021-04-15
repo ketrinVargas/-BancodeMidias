@@ -8,6 +8,11 @@ package bancodemidias;
 import java.io.Serializable;
 import java.util.Date;
 
+/**
+ *
+ * @author Ketrin d. Vargas, Marina B. Otokovieski, Rafael Souza
+ */
+
 public abstract class Midia implements Serializable {
     private static int numDeMidias = 0;
     private int id;
@@ -59,6 +64,16 @@ public abstract class Midia implements Serializable {
     public abstract String getGenero();
 
     public abstract Date getData();
+    
+    public abstract String getFotografo();
+    public abstract String getPessoas();
+    public abstract String getLocal();
+    public abstract String getIdioma();
+    public abstract String getAutores();
+    public abstract String getInterpretes();
+    public abstract String getDiretores();
+    public abstract int getDuracao();
+    public abstract Date getAno();
 
     @Override
     public String toString() {
