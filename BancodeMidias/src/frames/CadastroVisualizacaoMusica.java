@@ -59,17 +59,17 @@ public class CadastroVisualizacaoMusica extends javax.swing.JInternalFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
-        FTitulo = new javax.swing.JTextField();
-        FDescricao = new javax.swing.JTextField();
-        FAutores = new javax.swing.JTextField();
-        FDuracao = new javax.swing.JTextField();
-        txtFile = new javax.swing.JTextField();
-        FGenero = new javax.swing.JTextField();
-        FIdioma = new javax.swing.JTextField();
+        MTitulo = new javax.swing.JTextField();
+        MDescricao = new javax.swing.JTextField();
+        MAutores = new javax.swing.JTextField();
+        MDuracao = new javax.swing.JTextField();
+        MArquivo = new javax.swing.JTextField();
+        MGenero = new javax.swing.JTextField();
+        MIdioma = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        FInterpretes = new javax.swing.JTextField();
+        MInterpretes = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        FAno = new javax.swing.JTextField();
+        MAno = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -129,7 +129,7 @@ public class CadastroVisualizacaoMusica extends javax.swing.JInternalFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 986, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1084, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jBotaoConfirmaV, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -149,7 +149,7 @@ public class CadastroVisualizacaoMusica extends javax.swing.JInternalFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(19, Short.MAX_VALUE)
+                .addContainerGap(23, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -193,17 +193,17 @@ public class CadastroVisualizacaoMusica extends javax.swing.JInternalFrame {
             }
         });
 
-        FTitulo.addActionListener(new java.awt.event.ActionListener() {
+        MTitulo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                FTituloActionPerformed(evt);
+                MTituloActionPerformed(evt);
             }
         });
 
         jLabel9.setText("Intérpretes");
 
-        FInterpretes.addActionListener(new java.awt.event.ActionListener() {
+        MInterpretes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                FInterpretesActionPerformed(evt);
+                MInterpretesActionPerformed(evt);
             }
         });
 
@@ -216,63 +216,44 @@ public class CadastroVisualizacaoMusica extends javax.swing.JInternalFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(17, 17, 17)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtFile))
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                                    .addComponent(jLabel4)
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                    .addComponent(FDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 438, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                                        .addComponent(jLabel7)
-                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                        .addComponent(FAutores, javax.swing.GroupLayout.PREFERRED_SIZE, 438, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                            .addComponent(jLabel5)
-                                                            .addComponent(jLabel6))
-                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                            .addComponent(FGenero, javax.swing.GroupLayout.DEFAULT_SIZE, 441, Short.MAX_VALUE)
-                                                            .addComponent(FIdioma)))))
-                                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                                .addComponent(jLabel3)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(FTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 438, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGap(196, 204, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGap(3, 3, 3)
-                                        .addComponent(jLabel9))
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addContainerGap()
-                                        .addComponent(jLabel10)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(FInterpretes, javax.swing.GroupLayout.PREFERRED_SIZE, 438, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(FDuracao, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel8)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(FAno, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGap(0, 470, Short.MAX_VALUE))
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(MTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 438, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(MDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 438, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(MGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 441, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(MIdioma, javax.swing.GroupLayout.PREFERRED_SIZE, 441, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(MAutores, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 438, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                            .addComponent(MDuracao, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jLabel8)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(MAno, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(MInterpretes, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 438, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(MArquivo, javax.swing.GroupLayout.PREFERRED_SIZE, 438, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(315, 315, 315))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(228, 228, 228)
+                .addGap(481, 481, 481)
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -282,40 +263,42 @@ public class CadastroVisualizacaoMusica extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(29, 29, 29)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(FTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(FDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(FGenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6)
-                    .addComponent(FIdioma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(17, 17, 17)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(FAutores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(22, 22, 22)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(FInterpretes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9))
-                .addGap(30, 30, 30)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(FDuracao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10)
-                    .addComponent(FAno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(MTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(MDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(MGenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(MIdioma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(20, 20, 20)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7)
+                            .addComponent(MAutores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(19, 19, 19)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(MInterpretes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel9))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(MAno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel8)
+                        .addComponent(MDuracao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel10)))
+                .addGap(34, 34, 34)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton3)
-                    .addComponent(txtFile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(MArquivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addComponent(jButton2)
                 .addGap(26, 26, 26))
         );
@@ -339,18 +322,23 @@ public class CadastroVisualizacaoMusica extends javax.swing.JInternalFrame {
     private void jBotaoConfirmaVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotaoConfirmaVActionPerformed
         this.jTabbedPane1.setSelectedIndex(1);
         DefaultTableModel dtmMusica = (DefaultTableModel) jTMusicasCadastrados.getModel();
-        Object [] dados = {FTitulo.getText(), FGenero.getText(), FIdioma.getText(), FDuracao.getText(), FAno.getText()};
+        Object [] dados = {MTitulo.getText(), MDescricao.getText(), MGenero.getText(), MIdioma.getText(), MAutores.getText(),
+        MInterpretes.getText(), MDuracao.getText(), MAno.getText(), MArquivo.getText()};
         dtmMusica.addRow(dados);
 
     }//GEN-LAST:event_jBotaoConfirmaVActionPerformed
 
     private void jTMusicasCadastradosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTMusicasCadastradosMouseClicked
         if (jTMusicasCadastrados.getSelectedRow() != -1){
-            FTitulo.setText(jTMusicasCadastrados.getValueAt(jTMusicasCadastrados.getSelectedRow(), 0).toString());
-            FGenero.setText(jTMusicasCadastrados.getValueAt(jTMusicasCadastrados.getSelectedRow(), 1).toString());
-            FIdioma.setText(jTMusicasCadastrados.getValueAt(jTMusicasCadastrados.getSelectedRow(), 2).toString());
-            FDuracao.setText(jTMusicasCadastrados.getValueAt(jTMusicasCadastrados.getSelectedRow(), 3).toString());
-            FAno.setText(jTMusicasCadastrados.getValueAt(jTMusicasCadastrados.getSelectedRow(), 4).toString());
+            MTitulo.setText(jTMusicasCadastrados.getValueAt(jTMusicasCadastrados.getSelectedRow(), 0).toString());
+            MDescricao.setText(jTMusicasCadastrados.getValueAt(jTMusicasCadastrados.getSelectedRow(), 1).toString());
+            MGenero.setText(jTMusicasCadastrados.getValueAt(jTMusicasCadastrados.getSelectedRow(), 2).toString());
+            MIdioma.setText(jTMusicasCadastrados.getValueAt(jTMusicasCadastrados.getSelectedRow(), 3).toString());
+            MAutores.setText(jTMusicasCadastrados.getValueAt(jTMusicasCadastrados.getSelectedRow(), 4).toString());
+            MInterpretes.setText(jTMusicasCadastrados.getValueAt(jTMusicasCadastrados.getSelectedRow(), 5).toString());
+            MDuracao.setText(jTMusicasCadastrados.getValueAt(jTMusicasCadastrados.getSelectedRow(), 6).toString());
+            MAno.setText(jTMusicasCadastrados.getValueAt(jTMusicasCadastrados.getSelectedRow(), 7).toString());
+            MArquivo.setText(jTMusicasCadastrados.getValueAt(jTMusicasCadastrados.getSelectedRow(), 8).toString());
         }else{
             JOptionPane.showMessageDialog(null, "Selecione um produto para editar.");
         }
@@ -358,11 +346,15 @@ public class CadastroVisualizacaoMusica extends javax.swing.JInternalFrame {
 
     private void jTMusicasCadastradosKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTMusicasCadastradosKeyReleased
         if (jTMusicasCadastrados.getSelectedRow() != -1){
-            FTitulo.setText(jTMusicasCadastrados.getValueAt(jTMusicasCadastrados.getSelectedRow(), 0).toString());
-            FGenero.setText(jTMusicasCadastrados.getValueAt(jTMusicasCadastrados.getSelectedRow(), 1).toString());
-            FIdioma.setText(jTMusicasCadastrados.getValueAt(jTMusicasCadastrados.getSelectedRow(), 2).toString());
-            FDuracao.setText(jTMusicasCadastrados.getValueAt(jTMusicasCadastrados.getSelectedRow(), 3).toString());
-            FAno.setText(jTMusicasCadastrados.getValueAt(jTMusicasCadastrados.getSelectedRow(), 4).toString());
+            MTitulo.setText(jTMusicasCadastrados.getValueAt(jTMusicasCadastrados.getSelectedRow(), 0).toString());
+            MDescricao.setText(jTMusicasCadastrados.getValueAt(jTMusicasCadastrados.getSelectedRow(), 1).toString());
+            MGenero.setText(jTMusicasCadastrados.getValueAt(jTMusicasCadastrados.getSelectedRow(), 2).toString());
+            MIdioma.setText(jTMusicasCadastrados.getValueAt(jTMusicasCadastrados.getSelectedRow(), 3).toString());
+            MAutores.setText(jTMusicasCadastrados.getValueAt(jTMusicasCadastrados.getSelectedRow(), 4).toString());
+            MInterpretes.setText(jTMusicasCadastrados.getValueAt(jTMusicasCadastrados.getSelectedRow(), 5).toString());
+            MDuracao.setText(jTMusicasCadastrados.getValueAt(jTMusicasCadastrados.getSelectedRow(), 6).toString());
+            MAno.setText(jTMusicasCadastrados.getValueAt(jTMusicasCadastrados.getSelectedRow(), 7).toString());
+            MArquivo.setText(jTMusicasCadastrados.getValueAt(jTMusicasCadastrados.getSelectedRow(), 8).toString());
         }else{
             JOptionPane.showMessageDialog(null, "Selecione um produto para editar.");
         }
@@ -381,28 +373,29 @@ public class CadastroVisualizacaoMusica extends javax.swing.JInternalFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
          this.jTabbedPane1.setSelectedIndex(1);
         DefaultTableModel dtmMusica = (DefaultTableModel) jTMusicasCadastrados.getModel();
-        Object [] dados = {FTitulo.getText(), FGenero.getText(), FIdioma.getText(), FDuracao.getText(), FAno.getText()};
+        Object [] dados = {MTitulo.getText(), MDescricao.getText(), MGenero.getText(), MIdioma.getText(), MAutores.getText(),
+        MInterpretes.getText(), MDuracao.getText(), MAno.getText(), MArquivo.getText()};
         dtmMusica.addRow(dados);
      
-        if (txtFile.getText().equals("")
-            ||FTitulo.getText().equals("")
-            || FDescricao.getText().equals("")
-            || FGenero.getText().equals("")
-            || FIdioma.getText().equals("")
-            || FAutores.getText().equals("")
-            || FInterpretes.getText().equals("")
-            || FDuracao.getText().equals("")
-            || FAno.getText().equals("")) {
+        if (MArquivo.getText().equals("")
+            ||MTitulo.getText().equals("")
+            || MDescricao.getText().equals("")
+            || MGenero.getText().equals("")
+            || MIdioma.getText().equals("")
+            || MAutores.getText().equals("")
+            || MInterpretes.getText().equals("")
+            || MDuracao.getText().equals("")
+            || MAno.getText().equals("")) {
 
             JOptionPane.showMessageDialog(null, "Informe todos os campos!");
         } else {
             Musica music = new Musica(
-                    txtFile.getText().trim(),
-                    FTitulo.getText().trim(),
-                    FDescricao.getText().trim(),
-                    FGenero.getText().toString(),
-                    FIdioma.getText().toString(),
-                    Integer.parseInt(FDuracao.getText().trim()),
+                    MArquivo.getText().trim(),
+                    MTitulo.getText().trim(),
+                    MDescricao.getText().trim(),
+                    MGenero.getText().toString(),
+                    MIdioma.getText().toString(),
+                    Integer.parseInt(MDuracao.getText().trim()),
                     getDate(),
                     getInterprete(),
                     getAutor());
@@ -426,22 +419,26 @@ public class CadastroVisualizacaoMusica extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void FTituloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FTituloActionPerformed
+    private void MTituloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MTituloActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_FTituloActionPerformed
+    }//GEN-LAST:event_MTituloActionPerformed
 
-    private void FInterpretesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FInterpretesActionPerformed
+    private void MInterpretesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MInterpretesActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_FInterpretesActionPerformed
+    }//GEN-LAST:event_MInterpretesActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
   
             if (jTMusicasCadastrados.getSelectedRow() != -1){
-            jTMusicasCadastrados.setValueAt(FTitulo.getText(), jTMusicasCadastrados.getSelectedRow(), 0);
-            jTMusicasCadastrados.setValueAt(FGenero.getText(), jTMusicasCadastrados.getSelectedRow(), 1);
-            jTMusicasCadastrados.setValueAt(FIdioma.getText(), jTMusicasCadastrados.getSelectedRow(), 2);
-            jTMusicasCadastrados.setValueAt(FDuracao.getText(), jTMusicasCadastrados.getSelectedRow(), 3);
-            jTMusicasCadastrados.setValueAt(FAno.getText(), jTMusicasCadastrados.getSelectedRow(), 4);
+            jTMusicasCadastrados.setValueAt(MTitulo.getText(), jTMusicasCadastrados.getSelectedRow(), 0);
+            jTMusicasCadastrados.setValueAt(MDescricao.getText(), jTMusicasCadastrados.getSelectedRow(), 1);
+            jTMusicasCadastrados.setValueAt(MGenero.getText(), jTMusicasCadastrados.getSelectedRow(), 2);
+            jTMusicasCadastrados.setValueAt(MIdioma.getText(), jTMusicasCadastrados.getSelectedRow(), 3);
+            jTMusicasCadastrados.setValueAt(MAutores.getText(), jTMusicasCadastrados.getSelectedRow(), 4);
+            jTMusicasCadastrados.setValueAt(MInterpretes.getText(), jTMusicasCadastrados.getSelectedRow(), 5);
+            jTMusicasCadastrados.setValueAt(MDuracao.getText(), jTMusicasCadastrados.getSelectedRow(), 6);
+            jTMusicasCadastrados.setValueAt(MAno.getText(), jTMusicasCadastrados.getSelectedRow(), 7);
+            jTMusicasCadastrados.setValueAt(MArquivo.getText(), jTMusicasCadastrados.getSelectedRow(), 8);
      }else{
          JOptionPane.showMessageDialog(null, "Selecione um produto para editar.");
         }
@@ -451,14 +448,15 @@ public class CadastroVisualizacaoMusica extends javax.swing.JInternalFrame {
   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField FAno;
-    private javax.swing.JTextField FAutores;
-    private javax.swing.JTextField FDescricao;
-    private javax.swing.JTextField FDuracao;
-    private javax.swing.JTextField FGenero;
-    private javax.swing.JTextField FIdioma;
-    private javax.swing.JTextField FInterpretes;
-    private javax.swing.JTextField FTitulo;
+    private javax.swing.JTextField MAno;
+    private javax.swing.JTextField MArquivo;
+    private javax.swing.JTextField MAutores;
+    private javax.swing.JTextField MDescricao;
+    private javax.swing.JTextField MDuracao;
+    private javax.swing.JTextField MGenero;
+    private javax.swing.JTextField MIdioma;
+    private javax.swing.JTextField MInterpretes;
+    private javax.swing.JTextField MTitulo;
     private javax.swing.JButton jBotaoConfirmaV;
     private javax.swing.JButton jBotaoExclui;
     private javax.swing.JButton jButton1;
@@ -479,7 +477,6 @@ public class CadastroVisualizacaoMusica extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTMusicasCadastrados;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField txtFile;
     // End of variables declaration//GEN-END:variables
 
   /**
@@ -488,8 +485,8 @@ public class CadastroVisualizacaoMusica extends javax.swing.JInternalFrame {
   */
 public Date getDate() {
        
-         String dataStr = FAno.getText().substring(0, 8);
-         if (FAno.equals("  /  /  ")) return null;
+         String dataStr = MAno.getText().substring(0, 8);
+         if (MAno.equals("  /  /  ")) return null;
         DateFormat df = new SimpleDateFormat("dd/MM/yy");
          df.setLenient(false);
          try {
@@ -505,7 +502,7 @@ public Date getDate() {
 public String [] getInterprete(){
     
     try{ 
-        String interprete =  FInterpretes.getText().trim();
+        String interprete =  MInterpretes.getText().trim();
         }
         catch(Exception e) {
                  return null;    
@@ -514,7 +511,7 @@ public String [] getInterprete(){
 }
 public String [] getAutor(){
     try{ 
-        String autor = FAutores.getText().trim();
+        String autor = MAutores.getText().trim();
        }
         catch(Exception e) {
                  return null;    
