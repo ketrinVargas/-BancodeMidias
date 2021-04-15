@@ -29,10 +29,10 @@ public class CadastroVisualizacaoFilme extends javax.swing.JInternalFrame {
     /**
      * Creates new form CadastroVisualizacaoImagem
      */
-    private ListaDeMidias listMidia;
+    private ListaDeMidias listMidias;
     public CadastroVisualizacaoFilme(ListaDeMidias midias) {
         initComponents();
-        listMidia = midias;
+        listMidias = midias;
     }
 
     /**
@@ -52,6 +52,8 @@ public class CadastroVisualizacaoFilme extends javax.swing.JInternalFrame {
         jTFilmesCadastrados = new javax.swing.JTable();
         jBotaoExclui = new javax.swing.JButton();
         jButtonEDIT = new javax.swing.JButton();
+        Busca = new javax.swing.JTextField();
+        Pesquisar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
@@ -131,40 +133,53 @@ public class CadastroVisualizacaoFilme extends javax.swing.JInternalFrame {
             }
         });
 
+        Pesquisar.setText("Pesquisar");
+        Pesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PesquisarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1071, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 941, Short.MAX_VALUE)
+                .addComponent(jBotaoExclui, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(307, 307, 307)
+                .addComponent(jButtonEDIT, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jBotaoConfirmaV, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(9, 9, 9)
-                        .addComponent(jBotaoExclui, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButtonEDIT, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(380, 380, 380)
+                        .addComponent(Busca, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(Pesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(448, 448, 448)
+                        .addGap(453, 453, 453)
                         .addComponent(jLabel2)))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(30, Short.MAX_VALUE)
+                .addGap(12, 12, 12)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBotaoExclui)
-                    .addComponent(jButtonEDIT))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(Busca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Pesquisar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jBotaoConfirmaV)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jBotaoConfirmaV)
+                    .addComponent(jBotaoExclui)
+                    .addComponent(jButtonEDIT))
                 .addContainerGap())
         );
 
@@ -408,12 +423,12 @@ public class CadastroVisualizacaoFilme extends javax.swing.JInternalFrame {
                 getInterprete()
             );
 
-            if (listMidia.adiciona(film) == false) {
+            if (listMidias.adiciona(film) == false) {
                 JOptionPane.showMessageDialog(null, "Não foi possível salvar.");
             } else {
                 JOptionPane.showMessageDialog(null, "Cadastro Efetuado!");
                 try {
-                    listMidia.salvar();
+                    listMidias.salvar();
                 } catch (IOException ex) {
                     Logger.getLogger(CadastroVisualizacaoFilme.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -440,6 +455,8 @@ public class CadastroVisualizacaoFilme extends javax.swing.JInternalFrame {
             File file = fc.getSelectedFile();
             FArquivo.setText(file.getPath());
            
+         } else {
+                JOptionPane.showMessageDialog(null, "Erro no arquivo");
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -465,8 +482,13 @@ public class CadastroVisualizacaoFilme extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jButtonEDITActionPerformed
 
+    private void PesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PesquisarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_PesquisarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField Busca;
     private javax.swing.JTextField FAno;
     private javax.swing.JTextField FArquivo;
     private javax.swing.JTextField FAutores;
@@ -477,6 +499,7 @@ public class CadastroVisualizacaoFilme extends javax.swing.JInternalFrame {
     private javax.swing.JTextField FIdioma;
     private javax.swing.JTextField FInterpretes;
     private javax.swing.JTextField FTitulo;
+    private javax.swing.JButton Pesquisar;
     private javax.swing.JButton jBotaoConfirmaV;
     private javax.swing.JButton jBotaoExclui;
     private javax.swing.JButton jButton2;

@@ -29,10 +29,10 @@ public class CadastroVisualizacaoMusica extends javax.swing.JInternalFrame {
     /**
      * Creates new form CadastroVisualizacaoMusica
      */
-    private ListaDeMidias listMidia;
+    private ListaDeMidias listMidias;
     public CadastroVisualizacaoMusica(ListaDeMidias midias) {
         initComponents();
-        listMidia = midias;
+        listMidias = midias;
     }
 
     /**
@@ -52,6 +52,8 @@ public class CadastroVisualizacaoMusica extends javax.swing.JInternalFrame {
         jTMusicasCadastrados = new javax.swing.JTable();
         jBotaoExclui = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jTextField1 = new javax.swing.JTextField();
+        Pesquisar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
@@ -129,40 +131,53 @@ public class CadastroVisualizacaoMusica extends javax.swing.JInternalFrame {
             }
         });
 
+        Pesquisar.setText("Pesquisar");
+        Pesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PesquisarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 986, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jBotaoExclui, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(294, 294, 294)
                 .addComponent(jBotaoConfirmaV, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(9, 9, 9)
-                        .addComponent(jBotaoExclui, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(411, 411, 411)
-                        .addComponent(jLabel2)))
+                        .addComponent(jLabel2))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(355, 355, 355)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(Pesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(19, Short.MAX_VALUE)
+                .addContainerGap()
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBotaoExclui)
-                    .addComponent(jButton1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Pesquisar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jBotaoConfirmaV)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jBotaoConfirmaV)
+                    .addComponent(jButton1)
+                    .addComponent(jBotaoExclui))
                 .addContainerGap())
         );
 
@@ -425,12 +440,12 @@ public class CadastroVisualizacaoMusica extends javax.swing.JInternalFrame {
                     getInterprete(),
                     getAutor());
   
-            if (listMidia.adiciona(music) == false) {
+            if (listMidias.adiciona(music) == false) {
                 JOptionPane.showMessageDialog(null, "Não foi possível salvar.");
             } else {
                 JOptionPane.showMessageDialog(null, "Cadastro Efetuado!");
                 try {
-                    listMidia.salvar();
+                    listMidias.salvar();
                 } catch (IOException ex) {
                     Logger.getLogger(CadastroVisualizacaoMusica.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -453,7 +468,10 @@ public class CadastroVisualizacaoMusica extends javax.swing.JInternalFrame {
             
             File file = fc.getSelectedFile();
             txtFile.setText(file.getPath());
+            
            
+         } else {
+                JOptionPane.showMessageDialog(null, "Erro no arquivo");
         }
         
     }//GEN-LAST:event_jButton3ActionPerformed
@@ -489,6 +507,11 @@ public class CadastroVisualizacaoMusica extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtFileActionPerformed
 
+    private void PesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PesquisarActionPerformed
+        
+        
+    }//GEN-LAST:event_PesquisarActionPerformed
+
   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -500,6 +523,7 @@ public class CadastroVisualizacaoMusica extends javax.swing.JInternalFrame {
     private javax.swing.JTextField FIdioma;
     private javax.swing.JTextField FInterpretes;
     private javax.swing.JTextField FTitulo;
+    private javax.swing.JButton Pesquisar;
     private javax.swing.JButton jBotaoConfirmaV;
     private javax.swing.JButton jBotaoExclui;
     private javax.swing.JButton jButton1;
@@ -520,6 +544,7 @@ public class CadastroVisualizacaoMusica extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTMusicasCadastrados;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField txtFile;
     // End of variables declaration//GEN-END:variables
 

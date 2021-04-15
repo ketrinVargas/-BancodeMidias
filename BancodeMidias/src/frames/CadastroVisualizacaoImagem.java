@@ -30,10 +30,10 @@ public class CadastroVisualizacaoImagem extends javax.swing.JInternalFrame {
     /**
      * Creates new form CadastroVisualizacaoFrame
      */
-     private ListaDeMidias listMidia;
+     private ListaDeMidias listMidias;
     public CadastroVisualizacaoImagem(ListaDeMidias midias) {
         initComponents();
-        listMidia = midias;
+        listMidias = midias;
     }
 
     /**
@@ -345,6 +345,8 @@ public class CadastroVisualizacaoImagem extends javax.swing.JInternalFrame {
             File file = fc.getSelectedFile();
             txtFile.setText(file.getPath());
            
+         } else {
+                JOptionPane.showMessageDialog(null, "Erro no arquivo");
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -372,12 +374,12 @@ public class CadastroVisualizacaoImagem extends javax.swing.JInternalFrame {
                     FLocal.getText().trim(),
                     getDate()); 
             
-            if (listMidia.adiciona(img) == false) {
+            if (listMidias.adiciona(img) == false) {
                 JOptionPane.showMessageDialog(null, "Não foi possível salvar.");
             } else {
            JOptionPane.showMessageDialog(null, "Cadastro Efetuado!");
                 try { 
-                    listMidia.salvar();
+                    listMidias.salvar();
                 } catch (IOException ex) {
                     Logger.getLogger(CadastroVisualizacaoImagem.class.getName()).log(Level.SEVERE, null, ex);
                 }
